@@ -18,7 +18,7 @@ class RegisterController extends AbstractController
     public function __construct(EntityManagerInterface $entityManager){
         $this->entityManager = $entityManager;
     }
-    #[Route('/inscription', name: 'app_register')]
+    #[Route('/inscription', name: 'register')]
     public function index(Request $request, UserPasswordEncoderInterface $encoder): Response
     {   
         $user = new User();
@@ -31,10 +31,6 @@ class RegisterController extends AbstractController
             $this->entityManager->persist($user);
             $this->entityManager->flush();
 
-        }
-        
-        if ($form->isSubmitted() && $form->isValid()) { 
-            
         }
 
         return $this->render('register/index.html.twig',[

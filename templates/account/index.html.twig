@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon compte - Peinture Auto Expert{% endblock %}
+
+{% block content %}
+<h1> Mon compte</h1>
+Bienvenu {{app.user.firstname}} dans votre compte. 
+<hr>
+<h4><a href={{ path('account_password')}}> Modifier le mot de passe </a></h4>
+
+{% endblock %}
