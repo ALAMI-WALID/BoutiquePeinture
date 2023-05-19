@@ -36,6 +36,14 @@ class Product
     #[ORM\JoinColumn(nullable: false)]
     private ?Category $category = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?float $weight = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $articleCode = null;
+
+
+
     public function getId(): ?int
     {
         return $this->id;
@@ -124,4 +132,29 @@ class Product
 
         return $this;
     }
+
+    public function getWeight(): ?float
+    {
+        return $this->weight;
+    }
+
+    public function setWeight(?float $weight): self
+    {
+        $this->weight = $weight;
+
+        return $this;
+    }
+
+    public function getArticleCode(): ?string
+    {
+        return $this->articleCode;
+    }
+
+    public function setArticleCode(string $articleCode): self
+    {
+        $this->articleCode = $articleCode;
+
+        return $this;
+    }
+
 }
