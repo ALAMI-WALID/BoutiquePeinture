@@ -10,3 +10,39 @@
     background-color: #dfeadf;
     padding-top: 25px;
 }
+
+.product-item h5 {
+
+    font-size: 15px;
+    text-transform: uppercase;
+    margin-bottom: 1px;
+} 
+.product-item img {
+    width: 200px; /* Largeur souhaitée pour les images */
+    height: 200px; /* Hauteur souhaitée pour les images */
+    object-fit: cover; /* Redimensionner les images pour remplir la zone définie */
+    object-position: center; /* Centrer les images horizontalement et verticalement */
+}
+
+.product-item{
+    margin-top: 50px;
+}
+.product-item .product-subtitle {
+
+    font-size: 14px;
+    display: black;
+    margin-bottom: 10px;
+}
+
+.product-item .product-price {
+font-size: 15px;
+font-weight: bold;
+}
+.product-container{
+    margin-bottom: 125px;
+    
+}
+.product-price-page{
+
+    font-size: 20px;
+}
