@@ -68,6 +68,7 @@ class AddressType extends AbstractType
 )
             ->add('country', CountryType::class, [
                 'label' => 'Pays',
+                
                 'attr' => [
                     'placeholder' => 'Votre pays'
                 ]

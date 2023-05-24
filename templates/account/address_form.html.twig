@@ -3,9 +3,10 @@
 {% block title %}Mon compte - Peinture Auto Expert{% endblock %}
 
 {% block content %}
-    <a href="" class="btn btn-info btn-sm float-right">Gérer mes adresses</a>
+    <a class="btn btn-info btn-sm " href={{ path('account_address')}}>Retour</a>
+
+    {# <a href={{path('account_address')}} class="btn btn-info btn-sm float-right">Gérer mes adresses</a> #}
     
-    <h4><a href={{ path('account')}}>Retour</a></h4>
     <hr>
 
     {{ form_start(form) }}

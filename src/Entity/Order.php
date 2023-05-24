@@ -33,6 +33,12 @@ class Order
     #[ORM\OneToMany(mappedBy: 'myorder', targetEntity: OrderDetails::class)]
     private Collection $orderDetails;
 
+    #[ORM\Column]
+    private ?bool $isPaid = null;
+
+    #[ORM\Column]
+    private ?float $carrierPrice = null;
+
     public function __construct()
     {
         $this->orderDetails = new ArrayCollection();
@@ -117,6 +123,30 @@ class Order
                 $orderDetail->setMyorder(null);
             }
         }
+
+        return $this;
+    }
+
+    public function isIsPaid(): ?bool
+    {
+        return $this->isPaid;
+    }
+
+    public function setIsPaid(bool $isPaid): self
+    {
+        $this->isPaid = $isPaid;
+
+        return $this;
+    }
+
+    public function getCarrierPrice(): ?float
+    {
+        return $this->carrierPrice;
+    }
+
+    public function setCarrierPrice(float $carrierPrice): self
+    {
+        $this->carrierPrice = $carrierPrice;
 
         return $this;
     }

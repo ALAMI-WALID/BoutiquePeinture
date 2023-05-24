@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Classe\Cart;
 
 class AccountAddressController extends AbstractController
 {
@@ -24,7 +25,7 @@ class AccountAddressController extends AbstractController
     }
 
     #[Route('/compte/ajouter-une-adresse', name: 'account_address_add')]
-    public function add(Request $request, SessionInterface $session): Response
+    public function add(Request $request, SessionInterface $session, Cart $cart): Response
     { 
         $address = new Address;
         $form = $this->createForm(AddressType::class, $address);
@@ -33,8 +34,14 @@ class AccountAddressController extends AbstractController
            $address->setUser($this->getUser());
             $this->entityManager->persist($address);
             $this->entityManager->flush();
-            $session->getFlashBag()->add('success', 'Votre nouvelle adresse a été ajoutée avec succès !');
-            return $this->redirectToRoute('account');
+            if($cart->get()){
+                return $this->redirectToRoute('order');
+            }else
+            {
+                
+                $session->getFlashBag()->add('success', 'Votre nouvelle adresse a été ajoutée avec succès !');
+                return $this->redirectToRoute('account_address');
+            }
 
         }
 
