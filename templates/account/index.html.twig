@@ -4,8 +4,18 @@
 
 {% block content %}
 <h1> Mon compte</h1>
-Bienvenu {{app.user.firstname}} dans votre compte. 
+{# Messge de notification des adresses #}
+{% for flashMessage in app.session.flashBag.get('success') %}
+    <div class="alert alert-success">
+        {{ flashMessage }}
+    </div>
+{% endfor %}
+
+Bienvenue {{app.user.firstname}} dans votre compte.<br>
+C'est dans cet espace que vous allez pouvoir gérer toutes vos informations personnelles!!
 <hr>
 <h4><a href={{ path('account_password')}}> Modifier le mot de passe </a></h4>
+<h4><a href={{ path('account_address')}}> Gérer mes adresses </a></h4>
+
 
 {% endblock %}
