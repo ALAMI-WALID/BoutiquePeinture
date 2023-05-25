@@ -6,6 +6,8 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v4.1.1">
+    {% block javascript %}{% endblock %}
+
     <title>{% block title %}La boutique Auto Peinture Expert {% endblock %}</title>
 
     <!-- Bootstrap core CSS -->
@@ -140,4 +142,7 @@
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src={{asset('assets/js/bootstrap.bundle.js')}}></script>
 </body>
+
+{% block script %}
+{% endblock %}
 </html>
