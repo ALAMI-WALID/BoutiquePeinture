@@ -70,6 +70,23 @@ class OrderController extends AbstractController
             $delivery_content .= '<br/>'.$delivery->getPostal().' '.$delivery->getCity();
             $delivery_content .= '<br/>'.$delivery->getCountry();
 
+            //vérification de livraison au ile-de-france
+
+            $codesPostauxIleDeFrance = ['75000', '75001', '75002'];
+
+            if (!in_array($delivery->getPostal(), $codesPostauxIleDeFrance)) {
+              
+                foreach($cart->getFull() as $product){
+
+                    if(!$product['product']->getLivrableHorsIleDeFrance()){
+
+
+                        return $this->render('order/nonlivraison.html.twig'); 
+                    }
+                }
+            }
+            
+
 
         //enregistre ma commande sur Order:
         $order = new Order();
@@ -81,6 +98,9 @@ class OrderController extends AbstractController
             $order->setCarrierPrice($carriers->getPrice());
             $order->setDelivery($delivery_content);
             $order->setIsPaid(0);
+
+
+            
 
         $this->entityManager->persist($order);
 
@@ -98,7 +118,7 @@ class OrderController extends AbstractController
             
         }
 
-            // $this->entityManager->flush();
+            $this->entityManager->flush();
 
         return $this->render('order/add.html.twig',[
             'cart' => $cart->getFull(),

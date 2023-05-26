@@ -42,6 +42,9 @@ class Product
     #[ORM\Column(length: 255)]
     private ?string $articleCode = null;
 
+    #[ORM\Column] 
+    private ?bool $livrableHorsIleDeFrance = null;
+
 
 
     public function getId(): ?int
@@ -153,6 +156,18 @@ class Product
     public function setArticleCode(string $articleCode): self
     {
         $this->articleCode = $articleCode;
+
+        return $this;
+    }
+
+    public function getLivrableHorsIleDeFrance(): ?bool
+    {
+        return $this->livrableHorsIleDeFrance;
+    }
+
+    public function setLivrableHorsIleDeFrance(bool $livrableHorsIleDeFrance): self
+    {
+        $this->livrableHorsIleDeFrance = $livrableHorsIleDeFrance;
 
         return $this;
     }

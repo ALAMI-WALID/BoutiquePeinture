@@ -53,9 +53,10 @@
 
             <hr>
             <strong>Sous-Total : </strong> {{ (total / 100)|number_format(2, ',', '.') }} €<br/>
-            <strong>Livraison : </strong> {{ (carrier.price / 100)|number_format(2, ',', '.') }} €
+            <strong>Livraison : </strong> {{ (carrier.price / 100)|number_format(2, ',', '.') }} €<br>
             <hr>
-            <strong>Total : </strong> {{ ((total / 100) + (carrier.price / 100))|number_format(2, ',', '.') }} €
+            <strong>TOTAL : </strong> {{ ((total / 100) + (carrier.price / 100))|number_format(2, ',', '.') }} €<br>
+            (<small class="taxe-incluses">Taxes incluses {{ (((total * 20) / 100) / 100)|number_format(2, ',', '.')}} € </small>)
 
             <a class="btn btn-success btn-block mt-3" id="checkout-button">Payer | {{ ((total / 100) + (carrier.price / 100))|number_format(2, ',', '.') }} €</a>
         </div>

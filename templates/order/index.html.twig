@@ -18,8 +18,7 @@
         </div>
         <div class="col-md-6">
             <div class="text-center">
-                <b>Récap de ma commande</b><br/>
-                <p>Retrouvez le récapitulatif de vos produits.</p>
+                <b>DÉTAILS DE LA COMMANDE</b>
             </div>
             <div class="order-summary">
                 {% for key,product in cart %}
@@ -27,12 +26,16 @@
                         <div class="col-2">
                             <img src="/uploads/{{ product.product.illustration }}" alt="{{ product.product.name }}" height="75px">
                         </div>
+
                         <div class="col-8 my-auto">
                             {{ product.product.name }}<br/>
-                            <small>{{ product.product.subtitle }}</small>
+                            <small>{{ product.product.subtitle }}</small><br>
+                            <span class="product-price">{{ (product.product.price * product.quantity / 100)|number_format(2, ',','.')}}€</span>
+
+
                         </div>
                         <div class="col-2 my-auto">
-                            x {{ product.quantity }}
+                            Qté: {{ product.quantity }}
                         </div>
                     </div>
                 {% endfor %}
