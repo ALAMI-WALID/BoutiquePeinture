@@ -56,13 +56,13 @@ class RegisterType extends AbstractType
                 'first_options' => [
                     'label' => 'Entrz votre mot de passe',
                     'attr' => [
-                        'placeholder'=> 'Merci de saisir votre Email'
+                        'placeholder'=> 'Merci de saisir votre mot de passe'
                     ]
             ],
                 'second_options' =>[
                     'label' => 'Confirmez votre mot de passe',
                     'attr' => [
-                        'placeholder'=> 'Merci de confirmer votre Email'
+                        'placeholder'=> 'Merci de confirmer votre mot de passe '
                     ]
                 ],
                 'invalid_message' => 'le mot de passe et la confirmation doivent être identique.',
