@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\BaseOfficielleDesCodesPostaux;
 use App\Entity\Carrier;
 use App\Entity\Order;
 use App\Entity\OrderDetails;
@@ -70,11 +71,9 @@ class OrderController extends AbstractController
             $delivery_content .= '<br/>'.$delivery->getPostal().' '.$delivery->getCity();
             $delivery_content .= '<br/>'.$delivery->getCountry();
 
-            //vérification de livraison au ile-de-france
-
-            $codesPostauxIleDeFrance = ['75000', '75001', '75002'];
-
-            if (!in_array($delivery->getPostal(), $codesPostauxIleDeFrance)) {
+            //vérification de livraison hors ile-de-france
+            $codesPostauxIleDeFrance = $this->entityManager->getRepository(BaseOfficielleDesCodesPostaux::class)->findByCode($delivery->getPostal());
+            if (!$codesPostauxIleDeFrance) {
               
                 foreach($cart->getFull() as $product){
 
@@ -85,9 +84,6 @@ class OrderController extends AbstractController
                     }
                 }
             }
-            
-
-
         //enregistre ma commande sur Order:
         $order = new Order();
             // $reference = $date->format('dmY').'-'.uniqid();

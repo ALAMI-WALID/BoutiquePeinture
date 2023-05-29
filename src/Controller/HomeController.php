@@ -13,8 +13,7 @@ class HomeController extends AbstractController
     public function index(): Response
     {
         $mail = new Mail;
-        $mail->send();
-
+        $mail->send('walidfr.digital@gmail.com','hello');
         return $this->render('home/index.html.twig');
     }
 }
