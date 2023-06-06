@@ -6,6 +6,8 @@ use App\Entity\Carrier;
 use App\Entity\Category;
 use App\Entity\Order;
 use App\Entity\Product;
+use App\Entity\SousCategory;
+use App\Entity\SousSousCategory;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use App\Controller\Admin\UserCrudController;
@@ -54,6 +56,8 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Utilisateur', 'fa fa-user', User::class);
         yield MenuItem::linkToCrud('Orders', 'fa fa-shopping-cart', Order::class);
         yield MenuItem::linkToCrud('Categories', 'fa fa-list', Category::class);
+        yield MenuItem::linkToCrud('Sous-Categories', 'fa fa-list', SousCategory::class);
+        yield MenuItem::linkToCrud('Sous-Sous-Categories', 'fa fa-list', SousSousCategory::class);
         yield MenuItem::linkToCrud('Produits', 'fa fa-tag', Product::class);
         yield MenuItem::linkToCrud('Carriers', 'fa fa-truck', Carrier::class);
 
