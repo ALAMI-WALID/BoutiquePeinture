@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Classe;
-
 use Mailjet\Client;
 use Mailjet\Resources;
 
@@ -11,7 +10,7 @@ class Mail
     
                 
                 private $api_key = '1c437027b04731f5bd48d14c8d19c990';
-                private $api_key_secret = 'be9b44702c224897187ba3dde957c89a';
+                private $api_key_secret = '3579eb81c2eb5d8ba92ab7b15c7944b9';
 
                 
 
@@ -39,7 +38,7 @@ public function send($to_email,$to_name)
                 ]
             ];
             $response = $mj->post(Resources::$Email, ['body' => $body]);
-            $response->success() && dd($response->getData());      
+            $response->success() ;
           
     
     }

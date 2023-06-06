@@ -23,6 +23,8 @@ body{
 .product-item img {
     width: 200px; /* Largeur souhaitée pour les images */
     height: 200px; /* Hauteur souhaitée pour les images */
+    height: auto;
+
     object-fit: cover; /* Redimensionner les images pour remplir la zone définie */
     object-position: center; /* Centrer les images horizontalement et verticalement */
 }
