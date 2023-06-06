@@ -21,9 +21,13 @@ class Category
     #[ORM\OneToMany(mappedBy: 'category', targetEntity: Product::class)]
     private Collection $products;
 
+    #[ORM\OneToMany(mappedBy: 'categoryID', targetEntity: SousCategory::class)]
+    private Collection $sousCategories;
+
     public function __construct()
     {
         $this->products = new ArrayCollection();
+        $this->sousCategories = new ArrayCollection();
     }
 
     public function __toString()
@@ -72,6 +76,36 @@ class Category
             // set the owning side to null (unless already changed)
             if ($product->getCategory() === $this) {
                 $product->setCategory(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, SousCategory>
+     */
+    public function getSousCategories(): Collection
+    {
+        return $this->sousCategories;
+    }
+
+    public function addSousCategory(SousCategory $sousCategory): self
+    {
+        if (!$this->sousCategories->contains($sousCategory)) {
+            $this->sousCategories->add($sousCategory);
+            $sousCategory->setCategoryID($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSousCategory(SousCategory $sousCategory): self
+    {
+        if ($this->sousCategories->removeElement($sousCategory)) {
+            // set the owning side to null (unless already changed)
+            if ($sousCategory->getCategoryID() === $this) {
+                $sousCategory->setCategoryID(null);
             }
         }
 
