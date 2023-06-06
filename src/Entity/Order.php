@@ -39,6 +39,12 @@ class Order
     #[ORM\Column]
     private ?float $carrierPrice = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $reference = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $stripeSessionId = null;
+
     public function __construct()
     {
         $this->orderDetails = new ArrayCollection();
@@ -160,6 +166,30 @@ class Order
     public function setCarrierPrice(float $carrierPrice): self
     {
         $this->carrierPrice = $carrierPrice;
+
+        return $this;
+    }
+
+    public function getReference(): ?string
+    {
+        return $this->reference;
+    }
+
+    public function setReference(string $reference): self
+    {
+        $this->reference = $reference;
+
+        return $this;
+    }
+
+    public function getStripeSessionId(): ?string
+    {
+        return $this->stripeSessionId;
+    }
+
+    public function setStripeSessionId(?string $stripeSessionId): self
+    {
+        $this->stripeSessionId = $stripeSessionId;
 
         return $this;
     }
