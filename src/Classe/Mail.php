@@ -14,7 +14,7 @@ class Mail
 
                 
 
-public function send($to_email,$to_name)
+public function send($to_email, $to_name, $subject, $content)
          {
             
             $mj = new Client($this->api_key ,$this->api_key_secret,true,['version' => 'v3.1']);
@@ -33,7 +33,11 @@ public function send($to_email,$to_name)
                         ],
                         'TemplateID' => 4839195,
                         'TemplateLanguage' => true,
-                        'Subject' => "Your email flight plan!"
+                        'Subject' => $subject,
+                        'Variables' => [
+                            'content' => $content,
+                        ]
+    
                     ]
                 ]
             ];

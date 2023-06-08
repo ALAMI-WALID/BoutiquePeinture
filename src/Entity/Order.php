@@ -34,9 +34,6 @@ class Order
     private Collection $orderDetails;
 
     #[ORM\Column]
-    private ?bool $isPaid = null;
-
-    #[ORM\Column]
     private ?float $carrierPrice = null;
 
     #[ORM\Column(length: 255)]
@@ -44,6 +41,9 @@ class Order
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $stripeSessionId = null;
+
+    #[ORM\Column]
+    private ?int $state = null;
 
     public function __construct()
     {
@@ -146,18 +146,6 @@ class Order
         return $this;
     }
 
-    public function isIsPaid(): ?bool
-    {
-        return $this->isPaid;
-    }
-
-    public function setIsPaid(bool $isPaid): self
-    {
-        $this->isPaid = $isPaid;
-
-        return $this;
-    }
-
     public function getCarrierPrice(): ?float
     {
         return $this->carrierPrice;
@@ -190,6 +178,18 @@ class Order
     public function setStripeSessionId(?string $stripeSessionId): self
     {
         $this->stripeSessionId = $stripeSessionId;
+
+        return $this;
+    }
+
+    public function getState(): ?int
+    {
+        return $this->state;
+    }
+
+    public function setState(int $state): static
+    {
+        $this->state = $state;
 
         return $this;
     }
