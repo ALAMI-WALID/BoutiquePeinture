@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Classe\ColissimoService;
 use App\Entity\BaseOfficielleDesCodesPostaux;
 use App\Entity\Carrier;
 use App\Entity\Order;
@@ -33,11 +34,16 @@ class OrderController extends AbstractController
             'user' => $this->getUser()
         ]);
 
+        $colissimoService = new ColissimoService('458744','Symfony123456@'); // Remplacez par vos identifiants Colissimo
+        $token = $colissimoService->getAuthToken();
+
         $form->handleRequest($request);
 
         return $this->render('order/index.html.twig',[
             'form' => $form->createView(),
             'cart' => $cart->getfull(),
+            'token' =>$token
+
         ]);
     }
 
@@ -114,13 +120,15 @@ class OrderController extends AbstractController
             
         }
 
+       
+
             $this->entityManager->flush();
 
         return $this->render('order/add.html.twig',[
             'cart' => $cart->getFull(),
             'carrier' => $carriers,
             'delivery' => $delivery_content,
-            'reference' => $order->getReference()
+            'reference' => $order->getReference(),
 
         ]);
     }  else{

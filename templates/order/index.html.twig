@@ -15,6 +15,8 @@
                 {{ form_end(form) }}
             {% endset %}
             {{ formHtml|replace({'[br]' : '<br/>'})|raw }}
+            <a class="btn btn-success btn-block mt-3" id="monIdDeWidgetColissimo">Point Retrait</a>
+
         </div>
         <div class="col-md-6">
             <div class="text-center">
@@ -42,4 +44,37 @@
             </div>
         </div>
     </div>
+{% endblock %}
+
+
+{% block script %}
+
+           <div  class="monIdDeWidgetColissimo"></div>
+                <script type="text/javascript">
+                    var checkoutButton = document.getElementById("monIdDeWidgetColissimo");
+
+                     function maMethodeDeCallBack(point) {
+                            console.log('call back frame');
+                            console.log(point);
+                            jQuery('#monIdDeWidgetColissimo').frameColissimoClose();
+
+                        
+                    
+
+                    }
+                checkoutButton.addEventListener("click", function () {
+                    var url_serveur = 'https://ws.colissimo.fr';
+                    
+                    $('#monIdDeWidgetColissimo').frameColissimoOpen({
+                    "URLColissimo" : url_serveur,
+                    "callBackFrame" : 'maMethodeDeCallBack',
+                    "ceCountry" : "FR",
+                    "ceAddress" : "1 rue de rivoli",
+                    "ceZipCode" : "75001",
+                    "ceTown" : "Paris",
+                    "token" : "{{token}}"
+                    })
+               });
+
+                </script>
 {% endblock %}
