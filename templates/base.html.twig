@@ -14,6 +14,10 @@
     <link href={{asset('assets/css/bootstrap.min.css')}} rel="stylesheet">
     <link href={{asset('assets/css/boutiquepeinture.css')}} rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <link rel="icon" type="image/png" href="{{ asset('assets/img/logo1.png') }}">
+    <link href={{asset('assets/css/offcanvas.css')}} rel="stylesheet">
+
+
 
 
 
@@ -27,6 +31,8 @@
             user-select: none;
         }
 
+        
+
         @media (min-width: 768px) {
             .bd-placeholder-img-lg {
                 font-size: 3.5rem;
@@ -38,20 +44,22 @@
 </head>
 <body>
 <header>
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-        <a class="navbar-brand" href={{ path('app_home')}}>PeintureAuto</a>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark" >
+
+        <a href={{ path('app_home')}} class="navbar-brand">
+            <img src={{asset('assets/img/logo1.png')}} style="width: 200px; height: auto;" alt="logo">
+        </a>
+
+
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href={{path('products')}}>Nos produits <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href={{path('products')}}><span class="sr-only">(current)</span></a>
                 </li>
-                
-                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Contact <span class="sr-only">(current)</span></a>
-                </li>
+            
             </ul>
             <div class="navbar-items">
             {% if app.user %}
@@ -63,10 +71,27 @@
             <a href={{path('cart')}}>
                 <img src={{asset('assets/img/shopping-cart.png')}} class="cart-icon" alt="Mon panier">
             </a>
+            <a href={{path('contact')}}>
+                <img src={{asset('assets/img/contact11.png')}} class="cart-icon" alt="contact">
+            </a>
         </div>
     </nav>
-</header>
+    
 
+        <div class="nav-scroller bg-body shadow-sm">
+        <nav class="nav nav-underline" aria-label="Secondary navigation">
+            <a class="nav-link active" aria-current="page" href="#">Tout</a>
+            <a class="nav-link active" href="#">Peinture</a>
+            <a class="nav-link active" href="#">Carrosserie</a>
+            <a class="nav-link active" href="#">Outillage carosserie</a>
+            <a class="nav-link active" href="#">Detailing</a>
+            <a class="nav-link active" href="#">Equipement cabine et Atelier</a>
+            <a class="nav-link active" href="#">Equipement de protection</a>
+            <a class="nav-link active" href="#">Installation Labo</a>
+
+        </nav>
+        </div>
+</header>
 <main role="main">
     {% if block('carousel') is defined %}
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
@@ -112,6 +137,9 @@
     </div><!-- /.container -->
 
     <!-- FOOTER -->
+    
+    
+
     <footer class="footer-custom">
         <p>
              &copy; 2018-2023 Peinture Auto Expert.<br>
@@ -122,6 +150,8 @@
 </main>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src={{asset('assets/js/bootstrap.bundle.js')}}></script>
+<script src={{asset('assets/js/offcanvas.js')}}></script>
+
 </body>
 
 {% block script %}

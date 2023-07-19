@@ -1,6 +1,9 @@
 body{
     position: relative;
 }
+header {
+    margin-top: -50px; /* Ajustez la valeur selon vos besoins */
+  }
 .navbar-items, .navbar-items a {
    color: #fff;
 }
@@ -79,4 +82,27 @@ font-weight: bold;
 }
 .taxe-incluses{
     font-size: medium;
+}
+
+
+.order-summary {
+    background-color: #f4f8ff;
+    padding: 20px;
+    margin-top: 22px;
+}
+
+.account-item {
+    background-color: #f1f2f6;
+    padding: 70px;
+}
+
+.account-item a {
+    text-transform: uppercase;
+    font-size: 13px;
+    color: #4b6584;
+    font-weight: bold;
+}
+.account-item a:hover {
+    color: #778ca3;
+    text-decoration: none;
 }
