@@ -50,3 +50,4 @@ public function send($to_email, $to_name, $subject, $content)
     
 
 }
+
