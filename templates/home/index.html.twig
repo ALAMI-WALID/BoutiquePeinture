@@ -1,11 +1,11 @@
 {% extends 'base.html.twig' %}
 
+{% block search %}{% endblock %}
+
 {% block carousel %}{% endblock %}
 
 {% block content %}
 
-        <!-- Three columns of text below the carousel -->
-        <!-- Three columns of text below the carousel -->
     <h3>Nos meilleures ventes</h3>
     <p>Découvrez les articles les plus vendus.</p>
     <div class="row">
@@ -14,12 +14,6 @@
                 {% include 'product/single_product.html.twig' %}
             </div>
         {% endfor %}
-    </div><!-- /.row -->
+    </div>
 
-
-
-        <!-- START THE FEATURETTES -->
-        {# <hr class="featurette-divider"> #}
-
-        <!-- /END THE FEATURETTES -->
 {% endblock %}

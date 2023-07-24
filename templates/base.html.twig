@@ -49,8 +49,6 @@
         <a href={{ path('app_home')}} class="navbar-brand">
             <img src={{asset('assets/img/logo1.png')}} style="width: 200px; height: auto;" alt="logo">
         </a>
-
-
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -59,8 +57,18 @@
                 <li class="nav-item active">
                     <a class="nav-link" href={{path('products')}}><span class="sr-only">(current)</span></a>
                 </li>
-            
             </ul>
+
+            {% if block('search') is defined %}
+            <div class="ma-form">
+           {{ form_start(form) }}
+            {{ form_widget(form.string) }}
+            {# <button type="submit" ><img src={{asset('assets/img/chercher.png')}} class="cart-icon" alt="Mon panier"></button> #}
+            {{ form_end(form) }}
+             </div>
+            {% endif %}
+            
+
             <div class="navbar-items">
             {% if app.user %}
             <a href={{ path('account')}}>Mon compte ({{app.user.firstname}})</a> | <a href={{ path('app_logout')}}>Déconnexion</a>
@@ -80,7 +88,6 @@
 
         <div class="nav-scroller bg-body shadow-sm">
         <nav class="nav nav-underline" aria-label="Secondary navigation">
-            <a class="nav-link active" aria-current="page" href="#">Tout</a>
             <a class="nav-link active" href="#">Peinture</a>
             <a class="nav-link active" href="#">Carrosserie</a>
             <a class="nav-link active" href="#">Outillage carosserie</a>
@@ -88,11 +95,15 @@
             <a class="nav-link active" href="#">Equipement cabine et Atelier</a>
             <a class="nav-link active" href="#">Equipement de protection</a>
             <a class="nav-link active" href="#">Installation Labo</a>
+            <a class="nav-link active" aria-current="page" href="#">PROMO</a>
 
         </nav>
         </div>
 </header>
 <main role="main">
+    {% block search_content %}
+
+    {% endblock %}
     {% if block('carousel') is defined %}
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
@@ -138,6 +149,7 @@
 
     <!-- FOOTER -->
     
+
     
 
     <footer class="footer-custom">
