@@ -16,6 +16,9 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <link rel="icon" type="image/png" href="{{ asset('assets/img/logo1.png') }}">
     <link href={{asset('assets/css/offcanvas.css')}} rel="stylesheet">
+    <link href={{asset('assets/css/features.css')}} rel="stylesheet">
+
+
 
 
 
@@ -38,6 +41,64 @@
                 font-size: 3.5rem;
             }
         }
+        .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+     
+
+      .b-example-vr {
+        flex-shrink: 0;
+        width: 1.5rem;
+        height: 100vh;
+      }
+
+      .bi {
+        vertical-align: -.125em;
+        fill: currentColor;
+      }
+
+      .nav-scroller {
+        position: relative;
+        z-index: 2;
+        height: 2.75rem;
+        overflow-y: hidden;
+      }
+
+      .nav-scroller .nav {
+        display: flex;
+        flex-wrap: nowrap;
+        padding-bottom: 1rem;
+        margin-top: -1px;
+        overflow-x: auto;
+        text-align: center;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .btn-bd-primary {
+        --bd-violet-bg: #712cf9;
+        --bd-violet-rgb: 112.520718, 44.062154, 249.437846;
+
+        --bs-btn-font-weight: 600;
+        --bs-btn-color: var(--bs-white);
+        --bs-btn-bg: var(--bd-violet-bg);
+        --bs-btn-border-color: var(--bd-violet-bg);
+        --bs-btn-hover-color: var(--bs-white);
+        --bs-btn-hover-bg: #6528e0;
+        --bs-btn-hover-border-color: #6528e0;
+        --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
+        --bs-btn-active-color: var(--bs-btn-hover-color);
+        --bs-btn-active-bg: #5a23c8;
+        --bs-btn-active-border-color: #5a23c8;
+      }
+      .bd-mode-toggle {
+        z-index: 1500;
+      }
     </style>
     <!-- Custom styles for this template -->
     <link href={{asset('assets/css/carousel.css')}} rel="stylesheet">
@@ -49,8 +110,6 @@
         <a href={{ path('app_home')}} class="navbar-brand">
             <img src={{asset('assets/img/logo1.png')}} style="width: 200px; height: auto;" alt="logo">
         </a>
-
-
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -59,8 +118,18 @@
                 <li class="nav-item active">
                     <a class="nav-link" href={{path('products')}}><span class="sr-only">(current)</span></a>
                 </li>
-            
             </ul>
+
+            {% if block('search') is defined %}
+            <div class="ma-form">
+           {{ form_start(form) }}
+            {{ form_widget(form.string) }}
+            {# <button type="submit" ><img src={{asset('assets/img/chercher.png')}} class="cart-icon" alt="Mon panier"></button> #}
+            {{ form_end(form) }}
+             </div>
+            {% endif %}
+            
+
             <div class="navbar-items">
             {% if app.user %}
             <a href={{ path('account')}}>Mon compte ({{app.user.firstname}})</a> | <a href={{ path('app_logout')}}>Déconnexion</a>
@@ -80,7 +149,6 @@
 
         <div class="nav-scroller bg-body shadow-sm">
         <nav class="nav nav-underline" aria-label="Secondary navigation">
-            <a class="nav-link active" aria-current="page" href="#">Tout</a>
             <a class="nav-link active" href="#">Peinture</a>
             <a class="nav-link active" href="#">Carrosserie</a>
             <a class="nav-link active" href="#">Outillage carosserie</a>
@@ -88,11 +156,15 @@
             <a class="nav-link active" href="#">Equipement cabine et Atelier</a>
             <a class="nav-link active" href="#">Equipement de protection</a>
             <a class="nav-link active" href="#">Installation Labo</a>
+            <a class="nav-link active" aria-current="page" href="#">PROMO</a>
 
         </nav>
         </div>
 </header>
 <main role="main">
+    {% block search_content %}
+
+    {% endblock %}
     {% if block('carousel') is defined %}
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
@@ -129,6 +201,7 @@
     <!-- Wrap the rest of the page in another container to center all the content. -->
 
     <div class="container marketing {% if block('carousel') is not defined %}mt-5{% endif %}">
+
     
     {% block content %}
 
@@ -137,7 +210,64 @@
     </div><!-- /.container -->
 
     <!-- FOOTER -->
+<div class="b-example-divider"></div>
+
     
+<div class="container">
+  <footer class="py-5">
+    <div class="row">
+      <div class="col-6 col-md-2 mb-3">
+        <h5>Section</h5>
+        <ul class="nav flex-column">
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Home</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Features</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Pricing</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">FAQs</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">About</a></li>
+        </ul>
+      </div>
+
+      <div class="col-6 col-md-2 mb-3">
+        <h5>Section</h5>
+        <ul class="nav flex-column">
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Home</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Features</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Pricing</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">FAQs</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">About</a></li>
+        </ul>
+      </div>
+
+      <div class="col-6 col-md-2 mb-3">
+        <h5>Section</h5>
+        <ul class="nav flex-column">
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Home</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Features</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Pricing</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">FAQs</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">About</a></li>
+        </ul>
+      </div>
+
+      <div class="col-md-5 offset-md-1 mb-3">
+        <form>
+          <h5>Subscribe to our newsletter</h5>
+          <p>Monthly digest of what's new and exciting from us.</p>
+          <div class="d-flex flex-column flex-sm-row w-100 gap-2">
+            <input id="newsletter1" type="text" class="form-control" placeholder="Email address">
+            <button class="btn btn-primary" type="button">Subscribe</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    
+  </footer>
+</div>
+
+
+    
+
     
 
     <footer class="footer-custom">
@@ -146,6 +276,11 @@
              <small> La boutique 100% Français 
               <a href="#">Privacy</a> &middot; <a href="#">Terms</a></small>
         </p>
+      <ul class="list-unstyled d-flex">
+        <li class="ms-3"><a class="link-body-emphasis" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#twitter"/></svg></a></li>
+        <li class="ms-3"><a class="link-body-emphasis" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#instagram"/></svg></a></li>
+        <li class="ms-3"><a class="link-body-emphasis" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#facebook"/></svg></a></li>
+      </ul>
     </footer>
 </main>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
