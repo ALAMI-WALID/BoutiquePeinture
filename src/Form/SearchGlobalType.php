@@ -16,7 +16,7 @@ class SearchGlobalType extends AbstractType
             'label'=>false,
             'required'=>false,
             'attr'=>[
-                'placeholder'=> 'Rechercher PeintureAutoExpert.com',
+                'placeholder'=> '      Trouver votre bonheur en quelques clics ... ',
                 'class'=>'form-control ma-input'
             ]
 
