@@ -6,6 +6,7 @@ use App\Entity\BaseOfficielleDesCodesPostaux;
 use App\Entity\Carrier;
 use App\Entity\Order;
 use App\Entity\OrderDetails;
+use App\Entity\ShippingRate;
 use App\Form\OrderType;
 use Doctrine\ORM\EntityManagerInterface;
 use Monolog\DateTimeImmutable;
@@ -14,6 +15,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Classe\Cart;
+use App\Entity\Product;
 
 class OrderController extends AbstractController
 {   
@@ -84,6 +86,32 @@ class OrderController extends AbstractController
                     }
                 }
             }
+
+
+            $totalWeight=0;
+            $totalShipping = null;
+            
+    
+            //Calcule le poids de colis corresponde les tarifs de livraison.
+            foreach($cart->getFull() as $product) {
+                $totalWeight += ($product['product']->getweight()*$product['quantity']);
+                
+            }
+            $shippingRates = $this->entityManager->getRepository(ShippingRate::class)->findAll();
+            // $carrier = $this->entityManager->getRepository(Carrier::class)->findOneBy(['id' => 1]);  // Replace 1 with the ID of your carrier
+    
+            foreach($shippingRates as $rate) {
+                if ($totalWeight >= $rate->getStartWeight() && $totalWeight < $rate->getEndWeight()) {
+                    $totalShipping = $rate->getRate();
+                    
+                    break;
+                    
+                }
+                else {
+                    $totalShipping = 3000;
+                }
+            }
+    
         //enregistre ma commande sur Order:
         $order = new Order();
             $reference = $date->format('dmY').'-'.uniqid();
@@ -91,7 +119,7 @@ class OrderController extends AbstractController
             $order->setUser($this->getUser());
             $order->setCreatedAt($date);
             $order->setCarrierName($carriers->getName());
-            $order->setCarrierPrice($carriers->getPrice());
+            $order->setCarrierPrice($totalShipping);
             $order->setDelivery($delivery_content);
             $order->setState(0);
 
@@ -120,7 +148,8 @@ class OrderController extends AbstractController
             'cart' => $cart->getFull(),
             'carrier' => $carriers,
             'delivery' => $delivery_content,
-            'reference' => $order->getReference()
+            'reference' => $order->getReference(),
+            'totalShipping'=>$totalShipping
 
         ]);
     }  else{

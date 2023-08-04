@@ -27,7 +27,7 @@ class ResetPasswordController extends AbstractController
     public function index(Request $request): Response
     {
         $createdAt = new DateTimeImmutable(); 
-        $YOUR_DOMAIN = 'https://www.peintureautoexpert.com';
+        $YOUR_DOMAIN = 'http://127.0.0.1:8000';
 
         if ($this->getUser()) {
             return $this->redirectToRoute('home');
