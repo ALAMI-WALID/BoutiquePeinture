@@ -1,0 +1,482 @@
+  
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+      <div class="container-fluid">
+         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02"
+          aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarColor02">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+           {% for menu in categories %}
+    <li class="nav-item dropdown position-static">
+        <a class="navbar-brand" href="#" id="navbarDropdown" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
+            {{ menu.name }}
+        </a>
+        <!-- Dropdown menu -->
+        <div class="dropdown-menu w-100 mt-0" aria-labelledby="navbarDropdown" style="
+              border-top-left-radius: 0;
+              border-top-right-radius: 0;
+            ">
+            <div class="container">
+                <div class="row my-4">
+                    {% for smenu in Scategories %}
+                    
+                        {%  if smenu.categoryID.id == menu.id %}
+                            <div class="col-md-6 col-lg-3 mb-3 mb-lg-0">
+                                <div class="list-group list-group-flush">
+                                    <a href="" class="list-group-item list-group-item-action">
+                                        {{ smenu.name }}
+                                    </a>
+                                      <div class="list-group" id="subSubMenu{{ smenu.id }}">
+                                        {% for ssmenu in SScategories %}
+                                            {% if ssmenu.IdsousCategory.id == smenu.id %}
+                                                <a href="#" class="list-group-item list-group-item-action ml-3">
+                                                    {{ ssmenu.name }}
+                                                </a>
+
+                                            {% endif %}
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                            {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </li>
+{% endfor %}
+
+
+
+
+            <!-- Navbar dropdown -->
+            {# <li class="nav-item dropdown position-static">
+              <a class="navbar-brand" href="#" id="navbarDropdown" role="button" data-mdb-toggle="dropdown"
+                aria-expanded="false">
+               Peinture
+              </a>
+              <!-- Dropdown menu -->
+              <div class="dropdown-menu w-100 mt-0" aria-labelledby="navbarDropdown" style="
+                          border-top-left-radius: 0;
+                          border-top-right-radius: 0;
+                        ">
+                <div class="container">
+                  <div class="row my-4">
+                    <div class="col-md-6 col-lg-3 mb-3 mb-lg-0">
+                      <div class="list-group list-group-flush">
+                        <a href="" class="list-group-item list-group-item-action">Consommables</a>
+                        <a href="" class="list-group-item list-group-item-action">Vernis</a>
+                        <a href="" class="list-group-item list-group-item-action">Durcisseur</a>
+                        <a href="" class="list-group-item list-group-item-action">Diluant</a>
+                        <a href="" class="list-group-item list-group-item-action">Pistolet de peinture</a>
+                        <a href="" class="list-group-item list-group-item-action">Peinture spécifique </a>
+                      </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3 mb-3 mb-lg-0">
+                      <div class="list-group list-group-flush">
+                        <a href="" class="list-group-item list-group-item-action">Vernis</a>
+                        <a href="" class="list-group-item list-group-item-action">Perspiciatis quo</a>
+                        <a href="" class="list-group-item list-group-item-action">Cras justo odio</a>
+                        <a href="" class="list-group-item list-group-item-action">Laudantium maiores</a>
+                        <a href="" class="list-group-item list-group-item-action">Provident dolor</a>
+                      </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3 mb-3 mb-md-0">
+                      <div class="list-group list-group-flush">
+                        <a href="" class="list-group-item list-group-item-action">Durcisseur</a>
+                        <a href="" class="list-group-item list-group-item-action">Cras justo odio</a>
+                        <a href="" class="list-group-item list-group-item-action">Est iure</a>
+                        <a href="" class="list-group-item list-group-item-action">Praesentium</a>
+                        <a href="" class="list-group-item list-group-item-action">Laboriosam</a>
+                      </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                      <div class="list-group list-group-flush">
+                        <a href="" class="list-group-item list-group-item-action">Diluant</a>
+                        <a href="" class="list-group-item list-group-item-action">Saepe</a>
+                        <a href="" class="list-group-item list-group-item-action">Vel alias</a>
+                        <a href="" class="list-group-item list-group-item-action">Sunt doloribus</a>
+                        <a href="" class="list-group-item list-group-item-action">Cum dolores</a>
+                      </div>
+                    </div>
+                   
+                  </div>
+                </div>
+              </div>
+            </li>
+
+
+
+             <!-- Navbar dropdown -->
+            <li class="nav-item dropdown position-static">
+              <a class="navbar-brand" href="#" id="navbarDropdown" role="button" data-mdb-toggle="dropdown"
+                aria-expanded="false">
+                Carrosserie
+              </a>
+              <!-- Dropdown menu -->
+              <div class="dropdown-menu w-100 mt-0" aria-labelledby="navbarDropdown" style="
+                          border-top-left-radius: 0;
+                          border-top-right-radius: 0;
+                        ">
+                <div class="container">
+                  <div class="row my-4">
+                    <div class="col-md-6 col-lg-3 mb-3 mb-lg-0">
+                      <div class="list-group list-group-flush">
+                        <a href="" class="list-group-item list-group-item-action">Lorem ipsum</a>
+                        <a href="" class="list-group-item list-group-item-action">Dolor sit</a>
+                        <a href="" class="list-group-item list-group-item-action">Amet consectetur</a>
+                        <a href="" class="list-group-item list-group-item-action">Cras justo odio</a>
+                        <a href="" class="list-group-item list-group-item-action">Adipisicing elit</a>
+                      </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3 mb-3 mb-lg-0">
+                      <div class="list-group list-group-flush">
+                        <a href="" class="list-group-item list-group-item-action">Explicabo voluptas</a>
+                        <a href="" class="list-group-item list-group-item-action">Perspiciatis quo</a>
+                        <a href="" class="list-group-item list-group-item-action">Cras justo odio</a>
+                        <a href="" class="list-group-item list-group-item-action">Laudantium maiores</a>
+                        <a href="" class="list-group-item list-group-item-action">Provident dolor</a>
+                      </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3 mb-3 mb-md-0">
+                      <div class="list-group list-group-flush">
+                        <a href="" class="list-group-item list-group-item-action">Iste quaerato</a>
+                        <a href="" class="list-group-item list-group-item-action">Cras justo odio</a>
+                        <a href="" class="list-group-item list-group-item-action">Est iure</a>
+                        <a href="" class="list-group-item list-group-item-action">Praesentium</a>
+                        <a href="" class="list-group-item list-group-item-action">Laboriosam</a>
+                      </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                      <div class="list-group list-group-flush">
+                        <a href="" class="list-group-item list-group-item-action">Cras justo odio</a>
+                        <a href="" class="list-group-item list-group-item-action">Saepe</a>
+                        <a href="" class="list-group-item list-group-item-action">Vel alias</a>
+                        <a href="" class="list-group-item list-group-item-action">Sunt doloribus</a>
+                        <a href="" class="list-group-item list-group-item-action">Cum dolores</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+
+
+                <!-- Navbar dropdown -->
+            <li class="nav-item dropdown position-static">
+              <a class="navbar-brand" href="#" id="navbarDropdown" role="button" data-mdb-toggle="dropdown"
+                aria-expanded="false">
+                Outillage carosserie
+              </a>
+              <!-- Dropdown menu -->
+              <div class="dropdown-menu w-100 mt-0" aria-labelledby="navbarDropdown" style="
+                          border-top-left-radius: 0;
+                          border-top-right-radius: 0;
+                        ">
+                <div class="container">
+                  <div class="row my-4">
+                    <div class="col-md-6 col-lg-3 mb-3 mb-lg-0">
+                      <div class="list-group list-group-flush">
+                        <a href="" class="list-group-item list-group-item-action">Lorem ipsum</a>
+                        <a href="" class="list-group-item list-group-item-action">Dolor sit</a>
+                        <a href="" class="list-group-item list-group-item-action">Amet consectetur</a>
+                        <a href="" class="list-group-item list-group-item-action">Cras justo odio</a>
+                        <a href="" class="list-group-item list-group-item-action">Adipisicing elit</a>
+                      </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3 mb-3 mb-lg-0">
+                      <div class="list-group list-group-flush">
+                        <a href="" class="list-group-item list-group-item-action">Explicabo voluptas</a>
+                        <a href="" class="list-group-item list-group-item-action">Perspiciatis quo</a>
+                        <a href="" class="list-group-item list-group-item-action">Cras justo odio</a>
+                        <a href="" class="list-group-item list-group-item-action">Laudantium maiores</a>
+                        <a href="" class="list-group-item list-group-item-action">Provident dolor</a>
+                      </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3 mb-3 mb-md-0">
+                      <div class="list-group list-group-flush">
+                        <a href="" class="list-group-item list-group-item-action">Iste quaerato</a>
+                        <a href="" class="list-group-item list-group-item-action">Cras justo odio</a>
+                        <a href="" class="list-group-item list-group-item-action">Est iure</a>
+                        <a href="" class="list-group-item list-group-item-action">Praesentium</a>
+                        <a href="" class="list-group-item list-group-item-action">Laboriosam</a>
+                      </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                      <div class="list-group list-group-flush">
+                        <a href="" class="list-group-item list-group-item-action">Cras justo odio</a>
+                        <a href="" class="list-group-item list-group-item-action">Saepe</a>
+                        <a href="" class="list-group-item list-group-item-action">Vel alias</a>
+                        <a href="" class="list-group-item list-group-item-action">Sunt doloribus</a>
+                        <a href="" class="list-group-item list-group-item-action">Cum dolores</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+
+ <!-- Navbar dropdown -->
+            <li class="nav-item dropdown position-static">
+              <a class="navbar-brand" href="#" id="navbarDropdown" role="button" data-mdb-toggle="dropdown"
+                aria-expanded="false">
+                Detailinge
+              </a>
+              <!-- Dropdown menu -->
+              <div class="dropdown-menu w-100 mt-0" aria-labelledby="navbarDropdown" style="
+                          border-top-left-radius: 0;
+                          border-top-right-radius: 0;
+                        ">
+                <div class="container">
+                  <div class="row my-4">
+                    <div class="col-md-6 col-lg-3 mb-3 mb-lg-0">
+                      <div class="list-group list-group-flush">
+                        <a href="" class="list-group-item list-group-item-action">Lorem ipsum</a>
+                        <a href="" class="list-group-item list-group-item-action">Dolor sit</a>
+                        <a href="" class="list-group-item list-group-item-action">Amet consectetur</a>
+                        <a href="" class="list-group-item list-group-item-action">Cras justo odio</a>
+                        <a href="" class="list-group-item list-group-item-action">Adipisicing elit</a>
+                      </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3 mb-3 mb-lg-0">
+                      <div class="list-group list-group-flush">
+                        <a href="" class="list-group-item list-group-item-action">Explicabo voluptas</a>
+                        <a href="" class="list-group-item list-group-item-action">Perspiciatis quo</a>
+                        <a href="" class="list-group-item list-group-item-action">Cras justo odio</a>
+                        <a href="" class="list-group-item list-group-item-action">Laudantium maiores</a>
+                        <a href="" class="list-group-item list-group-item-action">Provident dolor</a>
+                      </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3 mb-3 mb-md-0">
+                      <div class="list-group list-group-flush">
+                        <a href="" class="list-group-item list-group-item-action">Iste quaerato</a>
+                        <a href="" class="list-group-item list-group-item-action">Cras justo odio</a>
+                        <a href="" class="list-group-item list-group-item-action">Est iure</a>
+                        <a href="" class="list-group-item list-group-item-action">Praesentium</a>
+                        <a href="" class="list-group-item list-group-item-action">Laboriosam</a>
+                      </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                      <div class="list-group list-group-flush">
+                        <a href="" class="list-group-item list-group-item-action">Cras justo odio</a>
+                        <a href="" class="list-group-item list-group-item-action">Saepe</a>
+                        <a href="" class="list-group-item list-group-item-action">Vel alias</a>
+                        <a href="" class="list-group-item list-group-item-action">Sunt doloribus</a>
+                        <a href="" class="list-group-item list-group-item-action">Cum dolores</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+
+            <!-- Navbar dropdown -->
+            <li class="nav-item dropdown position-static">
+              <a class="navbar-brand" href="#" id="navbarDropdown" role="button" data-mdb-toggle="dropdown"
+                aria-expanded="false">
+                Equipement cabine et Atelier
+              </a>
+              <!-- Dropdown menu -->
+              <div class="dropdown-menu w-100 mt-0" aria-labelledby="navbarDropdown" style="
+                          border-top-left-radius: 0;
+                          border-top-right-radius: 0;
+                        ">
+                <div class="container">
+                  <div class="row my-4">
+                    <div class="col-md-6 col-lg-3 mb-3 mb-lg-0">
+                      <div class="list-group list-group-flush">
+                        <a href="" class="list-group-item list-group-item-action">Lorem ipsum</a>
+                        <a href="" class="list-group-item list-group-item-action">Dolor sit</a>
+                        <a href="" class="list-group-item list-group-item-action">Amet consectetur</a>
+                        <a href="" class="list-group-item list-group-item-action">Cras justo odio</a>
+                        <a href="" class="list-group-item list-group-item-action">Adipisicing elit</a>
+                      </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3 mb-3 mb-lg-0">
+                      <div class="list-group list-group-flush">
+                        <a href="" class="list-group-item list-group-item-action">Explicabo voluptas</a>
+                        <a href="" class="list-group-item list-group-item-action">Perspiciatis quo</a>
+                        <a href="" class="list-group-item list-group-item-action">Cras justo odio</a>
+                        <a href="" class="list-group-item list-group-item-action">Laudantium maiores</a>
+                        <a href="" class="list-group-item list-group-item-action">Provident dolor</a>
+                      </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3 mb-3 mb-md-0">
+                      <div class="list-group list-group-flush">
+                        <a href="" class="list-group-item list-group-item-action">Iste quaerato</a>
+                        <a href="" class="list-group-item list-group-item-action">Cras justo odio</a>
+                        <a href="" class="list-group-item list-group-item-action">Est iure</a>
+                        <a href="" class="list-group-item list-group-item-action">Praesentium</a>
+                        <a href="" class="list-group-item list-group-item-action">Laboriosam</a>
+                      </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                      <div class="list-group list-group-flush">
+                        <a href="" class="list-group-item list-group-item-action">Cras justo odio</a>
+                        <a href="" class="list-group-item list-group-item-action">Saepe</a>
+                        <a href="" class="list-group-item list-group-item-action">Vel alias</a>
+                        <a href="" class="list-group-item list-group-item-action">Sunt doloribus</a>
+                        <a href="" class="list-group-item list-group-item-action">Cum dolores</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+
+            <!-- Navbar dropdown -->
+            <li class="nav-item dropdown position-static">
+              <a class="navbar-brand" href="#" id="navbarDropdown" role="button" data-mdb-toggle="dropdown"
+                aria-expanded="false">
+                Equipement de protection
+              </a>
+              <!-- Dropdown menu -->
+              <div class="dropdown-menu w-100 mt-0" aria-labelledby="navbarDropdown" style="
+                          border-top-left-radius: 0;
+                          border-top-right-radius: 0;
+                        ">
+                <div class="container">
+                  <div class="row my-4">
+                    <div class="col-md-6 col-lg-3 mb-3 mb-lg-0">
+                      <div class="list-group list-group-flush">
+                        <a href="" class="list-group-item list-group-item-action">Lorem ipsum</a>
+                        <a href="" class="list-group-item list-group-item-action">Dolor sit</a>
+                        <a href="" class="list-group-item list-group-item-action">Amet consectetur</a>
+                        <a href="" class="list-group-item list-group-item-action">Cras justo odio</a>
+                        <a href="" class="list-group-item list-group-item-action">Adipisicing elit</a>
+                      </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3 mb-3 mb-lg-0">
+                      <div class="list-group list-group-flush">
+                        <a href="" class="list-group-item list-group-item-action">Explicabo voluptas</a>
+                        <a href="" class="list-group-item list-group-item-action">Perspiciatis quo</a>
+                        <a href="" class="list-group-item list-group-item-action">Cras justo odio</a>
+                        <a href="" class="list-group-item list-group-item-action">Laudantium maiores</a>
+                        <a href="" class="list-group-item list-group-item-action">Provident dolor</a>
+                      </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3 mb-3 mb-md-0">
+                      <div class="list-group list-group-flush">
+                        <a href="" class="list-group-item list-group-item-action">Iste quaerato</a>
+                        <a href="" class="list-group-item list-group-item-action">Cras justo odio</a>
+                        <a href="" class="list-group-item list-group-item-action">Est iure</a>
+                        <a href="" class="list-group-item list-group-item-action">Praesentium</a>
+                        <a href="" class="list-group-item list-group-item-action">Laboriosam</a>
+                      </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                      <div class="list-group list-group-flush">
+                        <a href="" class="list-group-item list-group-item-action">Cras justo odio</a>
+                        <a href="" class="list-group-item list-group-item-action">Saepe</a>
+                        <a href="" class="list-group-item list-group-item-action">Vel alias</a>
+                        <a href="" class="list-group-item list-group-item-action">Sunt doloribus</a>
+                        <a href="" class="list-group-item list-group-item-action">Cum dolores</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+
+            <!-- Navbar dropdown -->
+            <li class="nav-item dropdown position-static">
+              <a class="navbar-brand" href="#" id="navbarDropdown" role="button" data-mdb-toggle="dropdown"
+                aria-expanded="false">
+                Installation Labo
+              </a>
+              <!-- Dropdown menu -->
+              <div class="dropdown-menu w-100 mt-0" aria-labelledby="navbarDropdown" style="
+                          border-top-left-radius: 0;
+                          border-top-right-radius: 0;
+                        ">
+                <div class="container">
+                  <div class="row my-4">
+                    <div class="col-md-6 col-lg-3 mb-3 mb-lg-0">
+                      <div class="list-group list-group-flush">
+                        <a href="" class="list-group-item list-group-item-action">Lorem ipsum</a>
+                        <a href="" class="list-group-item list-group-item-action">Dolor sit</a>
+                        <a href="" class="list-group-item list-group-item-action">Amet consectetur</a>
+                        <a href="" class="list-group-item list-group-item-action">Cras justo odio</a>
+                        <a href="" class="list-group-item list-group-item-action">Adipisicing elit</a>
+                      </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3 mb-3 mb-lg-0">
+                      <div class="list-group list-group-flush">
+                        <a href="" class="list-group-item list-group-item-action">Explicabo voluptas</a>
+                        <a href="" class="list-group-item list-group-item-action">Perspiciatis quo</a>
+                        <a href="" class="list-group-item list-group-item-action">Cras justo odio</a>
+                        <a href="" class="list-group-item list-group-item-action">Laudantium maiores</a>
+                        <a href="" class="list-group-item list-group-item-action">Provident dolor</a>
+                      </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3 mb-3 mb-md-0">
+                      <div class="list-group list-group-flush">
+                        <a href="" class="list-group-item list-group-item-action">Iste quaerato</a>
+                        <a href="" class="list-group-item list-group-item-action">Cras justo odio</a>
+                        <a href="" class="list-group-item list-group-item-action">Est iure</a>
+                        <a href="" class="list-group-item list-group-item-action">Praesentium</a>
+                        <a href="" class="list-group-item list-group-item-action">Laboriosam</a>
+                      </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                      <div class="list-group list-group-flush">
+                       
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+ #}
+
+          </ul>
+          <div class="d-flex align-items-center">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              {# <li class="nav-item active">
+                <a class="nav-link" aria-current="page" href="#">Menu</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Items</a>
+              </li> #}
+              <!-- Dropdown -->
+              <li class="nav-item dropdown">
+                <a class="navbar-brand" href="#" id="navbarDropdownMenuLink" role="button"
+                  data-mdb-toggle="dropdown" aria-expanded="false">
+                  PROMO
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                  <li>
+                    <a class="dropdown-item" href="#">off -50%</a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="#">Gifts</a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="#">Code Promo 5€</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </nav>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const subSubMenus = document.querySelectorAll(".list-group");
+
+        subSubMenus.forEach(subSubMenu => {
+            subSubMenu.style.display = "none";
+
+            subSubMenu.previousElementSibling.addEventListener("mouseenter", function () {
+                subSubMenu.style.display = "block";
+            });
+
+            subSubMenu.previousElementSibling.addEventListener("mouseleave", function () {
+                subSubMenu.style.display = "none";
+            });
+        });
+    });
+</script>
+  

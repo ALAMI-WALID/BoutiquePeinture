@@ -48,6 +48,9 @@ class Product
     #[ORM\Column]
     private ?bool $isBest = null;
 
+    #[ORM\ManyToOne(inversedBy: 'products')]
+    private ?SousSousCategory $SScategory = null;
+
 
 
     public function getId(): ?int
@@ -183,6 +186,18 @@ class Product
     public function setIsBest(bool $isBest): static
     {
         $this->isBest = $isBest;
+
+        return $this;
+    }
+
+    public function getSScategory(): ?SousSousCategory
+    {
+        return $this->SScategory;
+    }
+
+    public function setSScategory(?SousSousCategory $SScategory): static
+    {
+        $this->SScategory = $SScategory;
 
         return $this;
     }

@@ -16,7 +16,7 @@ class SearchGlobalType extends AbstractType
             'label'=>false,
             'required'=>false,
             'attr'=>[
-                'placeholder'=> '      Trouver votre bonheur en quelques clics ... ',
+                'placeholder'=> 'Trouver votre bonheur en quelques clics ... ',
                 'class'=>'form-control ma-input'
             ]
 

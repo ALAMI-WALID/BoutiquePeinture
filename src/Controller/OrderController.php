@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Classe\MegaMenu;
 use App\Entity\BaseOfficielleDesCodesPostaux;
 use App\Entity\Carrier;
 use App\Entity\Order;
@@ -20,8 +21,11 @@ use App\Entity\Product;
 class OrderController extends AbstractController
 {   
     private $entityManager;
-    public function __construct(EntityManagerInterface $entityManager){
+    public function __construct(EntityManagerInterface $entityManager, MegaMenu $megaMenu)
+    {
         $this->entityManager = $entityManager;
+        $this->megaMenu = $megaMenu;
+
     }
     #[Route('/commande', name: 'order')]
     public function index( Cart $cart, Request $request ): Response
@@ -36,10 +40,18 @@ class OrderController extends AbstractController
         ]);
 
         $form->handleRequest($request);
+        $categories = $this->megaMenu->mega();
+        $Scategories = $this->megaMenu->megaS();
+        $SScategories = $this->megaMenu->megaSS();
+
 
         return $this->render('order/index.html.twig',[
             'form' => $form->createView(),
             'cart' => $cart->getfull(),
+            'categories' =>$categories,
+            'Scategories' =>$Scategories,
+            'SScategories'=>$SScategories
+
         ]);
     }
 
@@ -108,7 +120,7 @@ class OrderController extends AbstractController
                     
                 }
                 else {
-                    $totalShipping = 3000;
+                    $totalShipping = 0;
                 }
             }
     
@@ -143,13 +155,24 @@ class OrderController extends AbstractController
         }
 
             $this->entityManager->flush();
+            $categories = $this->megaMenu->mega();
+            $Scategories = $this->megaMenu->megaS();
+            $SScategories = $this->megaMenu->megaSS();
+
+
 
         return $this->render('order/add.html.twig',[
             'cart' => $cart->getFull(),
             'carrier' => $carriers,
             'delivery' => $delivery_content,
             'reference' => $order->getReference(),
-            'totalShipping'=>$totalShipping
+            'totalShipping'=>$totalShipping,
+            'categories' =>$categories,
+            'Scategories' =>$Scategories,
+            'SScategories'=>$SScategories
+
+
+
 
         ]);
     }  else{

@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Classe\Cart;
+use App\Classe\MegaMenu;
 use App\Entity\Product;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -12,15 +13,31 @@ use Symfony\Component\Routing\Annotation\Route;
 class CartController extends AbstractController
 {
     private $entityManager;
-    public function __construct(EntityManagerInterface $entityManager){
-        $this->entityManager= $entityManager;
+    private $megaMenu;
+
+    public function __construct(EntityManagerInterface $entityManager, MegaMenu $megaMenu)
+    {
+        $this->entityManager = $entityManager;
+        $this->megaMenu = $megaMenu;
+
     }
     #[Route('/mon_panier', name: 'cart')]
     public function index(Cart $cart): Response
     {    
-      
+
+        $categories = $this->megaMenu->mega();
+        $Scategories = $this->megaMenu->megaS();
+        $SScategories = $this->megaMenu->megaSS();
+
+
+
         return $this->render('cart/index.html.twig',[
             'cart' => $cart->getfull(),
+            'categories' =>$categories,
+            'Scategories' =>$Scategories,
+            'SScategories'=>$SScategories
+
+
 
         ]);
     }

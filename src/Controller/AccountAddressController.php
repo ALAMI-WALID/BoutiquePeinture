@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Classe\MegaMenu;
 use App\Entity\Address;
 use App\Form\AddressType;
 use Doctrine\ORM\EntityManagerInterface;
@@ -15,13 +16,28 @@ use App\Classe\Cart;
 class AccountAddressController extends AbstractController
 {
     private $entityManager;
-    public function __construct(EntityManagerInterface $entityManager){
+    private $megaMenu;
+
+    public function __construct(EntityManagerInterface $entityManager, MegaMenu $megaMenu)
+    {
         $this->entityManager = $entityManager;
+        $this->megaMenu = $megaMenu;
+
     }
     #[Route('/compte/adresses', name: 'account_address')]
     public function index(): Response
     {
-        return $this->render('account/address.html.twig');
+
+        $categories = $this->megaMenu->mega();
+        $Scategories = $this->megaMenu->megaS();
+        $SScategories = $this->megaMenu->megaSS();
+
+        return $this->render('account/address.html.twig',[
+            'categories' =>$categories,
+            'Scategories' =>$Scategories,
+            'SScategories'=>$SScategories
+            
+        ]);
     }
 
     #[Route('/compte/ajouter-une-adresse', name: 'account_address_add')]
@@ -44,9 +60,16 @@ class AccountAddressController extends AbstractController
             }
 
         }
+        $categories = $this->megaMenu->mega();
+        $Scategories = $this->megaMenu->megaS();
+        $SScategories = $this->megaMenu->megaSS();
 
         return $this->render('account/address_form.html.twig',[
             'form' => $form->createView(),
+            'categories' =>$categories,
+            'Scategories' =>$Scategories,
+            'SScategories'=>$SScategories
+
             
         ]);
     }
@@ -70,9 +93,16 @@ class AccountAddressController extends AbstractController
             return $this->redirectToRoute('account_address');
 
         }
+        $categories = $this->megaMenu->mega();
+        $Scategories = $this->megaMenu->megaS();
+        $SScategories = $this->megaMenu->megaSS();
 
         return $this->render('account/address_form.html.twig',[
             'form' => $form->createView(),
+            'categories' =>$categories,
+            'Scategories' => $Scategories,
+            'SScategories'=>$SScategories
+
             
         ]);
     }
@@ -88,7 +118,7 @@ class AccountAddressController extends AbstractController
 
         }
             
-
+        
         return $this->redirectToRoute('account_address');
     }
     
