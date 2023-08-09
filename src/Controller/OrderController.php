@@ -2,10 +2,12 @@
 
 namespace App\Controller;
 
+use App\Classe\MegaMenu;
 use App\Entity\BaseOfficielleDesCodesPostaux;
 use App\Entity\Carrier;
 use App\Entity\Order;
 use App\Entity\OrderDetails;
+use App\Entity\ShippingRate;
 use App\Form\OrderType;
 use Doctrine\ORM\EntityManagerInterface;
 use Monolog\DateTimeImmutable;
@@ -14,12 +16,16 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Classe\Cart;
+use App\Entity\Product;
 
 class OrderController extends AbstractController
 {   
     private $entityManager;
-    public function __construct(EntityManagerInterface $entityManager){
+    public function __construct(EntityManagerInterface $entityManager, MegaMenu $megaMenu)
+    {
         $this->entityManager = $entityManager;
+        $this->megaMenu = $megaMenu;
+
     }
     #[Route('/commande', name: 'order')]
     public function index( Cart $cart, Request $request ): Response
@@ -34,10 +40,18 @@ class OrderController extends AbstractController
         ]);
 
         $form->handleRequest($request);
+        $categories = $this->megaMenu->mega();
+        $Scategories = $this->megaMenu->megaS();
+        $SScategories = $this->megaMenu->megaSS();
+
 
         return $this->render('order/index.html.twig',[
             'form' => $form->createView(),
             'cart' => $cart->getfull(),
+            'categories' =>$categories,
+            'Scategories' =>$Scategories,
+            'SScategories'=>$SScategories
+
         ]);
     }
 
@@ -84,6 +98,32 @@ class OrderController extends AbstractController
                     }
                 }
             }
+
+
+            $totalWeight=0;
+            $totalShipping = null;
+            
+    
+            //Calcule le poids de colis corresponde les tarifs de livraison.
+            foreach($cart->getFull() as $product) {
+                $totalWeight += ($product['product']->getweight()*$product['quantity']);
+                
+            }
+            $shippingRates = $this->entityManager->getRepository(ShippingRate::class)->findAll();
+            // $carrier = $this->entityManager->getRepository(Carrier::class)->findOneBy(['id' => 1]);  // Replace 1 with the ID of your carrier
+    
+            foreach($shippingRates as $rate) {
+                if ($totalWeight >= $rate->getStartWeight() && $totalWeight < $rate->getEndWeight()) {
+                    $totalShipping = $rate->getRate();
+                    
+                    break;
+                    
+                }
+                else {
+                    $totalShipping = 0;
+                }
+            }
+    
         //enregistre ma commande sur Order:
         $order = new Order();
             $reference = $date->format('dmY').'-'.uniqid();
@@ -91,7 +131,7 @@ class OrderController extends AbstractController
             $order->setUser($this->getUser());
             $order->setCreatedAt($date);
             $order->setCarrierName($carriers->getName());
-            $order->setCarrierPrice($carriers->getPrice());
+            $order->setCarrierPrice($totalShipping);
             $order->setDelivery($delivery_content);
             $order->setState(0);
 
@@ -115,12 +155,24 @@ class OrderController extends AbstractController
         }
 
             $this->entityManager->flush();
+            $categories = $this->megaMenu->mega();
+            $Scategories = $this->megaMenu->megaS();
+            $SScategories = $this->megaMenu->megaSS();
+
+
 
         return $this->render('order/add.html.twig',[
             'cart' => $cart->getFull(),
             'carrier' => $carriers,
             'delivery' => $delivery_content,
-            'reference' => $order->getReference()
+            'reference' => $order->getReference(),
+            'totalShipping'=>$totalShipping,
+            'categories' =>$categories,
+            'Scategories' =>$Scategories,
+            'SScategories'=>$SScategories
+
+
+
 
         ]);
     }  else{

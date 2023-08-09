@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Classe\Mail;
+use App\Classe\MegaMenu;
 use App\Entity\ResetPassword;
 use App\Entity\User;
 use App\Form\ResetPasswordType;
@@ -18,16 +19,19 @@ class ResetPasswordController extends AbstractController
 {
     private $entityManager;
 
-    public function __construct(EntityManagerInterface $entityManager)
+    private $megaMenu;
+    public function __construct(EntityManagerInterface $entityManager, MegaMenu $megaMenu)
     {
         $this->entityManager = $entityManager;
+        $this->megaMenu = $megaMenu;
+
     }
 
     #[Route('/mot-de-passe-oublie', name: 'reset_password')]
     public function index(Request $request): Response
     {
         $createdAt = new DateTimeImmutable(); 
-        $YOUR_DOMAIN = 'https://www.peintureautoexpert.com';
+        $YOUR_DOMAIN = 'http://127.0.0.1:8000';
 
         if ($this->getUser()) {
             return $this->redirectToRoute('home');
@@ -63,9 +67,17 @@ class ResetPasswordController extends AbstractController
         }
 
 
+        $categories = $this->megaMenu->mega();
+        $Scategories = $this->megaMenu->megaS();
+        $SScategories = $this->megaMenu->megaSS();
 
         return $this->render('reset_password/index.html.twig', [
             'controller_name' => 'ResetPasswordController',
+             'categories' =>$categories,
+            'Scategories' =>$Scategories,
+            'SScategories'=>$SScategories
+
+
         ]);
     }
 
@@ -103,8 +115,16 @@ class ResetPasswordController extends AbstractController
              // Redirection de l'utilisateur vers la page de connexion.
              return $this->redirectToRoute('app_login');
          }
+         $categories = $this->megaMenu->mega();
+        $Scategories = $this->megaMenu->megaS();
+        $SScategories = $this->megaMenu->megaSS();
+
+
          return $this->render('reset_password/update.html.twig', [
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'categories' =>$categories,
+            'Scategories' =>$Scategories,
+            'SScategories'=>$SScategories
         ]);
 
  

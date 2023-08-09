@@ -34,6 +34,9 @@ class OrderType extends AbstractType
             ],
             'required' => true,
             'class' => Carrier::class,
+            'choice_label' => function ($carrier) {
+                return  $carrier->getName() .' - '. $carrier->getDescription() ;
+            },
             'multiple' => false,
             'expanded' => true
         ])

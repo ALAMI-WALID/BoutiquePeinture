@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Classe\MegaMenu;
 use App\Entity\Order;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -12,21 +13,31 @@ class AccountOrderController extends AbstractController
 {
     private $entityManager;
 
-    public function __construct(EntityManagerInterface $entityManager)
+    private $megaMenu;
+
+    public function __construct(EntityManagerInterface $entityManager, MegaMenu $megaMenu)
     {
         $this->entityManager = $entityManager;
+        $this->megaMenu = $megaMenu;
+
     }
 
     #[Route('/compte/mes-commandes', name: 'account_order')]
     public function index(): Response
     {
         $orders = $this->entityManager->getRepository(Order::class)->findSuccessOrders($this->getUser());
+        $categories = $this->megaMenu->mega();
+        $Scategories = $this->megaMenu->megaS();
+        $SScategories = $this->megaMenu->megaSS();
+
 
         return $this->render('account/order.html.twig', [
-            'orders' => $orders
+            'orders' => $orders,
+            'categories' =>$categories,
+            'Scategories' =>$Scategories,
+            'SScategories'=>$SScategories
+
         ]);
-
-
     }
     
 
@@ -39,8 +50,16 @@ class AccountOrderController extends AbstractController
             return $this->redirectToRoute('account_order');
         }
 
+        $categories = $this->megaMenu->mega();
+        $Scategories = $this->megaMenu->megaS();
+        $SScategories = $this->megaMenu->megaSS();
+
+
         return $this->render('account/order_show.html.twig', [
-            'order' => $order
+            'order' => $order,
+            'categories' =>$categories,
+            'Scategories' =>$Scategories,
+            'SScategories'=>$SScategories
         ]);
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Classe\MegaMenu;
 use App\Classe\Search;
 use App\Entity\Product;
 use App\Form\SearchType;
@@ -15,9 +16,12 @@ class ProductController extends AbstractController
 {   
     private $entityManager;
 
-    public function __construct(EntityManagerInterface $entityManager){
-
+    private $megaMenu;
+    public function __construct(EntityManagerInterface $entityManager, MegaMenu $megaMenu)
+    {
         $this->entityManager = $entityManager;
+        $this->megaMenu = $megaMenu;
+
     }
 
     #[Route('/nos_produits', name: 'products')]
@@ -35,12 +39,21 @@ class ProductController extends AbstractController
         } else {
             $products = $this->entityManager->getRepository(Product::class)->findAll();
         }
+        $categories = $this->megaMenu->mega();
+        $Scategories = $this->megaMenu->megaS();
+        $SScategories = $this->megaMenu->megaSS();
+
 
 
         return $this->render('product/index.html.twig', [
         
             'products' => $products,
             'form' => $form->createView(),
+            'categories' =>$categories,
+            'Scategories' =>$Scategories,
+            'SScategories'=>$SScategories
+
+
 
         ]);
     }
@@ -57,13 +70,18 @@ class ProductController extends AbstractController
         if(!$product){
             return $this->redirectToRoute('products');
         }
+        $categories = $this->megaMenu->mega();
+        $Scategories = $this->megaMenu->megaS();
+        $SScategories = $this->megaMenu->megaSS();
 
 
         return $this->render('product/show.html.twig', [
         
             'product' => $product,
-            'products' => $products
-
+            'products' => $products,
+            'categories' =>$categories,
+            'Scategories' =>$Scategories,
+            'SScategories'=>$SScategories
 
         ]);
     }

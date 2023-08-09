@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\SousSousCategoryRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: SousSousCategoryRepository::class)]
@@ -18,6 +20,18 @@ class SousSousCategory
 
     #[ORM\ManyToOne(inversedBy: 'sousSousCategories')]
     private ?SousCategory $IdSousCategory = null;
+
+    #[ORM\OneToMany(mappedBy: 'SScategory', targetEntity: Product::class)]
+    private Collection $products;
+
+    public function __construct()
+    {
+        $this->products = new ArrayCollection();
+    }
+    public function __toString()
+    {
+        return $this->getName();
+    }
 
     public function getId(): ?int
     {
@@ -44,6 +58,36 @@ class SousSousCategory
     public function setIdSousCategory(?SousCategory $IdSousCategory): self
     {
         $this->IdSousCategory = $IdSousCategory;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Product>
+     */
+    public function getProducts(): Collection
+    {
+        return $this->products;
+    }
+
+    public function addProduct(Product $product): static
+    {
+        if (!$this->products->contains($product)) {
+            $this->products->add($product);
+            $product->setSScategory($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProduct(Product $product): static
+    {
+        if ($this->products->removeElement($product)) {
+            // set the owning side to null (unless already changed)
+            if ($product->getSScategory() === $this) {
+                $product->setSScategory(null);
+            }
+        }
 
         return $this;
     }

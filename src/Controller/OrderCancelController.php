@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Classe\MegaMenu;
 use App\Entity\Order;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -11,10 +12,13 @@ use Symfony\Component\Routing\Annotation\Route;
 class OrderCancelController extends AbstractController
 {
     private $entityManager;
+    private $megaMenu;
 
-    public function __construct(EntityManagerInterface $entityManager)
+    public function __construct(EntityManagerInterface $entityManager, MegaMenu $megaMenu)
     {
         $this->entityManager = $entityManager;
+        $this->megaMenu = $megaMenu;
+
     }
 
 
@@ -26,10 +30,18 @@ class OrderCancelController extends AbstractController
             return $this->redirectToRoute('home');
         }
 
+        $categories = $this->megaMenu->mega();
+        $Scategories = $this->megaMenu->megaS();
+        $SScategories = $this->megaMenu->megaSS();
+
         // Envoyer un email à notre utilisateur pour lui indiquer l'échec de paiement
 
         return $this->render('order_cancel/index.html.twig', [
-            'order' => $order
+            'order' => $order,
+            'categories' =>$categories,
+            'Scategories' =>$Scategories,
+            'SScategories'=>$SScategories
+
         ]);
 
     }

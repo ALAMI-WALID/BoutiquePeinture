@@ -18,13 +18,8 @@
     <link href={{asset('assets/css/offcanvas.css')}} rel="stylesheet">
     <link href={{asset('assets/css/features.css')}} rel="stylesheet">
 
-
-
-
-
-
-
     <style>
+    
         .bd-placeholder-img {
             font-size: 1.125rem;
             text-anchor: middle;
@@ -96,9 +91,6 @@
         --bs-btn-active-bg: #5a23c8;
         --bs-btn-active-border-color: #5a23c8;
       }
-      .bd-mode-toggle {
-        z-index: 1500;
-      }
     </style>
     <!-- Custom styles for this template -->
     <link href={{asset('assets/css/carousel.css')}} rel="stylesheet">
@@ -146,25 +138,16 @@
         </div>
     </nav>
     
-
-        <div class="nav-scroller bg-body shadow-sm">
-        <nav class="nav nav-underline" aria-label="Secondary navigation">
-            <a class="nav-link active" href="#">Peinture</a>
-            <a class="nav-link active" href="#">Carrosserie</a>
-            <a class="nav-link active" href="#">Outillage carosserie</a>
-            <a class="nav-link active" href="#">Detailing</a>
-            <a class="nav-link active" href="#">Equipement cabine et Atelier</a>
-            <a class="nav-link active" href="#">Equipement de protection</a>
-            <a class="nav-link active" href="#">Installation Labo</a>
-            <a class="nav-link active" aria-current="page" href="#">PROMO</a>
-
-        </nav>
-        </div>
+     {% include 'category/index.html.twig' %}
+  
 </header>
+{# Header end #}
 <main role="main">
+
     {% block search_content %}
 
     {% endblock %}
+
     {% if block('carousel') is defined %}
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
@@ -293,9 +276,38 @@
      
     </footer>
 </main>
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src={{asset('assets/js/bootstrap.bundle.js')}}></script>
 <script src={{asset('assets/js/offcanvas.js')}}></script>
+
+<script>
+ $(document).ready(function() {
+  // Cacher tous les menus déroulants au chargement de la page
+  $('.dropdown-menu').hide();
+
+  // Gérer le survol des éléments de menu
+  $('.nav-item.dropdown').hover(
+    function() {
+      // Fermer tous les menus déroulants ouverts
+      $('.nav-item.dropdown').removeClass('show');
+      $('.dropdown-menu').hide();
+
+      // Ouvrir le menu déroulant de l'élément survolé
+      $(this).addClass('show');
+      $(this).find('.dropdown-menu').show();
+    },
+    function() {
+      // Fermer le menu déroulant lorsque le curseur quitte l'élément
+      $(this).removeClass('show');
+      $(this).find('.dropdown-menu').hide();
+    }
+  );
+});
+
+</script>
+
+
+
 
 </body>
 
