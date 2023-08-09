@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Valider ma commande - Peinture Auto Expert{% endblock %}
+{% block content %}
+
+  <div class="jumbotron">
+      <h1 class="display-4">Restriction de livraison</h1>
+      <p class="lead">Vous ne pouvez pas commander ce produit en dehors de l'Île-de-France.</p>
+        <hr class="my-4">
+        <p>Que souhaitez-vous faire ?</p>
+         <p class="lead">
+          <div class="btn-group mt-3">
+          <a href="{{ path('account_address_add')}}"  class="btn btn-primary mr-3" >Modifier l'adresse de livraison</a><b class="mr-2"> Ou   </b>
+          <a href="{{ path('app_home')}}"  class="btn btn-warning mr-5"  >Retourner à la page d'accueil</a>
+          </div>
+      </p>
+</div>
+{% endblock  %}

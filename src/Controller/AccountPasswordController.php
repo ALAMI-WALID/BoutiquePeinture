@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Classe\MegaMenu;
 use App\Form\ChangePasswordType;
 use App\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -15,8 +16,13 @@ use Doctrine\ORM\EntityManagerInterface;
 class AccountPasswordController extends AbstractController
 {
     private $entityManager;
-    public function __construct(EntityManagerInterface $entityManager){
+    private $megaMenu;
+
+    public function __construct(EntityManagerInterface $entityManager, MegaMenu $megaMenu)
+    {
         $this->entityManager = $entityManager;
+        $this->megaMenu = $megaMenu;
+
     }
     #[Route('/compte/modifier-mon-mot-de-passe', name: 'account_password')]
     public function index(Request $request, UserPasswordEncoderInterface $encoder): Response
@@ -44,9 +50,16 @@ class AccountPasswordController extends AbstractController
             }
         }
         
+        $categories = $this->megaMenu->mega();
+        $Scategories = $this->megaMenu->megaS();
+        $SScategories = $this->megaMenu->megaSS();
+
         return $this->render('account/password.html.twig',[
             'form' => $form->createView(),
             'notification'=> $notification,
+            'categories' =>$categories,
+            'Scategories' =>$Scategories,
+            'SScategories'=>$SScategories
         ]);
     }
 }

@@ -1,12 +1,264 @@
+body{
+    position: relative;
+}
+header {
+    margin-top: -50px; /* Ajustez la valeur selon vos besoins */
+  }
 .navbar-items, .navbar-items a {
    color: #fff;
 }
 .footer-custom{
 
     text-align: center;
-    position: fixed;
-    bottom: 0;
+    position: absolute;
     width: 100%;
     background-color: #dfeadf;
     padding-top: 25px;
+    margin-top: 50px;
 }
+
+.product-item h5 {
+
+    font-size: 15px;
+    text-transform: uppercase;
+    margin-bottom: 1px;
+} 
+.product-item img {
+    width: 200px; /* Largeur souhaitée pour les images */
+    height: 200px; /* Hauteur souhaitée pour les images */
+    height: auto;
+
+    object-fit: cover; /* Redimensionner les images pour remplir la zone définie */
+    object-position: center; /* Centrer les images horizontalement et verticalement */
+}
+
+.product-item{
+    margin-top: 50px;
+}
+.product-item .product-subtitle {
+
+    font-size: 14px;
+    display: black;
+    margin-bottom: 10px;
+}
+
+.product-item .product-price {
+font-size: 15px;
+font-weight: bold;
+}
+.product-container{
+    margin-bottom: 125px;
+    
+}
+.product-price-page{
+
+    font-size: 20px;
+}
+.cart-icon{
+
+    height: 20px;
+    padding-left: 20px;
+
+}
+.black-small{
+
+    max-width: 600px;
+    margin: 0 auto;
+}
+.form-check {
+    background-color: #f4f8ff;
+    padding: 20px 65px;
+    margin-top: 7px;
+}
+
+.col-form-label {
+    font-weight: bold;
+}
+
+.order-summary {
+    background-color: #f4f8ff;
+    padding: 20px;
+    margin-top: 22px;
+}
+.taxe-incluses{
+    font-size: medium;
+}
+
+
+.order-summary {
+    background-color: #f4f8ff;
+    padding: 20px;
+    margin-top: 22px;
+}
+
+.account-item {
+    background-color: #f1f2f6;
+    padding: 70px;
+}
+
+.account-item a {
+    text-transform: uppercase;
+    font-size: 13px;
+    color: #4b6584;
+    font-weight: bold;
+}
+.account-item a:hover {
+    color: #778ca3;
+    text-decoration: none;
+}
+   
+
+.ma-input {
+
+    width: 100%; 
+    border-radius: .25rem; 
+     width: 67%;
+   
+    margin-top: 1.5em;
+    margin-right: 30em;
+    padding-left: 3em;
+   
+
+ }
+ #chercher {
+
+    margin-top: -4em;
+margin-left: -1em;
+
+ }
+
+
+
+ .b-example-divider {
+    width: 100%;
+    height: 3rem;
+    background-color: rgba(0, 0, 0, .1);
+    border: solid rgba(0, 0, 0, .15);
+    border-width: 1px 0;
+    box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+  }
+
+
+.cart-icon {
+    height: 27px;
+  }
+  
+
+
+.navbar-brand > img:nth-child(1) {
+    width: 250px;
+  }
+  
+  .py-5 a{
+    color : #2f2f34ba;
+    font-size: 17.5px;
+  }
+ 
+  .py-5 h5{
+    font-style: oblique;
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  }
+
+.py-5 .nav-link:hover{
+    color: #f90808;
+
+}
+#espace{
+    padding-right: 1em;
+    margin-left: 0.2em;
+}
+
+#newsletter1{
+    padding-right: 4em;
+}
+
+
+
+.py-5 img {
+    position: relative;
+    margin-left: -160px;
+    margin-bottom: -77px;
+  }
+
+
+
+
+
+.espaseicon{
+    margin-left: 1em;
+}
+
+
+.list-unstyled img {
+  
+    width: 30px;
+    margin-left: -2em;
+    margin-bottom: -2em;
+    margin-right: 58px;
+    position: relative;
+  }
+ 
+
+/* boutiquepeinture.css | http://127.0.0.1:8000/assets/css/boutiquepeinture.css */
+
+.list-unstyled .ms-4 {
+    /* background-color: #f4f8ff; */
+    margin: 1em;
+    margin-left: 21em;
+    margin-right: -39em;
+    position: relative;
+    margin-top: 13em;
+  }
+  
+  .b-example-divider {
+    height: 3rem;
+    background-color: rgba(0, 0, 0, .1);
+    border: solid rgba(0, 0, 0, .15);
+    border-width: 1px 0;
+    box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+    margin-top: 4em;
+  }
+
+  .screen-darken{
+    content: ''; 
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background-color: rgba(0,0,0,.5);
+      pointer-events: none;
+      z-index:10; opacity:1; 
+    visibility:visible;
+    position: fixed;
+  }
+  
+  .navbar{
+    position: relative;
+    z-index: 15;
+  }
+  .bg-primary {
+    background-color: #ffffff !important;
+    }
+.navbar-brand{
+    font-family:'Times New Roman', Times, serif;
+}
+.navbar-dark .navbar-brand:hover{
+    color:#e44747c0;
+}
+.navbar-dark .navbar-brand:focus{
+    color: black;
+}
+
+.navbar-dark .navbar-brand {
+    /* color: #fff; */
+    color: #5a5a5a;
+  }
+#navbarDropdown{
+    margin-left: 1.5em;
+}
+#navbarDropdownMenuLink{
+    margin-left: 2em;
+    color: red;
+}
+
+

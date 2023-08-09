@@ -42,6 +42,15 @@ class Product
     #[ORM\Column(length: 255)]
     private ?string $articleCode = null;
 
+    #[ORM\Column] 
+    private ?bool $livrableHorsIleDeFrance = null;
+
+    #[ORM\Column]
+    private ?bool $isBest = null;
+
+    #[ORM\ManyToOne(inversedBy: 'products')]
+    private ?SousSousCategory $SScategory = null;
+
 
 
     public function getId(): ?int
@@ -153,6 +162,42 @@ class Product
     public function setArticleCode(string $articleCode): self
     {
         $this->articleCode = $articleCode;
+
+        return $this;
+    }
+
+    public function getLivrableHorsIleDeFrance(): ?bool
+    {
+        return $this->livrableHorsIleDeFrance;
+    }
+
+    public function setLivrableHorsIleDeFrance(bool $livrableHorsIleDeFrance): self
+    {
+        $this->livrableHorsIleDeFrance = $livrableHorsIleDeFrance;
+
+        return $this;
+    }
+
+    public function isIsBest(): ?bool
+    {
+        return $this->isBest;
+    }
+
+    public function setIsBest(bool $isBest): static
+    {
+        $this->isBest = $isBest;
+
+        return $this;
+    }
+
+    public function getSScategory(): ?SousSousCategory
+    {
+        return $this->SScategory;
+    }
+
+    public function setSScategory(?SousSousCategory $SScategory): static
+    {
+        $this->SScategory = $SScategory;
 
         return $this;
     }

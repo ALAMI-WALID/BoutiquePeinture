@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Valider ma commande - Peinture Auto Expert{% endblock %}
+
+
+{% block content %}
+    <h2>Je passe ma commande</h2>
+    <p>Choisissez vos préférences avant de passer votre commande sur Peinture Auto Expert.</p>
+    <hr>
+    <div class="row">
+        <div class="col-md-6">
+            {% set formHtml %}
+                {{ form_start(form, {action:path('order_recap')}) }}
+                   <b> {{ form_label(form.addresses, 'Choisissez votre adresse de livraison') }}</b>
+                    <a href="{{ path('account_address_add') }}">Ajouter une nouvelle adresse</a>
+                {{ form_end(form) }}
+            {% endset %}
+            {{ formHtml|replace({'[br]' : '<br/>'})|raw }}
+        </div>
+        <div class="col-md-6">
+            <div class="text-center">
+                <b>DÉTAILS DE LA COMMANDE</b>
+            </div>
+            <div class="order-summary">
+                {% for key,product in cart %}
+                    <div class="row {% if key > 0 %}mt-2{% endif %}">
+                        <div class="col-2">
+                            <img src="/uploads/{{ product.product.illustration }}" alt="{{ product.product.name }}" height="75px">
+                        </div>
+
+                        <div class="col-8 my-auto">
+                            {{ product.product.name }}<br/>
+                            <small>{{ product.product.subtitle }}</small><br>
+                            <span class="product-price">{{ (product.product.price * product.quantity / 100)|number_format(2, ',','.')}}€</span>
+
+
+                        </div>
+                        <div class="col-2 my-auto">
+                            Qté: {{ product.quantity }}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

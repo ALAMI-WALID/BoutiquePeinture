@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{product.name}}{% endblock %}
+
+
+
+{% block content %}
+
+
+
+    <div class="row product-container">
+            <div class="col-md-5">
+                <img src="/uploads/{{ product.illustration }}" alt="{{product.name}}" class="img-fluid">
+            </div>
+
+            <div class="col-md-7">
+                    <h3>{{product.name}}</h3>
+                    <p> {{product.subtitle}} | {{product.articleCode}}</p>
+                    <span class="product-price-page">{{ (product.price / 100)|number_format(2, ',','.')}}€</span>
+                    <hr>
+                    <p>
+                    {{product.description}}
+                    <a   class="badge badge-warning">Fichier technique</a>
+                    </p>
+                    <a href={{ path('add_to_cart', { 'id' : product.id }) }} class="btn btn-primary"> Ajouter au panier</a>
+                      <a class="btn btn-primary" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Toggle first element</a>
+             </div>
+
+
+
+             
+    </div>
+    <hr>
+    <h3>Nos meilleures ventes</h3>
+    <p>Découvrez les articles les plus vendus.</p>
+    <div class="row">
+        {% for product in products %}
+            <div class="col-md-3">
+                {% include 'product/single_product.html.twig' %}
+            </div>
+        {% endfor %}
+    </div><!-- /.row -->
+
+
+
+
+
+
+{% endblock %}

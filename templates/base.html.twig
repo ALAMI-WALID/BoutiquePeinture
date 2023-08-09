@@ -6,14 +6,20 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v4.1.1">
+    {% block javascript %}{% endblock %}
+
     <title>{% block title %}La boutique Auto Peinture Expert {% endblock %}</title>
 
     <!-- Bootstrap core CSS -->
     <link href={{asset('assets/css/bootstrap.min.css')}} rel="stylesheet">
     <link href={{asset('assets/css/boutiquepeinture.css')}} rel="stylesheet">
-
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <link rel="icon" type="image/png" href="{{ asset('assets/img/logo1.png') }}">
+    <link href={{asset('assets/css/offcanvas.css')}} rel="stylesheet">
+    <link href={{asset('assets/css/features.css')}} rel="stylesheet">
 
     <style>
+    
         .bd-placeholder-img {
             font-size: 1.125rem;
             text-anchor: middle;
@@ -23,34 +29,99 @@
             user-select: none;
         }
 
+        
+
         @media (min-width: 768px) {
             .bd-placeholder-img-lg {
                 font-size: 3.5rem;
             }
         }
+        .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+     
+
+      .b-example-vr {
+        flex-shrink: 0;
+        width: 1.5rem;
+        height: 100vh;
+      }
+
+      .bi {
+        vertical-align: -.125em;
+        fill: currentColor;
+      }
+
+      .nav-scroller {
+        position: relative;
+        z-index: 2;
+        height: 2.75rem;
+        overflow-y: hidden;
+      }
+
+      .nav-scroller .nav {
+        display: flex;
+        flex-wrap: nowrap;
+        padding-bottom: 1rem;
+        margin-top: -1px;
+        overflow-x: auto;
+        text-align: center;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .btn-bd-primary {
+        --bd-violet-bg: #712cf9;
+        --bd-violet-rgb: 112.520718, 44.062154, 249.437846;
+
+        --bs-btn-font-weight: 600;
+        --bs-btn-color: var(--bs-white);
+        --bs-btn-bg: var(--bd-violet-bg);
+        --bs-btn-border-color: var(--bd-violet-bg);
+        --bs-btn-hover-color: var(--bs-white);
+        --bs-btn-hover-bg: #6528e0;
+        --bs-btn-hover-border-color: #6528e0;
+        --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
+        --bs-btn-active-color: var(--bs-btn-hover-color);
+        --bs-btn-active-bg: #5a23c8;
+        --bs-btn-active-border-color: #5a23c8;
+      }
     </style>
     <!-- Custom styles for this template -->
     <link href={{asset('assets/css/carousel.css')}} rel="stylesheet">
 </head>
 <body>
 <header>
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-        <a class="navbar-brand" href={{ path('app_home')}}>PeintureAuto</a>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark" >
+
+        <a href={{ path('app_home')}} class="navbar-brand">
+            <img src={{asset('assets/img/logo1.png')}} style="width: 250px; height: auto;" alt="logo">
+        </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Nos produits <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Qui somme-nous? <span class="sr-only">(current)</span></a>
-                </li>
-                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Contact <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href={{path('products')}}><span class="sr-only">(current)</span></a>
                 </li>
             </ul>
+
+            {% if block('search') is defined %}
+            <div class="ma-form">
+           {{ form_start(form) }}
+            {{ form_widget(form.string) }}
+            <img src={{asset('assets/img/chercher.png')}} class="cart-icon" id="chercher" alt="Mon panier">
+            {{ form_end(form) }}
+             </div>
+            {% endif %}
+            
+
             <div class="navbar-items">
             {% if app.user %}
             <a href={{ path('account')}}>Mon compte ({{app.user.firstname}})</a> | <a href={{ path('app_logout')}}>Déconnexion</a>
@@ -58,50 +129,44 @@
             <a  href={{ path('app_login')}}>Connexion</a> | <a href={{ path('register')}}>Inscription</a>
             {% endif %}
             </div>
-            
+            <a href={{path('cart')}}>
+                <img src={{asset('assets/img/shopping-cart.png')}} class="cart-icon" alt="Mon panier">
+            </a>
+            <a href={{path('contact')}}>
+                <img src={{asset('assets/img/contact11.png')}} class="cart-icon" alt="contact">
+            </a>
         </div>
     </nav>
+    
+     {% include 'category/index.html.twig' %}
+  
 </header>
-
+{# Header end #}
 <main role="main">
+
+    {% block search_content %}
+
+    {% endblock %}
+
     {% if block('carousel') is defined %}
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
-            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-            <li data-target="#myCarousel" data-slide-to="1"></li>
-            <li data-target="#myCarousel" data-slide-to="2"></li>
+            {% for key,header in headers %}
+                <li data-target="#myCarousel" data-slide-to="{{ key }}" {% if key == 0 %}class="active"{% endif %}></li>
+            {% endfor %}
         </ol>
         <div class="carousel-inner">
-            <div class="carousel-item active">
-                <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img"><rect width="100%" height="100%" fill="#777"/></svg>
+            {% for key,header in headers %}
+            <div class="carousel-item {% if key == 0 %}active{% endif %}" style="background: url('/uploads/{{ header.illustration }}');background-size:cover;background-position:center">
                 <div class="container">
                     <div class="carousel-caption text-left">
-                        <h1>Example headline.</h1>
-                        <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                        <p><a class="btn btn-lg btn-primary" href="#" role="button">Sign up today</a></p>
+                        <h1>{{ header.title }}</h1>
+                        <p>{{ header.content }}</p>
+                        <p><a class="btn btn-lg btn-info" href="{{ header.btnUrl }}" role="button">{{ header.btnTitle }}</a></p>
                     </div>
                 </div>
             </div>
-            <div class="carousel-item">
-                <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img"><rect width="100%" height="100%" fill="#777"/></svg>
-                <div class="container">
-                    <div class="carousel-caption">
-                        <h1>Another example headline.</h1>
-                        <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                        <p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>
-                    </div>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img"><rect width="100%" height="100%" fill="#777"/></svg>
-                <div class="container">
-                    <div class="carousel-caption text-right">
-                        <h1>One more for good measure.</h1>
-                        <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                        <p><a class="btn btn-lg btn-primary" href="#" role="button">Browse gallery</a></p>
-                    </div>
-                </div>
-            </div>
+            {% endfor %}
         </div>
         <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -119,6 +184,7 @@
     <!-- Wrap the rest of the page in another container to center all the content. -->
 
     <div class="container marketing {% if block('carousel') is not defined %}mt-5{% endif %}">
+
     
     {% block content %}
 
@@ -127,15 +193,124 @@
     </div><!-- /.container -->
 
     <!-- FOOTER -->
+<div class="b-example-divider"></div>
+
+    
+<div class="container">
+  <footer class="py-5">
+ 
+    <img src={{asset('assets/img/badbar1.png')}} id="badbar" style="width: 100px; " alt="logo">
+    <div class="row">
+      <div class="col-6 col-md-2 mb-3">
+        <h5>Peinture Auto Expert</h5>
+        <ul class="nav flex-column">
+          <li class="nav-item mb-2"><a href={{ path('app_home')}} class="nav-link p-0 text-body-secondary" >A propos de nous ! </a></li>
+          <li class="nav-item mb-2"><a href={{ path('register')}} class="nav-link p-0 text-body-secondary">Devenons partenaires</a></li>
+          <li class="nav-item mb-2"><a href={{path('app_login')}} class="nav-link p-0 text-body-secondary">Mentions légales </a></li>
+          <li class="nav-item mb-2"><a href={{path('app_login')}} class="nav-link p-0 text-body-secondary">CGV</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Protection des données</a></li>
+          <li class="nav-item mb-2"><a href={{path('contact')}} class="nav-link p-0 text-body-secondary">Paiement sécurisé</a></li>
+        </ul>
+      </div>
+
+      <div class="col-6 col-md-2 mb-3">
+        <h5>Besoins d’aide ?</h5>
+        <ul class="nav flex-column">
+          <li class="nav-item mb-2"><a href={{ path('contact')}} class="nav-link p-0 text-body-secondary" >Service client </a></li>
+          <li class="nav-item mb-2"><a href={{ path('register')}} class="nav-link p-0 text-body-secondary">Installation labo de peinture</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Recherche de code couleur</a></li>
+          <li class="nav-item mb-2"><a href={{path('contact')}} class="nav-link p-0 text-body-secondary">Simulateur de quantité</a></li>
+        </ul>
+      </div>
+
+      <div class="col-6 col-md-2 mb-3">
+        <h5>Raccourcis</h5>
+        <ul class="nav flex-column">
+          <li class="nav-item mb-2"><a href={{ path('app_home')}} class="nav-link p-0 text-body-secondary">Accueil</a></li>
+          <li class="nav-item mb-2"><a href={{ path('register')}} class="nav-link p-0 text-body-secondary">Inscription</a></li>
+          <li class="nav-item mb-2"><a href={{path('app_login')}} class="nav-link p-0 text-body-secondary">Connexion</a></li>
+          <li class="nav-item mb-2"><a href={{path('products')}} class="nav-link p-0 text-body-secondary">Nos produits</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">A propos de nous</a></li>
+          <li class="nav-item mb-2"><a href={{path('contact')}} class="nav-link p-0 text-body-secondary">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="col-md-5 offset-md-1 mb-3">
+        <form>
+          <h5>Abonnez-vous à notre newsletter</h5>
+          <p>Ne manquez plus aucune nouveauté, recevez les par mail</p>
+          <div class="d-flex flex-column flex-sm-row w-100 gap-2">
+            <span><input id="newsletter1" type="text" class="form-control" placeholder="Votre adresse email"></span>
+            <button class="btn btn-primary" type="button" id="espace">Abonnez-vous</button>
+
+          </div>
+        </form>
+
+      <div class="espaseicon">
+      <ul class="list-unstyled  espaseicon d-flex">
+          <li class="ms-3"><a class="link-body-emphasis" href="#"><img src={{asset('assets/img/facebook.png')}}  alt="logo"</a></li>
+          <li class="ms-3"><a class="link-body-emphasis" href="#"> <img src={{asset('assets/img/snapchat.png')}}  alt="logo"></a></li>
+          <li class="ms-3"><a class="link-body-emphasis" href="#">  <img src={{asset('assets/img/twitter.png')}}  alt="logo"></a></li>
+          <li class="ms-3"><a class="link-body-emphasis" href="#">  <img src={{asset('assets/img/instagram.png')}}  alt="logo"></a></li>
+      </ul>
+      <div>
+    </div>
+
+      <ul class="list-unstyled  d-flex" id="payment" >
+          <li class="ms-4">  <img  src={{asset('assets/img/pay-pal.png')}} > <p>Paypal</p></li>
+          <li class="ms-4"> <img   src={{asset('assets/img/american-express.png')}}><p>American Express</p></li>
+          <li class="ms-4"> <img   src={{asset('assets/img/carte.png')}}><p>MasterCard</p></li>
+          <li class="ms-4"> <img  src={{asset('assets/img/visa.png')}} ><p>Visa</p></li>
+          <li class="ms-4">  <img  src={{asset('assets/img/carte-de-credit.png')}}><p>Carte bancaire</p></li>
+          <li class="ms-4">  <img   src={{asset('assets/img/paiement-securise.png')}} ><p>Paiement Sécurisé</p></li>
+      </ul>
+  </footer>
+</div>
+
     <footer class="footer-custom">
         <p>
              &copy; 2018-2023 Peinture Auto Expert.<br>
              <small> La boutique 100% Français 
               <a href="#">Privacy</a> &middot; <a href="#">Terms</a></small>
         </p>
+     
     </footer>
 </main>
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src={{asset('assets/js/bootstrap.bundle.js')}}></script>
+<script src={{asset('assets/js/offcanvas.js')}}></script>
+
+<script>
+ $(document).ready(function() {
+  // Cacher tous les menus déroulants au chargement de la page
+  $('.dropdown-menu').hide();
+
+  // Gérer le survol des éléments de menu
+  $('.nav-item.dropdown').hover(
+    function() {
+      // Fermer tous les menus déroulants ouverts
+      $('.nav-item.dropdown').removeClass('show');
+      $('.dropdown-menu').hide();
+
+      // Ouvrir le menu déroulant de l'élément survolé
+      $(this).addClass('show');
+      $(this).find('.dropdown-menu').show();
+    },
+    function() {
+      // Fermer le menu déroulant lorsque le curseur quitte l'élément
+      $(this).removeClass('show');
+      $(this).find('.dropdown-menu').hide();
+    }
+  );
+});
+
+</script>
+
+
+
+
 </body>
+
+{% block script %}
+{% endblock %}
 </html>
