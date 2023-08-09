@@ -44,17 +44,21 @@ class HomeController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $products = $this->entityManager->getRepository(Product::class)->findWithSearch($search);
 
-            if (empty($products)) {
-                return $this->render('home/search.html.twig', [
-                    'products' => [],
-                    'form' => $form->createView(),
-                ]);
-            }
+
             $categories = $this->megaMenu->mega();
             $Scategories = $this->megaMenu->megaS();
             $SScategories = $this->megaMenu->megaSS();
-            
-
+            if (empty($products)) {
+                
+                
+                return $this->render('home/search.html.twig', [
+                    'products' => [],
+                    'form' => $form->createView(),
+                    'categories' =>$categories,
+                    'Scategories' => $Scategories,
+                    'SScategories'=>$SScategories
+                ]);
+            }
             return $this->render('home/search.html.twig',[
                
                 'products' => $products,
