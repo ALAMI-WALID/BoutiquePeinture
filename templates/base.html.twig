@@ -279,36 +279,55 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src={{asset('assets/js/bootstrap.bundle.js')}}></script>
 <script src={{asset('assets/js/offcanvas.js')}}></script>
-
 <script>
  $(document).ready(function() {
   // Cacher tous les menus déroulants au chargement de la page
   $('.dropdown-menu').hide();
 
-  // Gérer le survol des éléments de menu
+  // Ajouter un léger délai (en millisecondes) entre le survol et l'affichage du menu déroulant
+  var hoverDelay = 200; // Par exemple, un délai de 200 ms
+
+  var timeout;
+
+  // Gérer le survol des éléments de menu avec un délai
   $('.nav-item.dropdown').hover(
     function() {
-      // Fermer tous les menus déroulants ouverts
-      $('.nav-item.dropdown').removeClass('show');
-      $('.dropdown-menu').hide();
+      var $menuItem = $(this);
 
-      // Ouvrir le menu déroulant de l'élément survolé
-      $(this).addClass('show');
-      $(this).find('.dropdown-menu').show();
+      clearTimeout(timeout); // Effacer le délai précédent s'il existe
+
+      timeout = setTimeout(function() {
+        // Fermer tous les menus déroulants ouverts
+        $('.nav-item.dropdown').removeClass('show');
+        $('.dropdown-menu').hide();
+
+        // Ouvrir le menu déroulant de l'élément survolé
+        $menuItem.addClass('show');
+        $menuItem.find('.dropdown-menu').show();
+      }, hoverDelay);
     },
     function() {
-      // Fermer le menu déroulant lorsque le curseur quitte l'élément
-      $(this).removeClass('show');
-      $(this).find('.dropdown-menu').hide();
+      clearTimeout(timeout); // Effacer le délai précédent s'il existe
+
+      var $menuItem = $(this);
+
+      timeout = setTimeout(function() {
+        // Fermer le menu déroulant lorsque le curseur quitte l'élément
+        $menuItem.removeClass('show');
+        $menuItem.find('.dropdown-menu').hide();
+      }, hoverDelay);
     }
   );
+
+  // Fermer tous les menus déroulants lorsque l'utilisateur clique ailleurs dans la page
+  $(document).click(function(e) {
+    var $target = $(e.target);
+    if (!$target.is('.navbar-brand') && !$target.parents('.navbar-brand').length) {
+      $('.dropdown-menu').hide();
+    }
+  });
 });
-
 </script>
-
-
-
-
 </body>
 
 {% block script %}

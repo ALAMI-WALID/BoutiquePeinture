@@ -58,6 +58,41 @@ class ProductController extends AbstractController
         ]);
     }
 
+    #[Route('/nos_produits/{id}', name: 'productsInCategory')]
+    public function ShowCategory(Request $request,$id): Response
+    {   
+
+        $search = new Search();
+        $form = $this->createForm(SearchType::class, $search);
+
+        $form->handleRequest($request);
+
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $products = $this->entityManager->getRepository(Product::class)->findWithSearch($search);
+        } else {
+            $products = $this->entityManager->getRepository(Product::class)->findBy(['SScategory' => $id]);
+
+        }
+        $categories = $this->megaMenu->mega();
+        $Scategories = $this->megaMenu->megaS();
+        $SScategories = $this->megaMenu->megaSS();
+
+
+
+        return $this->render('product/index.html.twig', [
+        
+            'products' => $products,
+            'form' => $form->createView(),
+            'categories' =>$categories,
+            'Scategories' =>$Scategories,
+            'SScategories'=>$SScategories
+
+
+
+        ]);
+    }
+
     #[Route('/produit/{slug}', name: 'product')]
     public function show($slug): Response
     {   
