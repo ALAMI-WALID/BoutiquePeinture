@@ -18,4 +18,11 @@ class Search{
 
      public $categories = [];
 
+     /**
+      * @var int 
+      */
+      public $priceRange = null ;
+
+
+
 }

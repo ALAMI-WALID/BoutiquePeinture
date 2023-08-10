@@ -9,15 +9,21 @@
     {% block javascript %}{% endblock %}
 
     <title>{% block title %}La boutique Auto Peinture Expert {% endblock %}</title>
-
+    
     <!-- Bootstrap core CSS -->
+    <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js" integrity="sha256-xLD7nhI62fcsEZK2/v8LsBcb4lG7dgULkuXoXB/j91c=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src={{ asset('assets/js/bootstrap.bundle.js') }}></script>
+    
+
+
     <link href={{asset('assets/css/bootstrap.min.css')}} rel="stylesheet">
     <link href={{asset('assets/css/boutiquepeinture.css')}} rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-    <link rel="icon" type="image/png" href="{{ asset('assets/img/logo1.png') }}">
+    <link rel="icon" type="image/png" href="{{ asset('assets/img/logo3.png') }}">
     <link href={{asset('assets/css/offcanvas.css')}} rel="stylesheet">
     <link href={{asset('assets/css/features.css')}} rel="stylesheet">
-
+    
     <style>
     
         .bd-placeholder-img {
@@ -276,58 +282,10 @@
      
     </footer>
 </main>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src={{asset('assets/js/bootstrap.bundle.js')}}></script>
-<script src={{asset('assets/js/offcanvas.js')}}></script>
-<script>
- $(document).ready(function() {
-  // Cacher tous les menus déroulants au chargement de la page
-  $('.dropdown-menu').hide();
 
-  // Ajouter un léger délai (en millisecondes) entre le survol et l'affichage du menu déroulant
-  var hoverDelay = 200; // Par exemple, un délai de 200 ms
+{# <script src={{asset('assets/js/offcanvas.js')}}></script> #}
 
-  var timeout;
 
-  // Gérer le survol des éléments de menu avec un délai
-  $('.nav-item.dropdown').hover(
-    function() {
-      var $menuItem = $(this);
-
-      clearTimeout(timeout); // Effacer le délai précédent s'il existe
-
-      timeout = setTimeout(function() {
-        // Fermer tous les menus déroulants ouverts
-        $('.nav-item.dropdown').removeClass('show');
-        $('.dropdown-menu').hide();
-
-        // Ouvrir le menu déroulant de l'élément survolé
-        $menuItem.addClass('show');
-        $menuItem.find('.dropdown-menu').show();
-      }, hoverDelay);
-    },
-    function() {
-      clearTimeout(timeout); // Effacer le délai précédent s'il existe
-
-      var $menuItem = $(this);
-
-      timeout = setTimeout(function() {
-        // Fermer le menu déroulant lorsque le curseur quitte l'élément
-        $menuItem.removeClass('show');
-        $menuItem.find('.dropdown-menu').hide();
-      }, hoverDelay);
-    }
-  );
-
-  // Fermer tous les menus déroulants lorsque l'utilisateur clique ailleurs dans la page
-  $(document).click(function(e) {
-    var $target = $(e.target);
-    if (!$target.is('.navbar-brand') && !$target.parents('.navbar-brand').length) {
-      $('.dropdown-menu').hide();
-    }
-  });
-});
-</script>
 </body>
 
 {% block script %}
