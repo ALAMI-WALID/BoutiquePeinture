@@ -24,14 +24,19 @@ class SousCategory
     #[ORM\OneToMany(mappedBy: 'IdSousCategory', targetEntity: SousSousCategory::class)]
     private Collection $sousSousCategories;
 
-    public function __toString()
-    {
-        return $this->getName();
-    }
+    #[ORM\OneToMany(mappedBy: 'Scategory', targetEntity: Product::class)]
+    private Collection $products;
 
+    
     public function __construct()
     {
         $this->sousSousCategories = new ArrayCollection();
+        $this->products = new ArrayCollection();
+    }
+    
+    public function __toString()
+    {
+        return $this->getName();
     }
 
     public function getId(): ?int
@@ -87,6 +92,36 @@ class SousCategory
             // set the owning side to null (unless already changed)
             if ($sousSousCategory->getIdSousCategory() === $this) {
                 $sousSousCategory->setIdSousCategory(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Product>
+     */
+    public function getProducts(): Collection
+    {
+        return $this->products;
+    }
+
+    public function addProduct(Product $product): static
+    {
+        if (!$this->products->contains($product)) {
+            $this->products->add($product);
+            $product->setScategory($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProduct(Product $product): static
+    {
+        if ($this->products->removeElement($product)) {
+            // set the owning side to null (unless already changed)
+            if ($product->getScategory() === $this) {
+                $product->setScategory(null);
             }
         }
 
