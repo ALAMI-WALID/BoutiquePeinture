@@ -27,15 +27,20 @@ class ProductController extends AbstractController
     #[Route('/nos_produits', name: 'products')]
     public function index(Request $request): Response
     {   
+        $minPrice = 0;
+        $maxPrice = 5000;
 
         $search = new Search();
         $form = $this->createForm(SearchType::class, $search);
 
         $form->handleRequest($request);
-
-
+        
+        
         if ($form->isSubmitted() && $form->isValid()) {
+            $intervallePrix = $form->get('priceRange')->getData();
+            [$minPrice, $maxPrice] = explode(',', $intervallePrix);
             $products = $this->entityManager->getRepository(Product::class)->findWithSearch($search);
+
         } else {
             $products = $this->entityManager->getRepository(Product::class)->findAll();
         }
@@ -48,6 +53,8 @@ class ProductController extends AbstractController
         return $this->render('product/index.html.twig', [
         
             'products' => $products,
+            'minPrice' => $minPrice,
+            'maxPrice' => $maxPrice,
             'form' => $form->createView(),
             'categories' =>$categories,
             'Scategories' =>$Scategories,

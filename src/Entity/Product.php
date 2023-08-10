@@ -51,6 +51,9 @@ class Product
     #[ORM\ManyToOne(inversedBy: 'products')]
     private ?SousSousCategory $SScategory = null;
 
+    #[ORM\ManyToOne(inversedBy: 'products')]
+    private ?SousCategory $Scategory = null;
+
 
 
     public function getId(): ?int
@@ -198,6 +201,18 @@ class Product
     public function setSScategory(?SousSousCategory $SScategory): static
     {
         $this->SScategory = $SScategory;
+
+        return $this;
+    }
+
+    public function getScategory(): ?SousCategory
+    {
+        return $this->Scategory;
+    }
+
+    public function setScategory(?SousCategory $Scategory): static
+    {
+        $this->Scategory = $Scategory;
 
         return $this;
     }

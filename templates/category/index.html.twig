@@ -435,3 +435,55 @@
         </div>
       </div>
     </nav>
+    
+{% block script %}
+<script>
+ $(document).ready(function() {
+  // Cacher tous les menus déroulants au chargement de la page
+  $('.dropdown-menu').hide();
+
+  // Ajouter un léger délai (en millisecondes) entre le survol et l'affichage du menu déroulant
+  var hoverDelay = 200; // Par exemple, un délai de 200 ms
+
+  var timeout;
+
+  // Gérer le survol des éléments de menu avec un délai
+  $('.nav-item.dropdown').hover(
+    function() {
+      var $menuItem = $(this);
+
+      clearTimeout(timeout); // Effacer le délai précédent s'il existe
+
+      timeout = setTimeout(function() {
+        // Fermer tous les menus déroulants ouverts
+        $('.nav-item.dropdown').removeClass('show');
+        $('.dropdown-menu').hide();
+
+        // Ouvrir le menu déroulant de l'élément survolé
+        $menuItem.addClass('show');
+        $menuItem.find('.dropdown-menu').show();
+      }, hoverDelay);
+    },
+    function() {
+      clearTimeout(timeout); // Effacer le délai précédent s'il existe
+
+      var $menuItem = $(this);
+
+      timeout = setTimeout(function() {
+        // Fermer le menu déroulant lorsque le curseur quitte l'élément
+        $menuItem.removeClass('show');
+        $menuItem.find('.dropdown-menu').hide();
+      }, hoverDelay);
+    }
+  );
+
+  // Fermer tous les menus déroulants lorsque l'utilisateur clique ailleurs dans la page
+  $(document).click(function(e) {
+    var $target = $(e.target);
+    if (!$target.is('.navbar-brand') && !$target.parents('.navbar-brand').length) {
+      $('.dropdown-menu').hide();
+    }
+  });
+});
+</script>
+{% endblock %}
