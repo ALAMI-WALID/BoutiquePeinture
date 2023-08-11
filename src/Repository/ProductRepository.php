@@ -5,7 +5,10 @@ namespace App\Repository;
 use App\Classe\Search;
 use App\Entity\Product;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
+use Knp\Component\Pager\Pagination\PaginationInterface;
+use Knp\Component\Pager\PaginatorInterface;
 
 /**
  * @extends ServiceEntityRepository<Product>
@@ -17,9 +20,10 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class ProductRepository extends ServiceEntityRepository
 {
-    public function __construct(ManagerRegistry $registry)
+    public function __construct(ManagerRegistry $registry, PaginatorInterface $paginator )
     {
         parent::__construct($registry, Product::class);
+        $this->paginator = $paginator;
     }
 
     public function save(Product $entity, bool $flush = false): void
@@ -39,36 +43,75 @@ class ProductRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
+  
+    /**
+     * @return PaginationInterface
+     */
+    public function findWithSearch(Search $search) : PaginationInterface
+    {
+    
+       
+        $query = $this->getSearchQuery($search)->getQuery();
+        return $this->paginator->paginate(
+            $query,
+            $search->page,
+            9
+        );
 
-    public function findWithSearch(Search $search)
+    }
+
+      /**
+     * @return integer[]
+     */
+    public function findMinMax(Search $search): array
+    {
+        $results = $this->getSearchQuery($search, true)
+            ->select('MIN(p.price) as min', 'MAX(p.price) as max')
+            ->getQuery()
+            ->getScalarResult();
+            $min = (int)($results[0]['min'] / 100);
+             $max = (int)($results[0]['max'] / 100);
+
+    return [$min, $max];
+    }
+
+
+    private function getSearchQuery(Search $search , $ignorePrice = false):QueryBuilder
     {
         $query = $this
-            ->createQueryBuilder('p')
-            ->select('c', 'p')
-            ->join('p.category', 'c');
+        ->createQueryBuilder('p')
+        ->select('c', 'p')
+        ->join('p.category', 'c');
 
-        if (!empty($search->categories)) {
-            $query = $query
-                ->andWhere('c.id IN (:categories)')
-                ->setParameter('categories', $search->categories);
-        }
+    if (!empty($search->categories)) {
+        $query = $query
+            ->andWhere('c.id IN (:categories)')
+            ->setParameter('categories', $search->categories);
+    }
 
-        if (!empty($search->string)) {
-            $query = $query
-                ->andWhere('p.name LIKE :string OR p.articleCode LIKE :string')
-                ->setParameter('string', "%{$search->string}%");
-        }
+    if (!empty($search->string)) {
+        $query = $query
+            ->andWhere('p.name LIKE :string OR p.articleCode LIKE :string')
+            ->setParameter('string', "%{$search->string}%");
+    }
 
-        if (!empty($search->priceRange)) {
-            [$minPrice, $maxPrice] = explode(',', $search->priceRange);
-            $query = $query
-                ->andWhere('p.price >= :minPrice')
-                ->andWhere('p.price <= :maxPrice')
-                ->setParameter('minPrice', $minPrice)
-                ->setParameter('maxPrice', $maxPrice);
-        }
+    if (!empty($search->min) && $ignorePrice === false ) {
+        $query = $query
+            ->andWhere('p.price >= :min')
+            ->setParameter('min', $search->min * 100);
+    }
 
-        return $query->getQuery()->getResult();
+    if (!empty($search->max) && $ignorePrice === false ) {
+        $query = $query
+            ->andWhere('p.price <= :max')
+            ->setParameter('max', $search->max * 100);
+    }
+    if (!empty($search->promo)) {
+        $query = $query
+            ->andWhere('p.promo = 1');
+    }
+
+    return $query;
     }
 
 

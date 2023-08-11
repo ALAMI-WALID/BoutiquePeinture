@@ -14,15 +14,21 @@
     <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js" integrity="sha256-xLD7nhI62fcsEZK2/v8LsBcb4lG7dgULkuXoXB/j91c=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
     <script src={{ asset('assets/js/bootstrap.bundle.js') }}></script>
+
+
     
 
 
     <link href={{asset('assets/css/bootstrap.min.css')}} rel="stylesheet">
     <link href={{asset('assets/css/boutiquepeinture.css')}} rel="stylesheet">
     <link rel="icon" type="image/png" href="{{ asset('assets/img/logo3.png') }}">
+    <link href={{asset('assets/css/carousel.css')}} rel="stylesheet">
     <link href={{asset('assets/css/offcanvas.css')}} rel="stylesheet">
     <link href={{asset('assets/css/features.css')}} rel="stylesheet">
+    <link href={{asset('assets/css/nouislider.css')}} rel="stylesheet">
+
     
     <style>
     
@@ -97,9 +103,16 @@
         --bs-btn-active-bg: #5a23c8;
         --bs-btn-active-border-color: #5a23c8;
       }
+      .filter{
+        display : block;
+        position: sticky;
+        top: 20px;
+      }
     </style>
+    
+    {{ encore_entry_link_tags('app') }}
+    {{ encore_entry_script_tags('app') | replace({'src=': 'defer src='}) | raw}}
     <!-- Custom styles for this template -->
-    <link href={{asset('assets/css/carousel.css')}} rel="stylesheet">
 </head>
 <body>
 <header>
@@ -285,6 +298,36 @@
 
 {# <script src={{asset('assets/js/offcanvas.js')}}></script> #}
 
+
+<script src={{ asset('assets/js/nouislider.js') }}></script>
+<script>
+const slider = document.getElementById('price-slider');
+if (slider) {
+    const min = document.getElementById('min');
+    const max = document.getElementById('max');
+    const minValue = Math.floor(parseInt(slider.dataset.min, 10) / 10) * 10;
+    const maxValue = Math.ceil(parseInt(slider.dataset.max, 10) / 10) * 10;
+
+    const range = noUiSlider.create(slider, {
+        start: [min.value || minValue, max.value || maxValue],
+        connect: true,
+        range: {
+            'min': minValue,
+            'max': maxValue,
+        }
+    });
+
+    range.on('slide', function (values, handle) {
+        if (handle === 0) {
+            min.value = Math.round(values[0] / 10) * 10; // Arrondi aux dizaines
+        }
+
+        if (handle === 1) {
+            max.value = Math.round(values[1] / 10) * 10; // Arrondi aux dizaines
+        }
+    });
+}
+</script>
 
 </body>
 

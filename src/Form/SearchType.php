@@ -4,7 +4,9 @@ use App\Classe\Search;
 use App\Entity\Category;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Form\Extension\Core\Type\RangeType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -32,10 +34,24 @@ class SearchType extends AbstractType
             'multiple'=>true,
             'expanded'=>true,
         ])
-        ->add('priceRange', HiddenType::class, [
+        
+        ->add('min', NumberType::class, [
+            'label' => false,
+            'required' => false,
             'attr' => [
-                'id' => 'priceRangeInput'
+                'placeholder' => 'Prix min'
             ]
+        ])
+        ->add('max', NumberType::class, [
+            'label' => false,
+            'required' => false,
+            'attr' => [
+                'placeholder' => 'Prix max'
+            ]
+        ])
+        ->add('promo', CheckboxType::class, [
+            'label' => 'En promotion',
+            'required' => false,
         ])
 
 
