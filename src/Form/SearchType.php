@@ -50,7 +50,7 @@ class SearchType extends AbstractType
             ]
         ])
         ->add('promo', CheckboxType::class, [
-            'label' => 'En promotions',
+            'label' => 'En promotion',
             'required' => false,
         ])
 
