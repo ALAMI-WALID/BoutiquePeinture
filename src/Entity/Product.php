@@ -54,6 +54,9 @@ class Product
     #[ORM\ManyToOne(inversedBy: 'products')]
     private ?SousCategory $Scategory = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?bool $promo = null;
+
 
 
     public function getId(): ?int
@@ -213,6 +216,18 @@ class Product
     public function setScategory(?SousCategory $Scategory): static
     {
         $this->Scategory = $Scategory;
+
+        return $this;
+    }
+
+    public function isPromo(): ?bool
+    {
+        return $this->promo;
+    }
+
+    public function setPromo(?bool $promo): static
+    {
+        $this->promo = $promo;
 
         return $this;
     }

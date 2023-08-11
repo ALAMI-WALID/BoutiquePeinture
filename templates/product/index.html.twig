@@ -2,63 +2,33 @@
 
 {% block title %}Nos-produits Peinture Auto Expert{% endblock %}
 
-
-
 {% block content %}
 <div class="row">
         <div class="col-md-3">
-            <h3>Filtrer</h3>
-            <form method="get">
-                    {{ form_start(form) }}
-                    
-                    <!-- Votre champ de recherche -->
-                    {{ form_row(form.string) }}
-                    
-                    <!-- Votre champ de sélection de catégories -->
-                    {{ form_row(form.categories) }}
-
-                    <!-- Champ caché pour l'intervalle de prix -->
-                    {{ form_widget(form.priceRange) }}
-
-                    <!-- Curseur de prix -->
-                    <div id="priceSlider"></div>
-                  
-                    {{ form_end(form) }}
-            </form>
+           {% include 'product/filter.html.twig' with {form : form , min: min ,max: max} only %}
         </div>
         <div class="col-md-9">
 
-
     <h1>Nos produits</h1>
+    <div class="d-flex justify-content-end mb-2">
+            {{ knp_pagination_sortable(products, 'Prix', 'p.price', {'class': 'btn btn-primary'}) }}
+            <div style="margin-right: 10px"></div> <!-- Espacement entre les boutons -->
+            {{ knp_pagination_sortable(products, 'Promo', 'p.promo', {'class': 'btn btn-secondary'}) }}
+    </div>
 
     <div class="row product-container">
+
         {% for product in products %}
             <div class="col-md-4">
                {% include 'product/single_product.html.twig' %}
             </div>  
         {% endfor %}
-    </div>
-    </div>
+            </div class="mt-4"> {{ knp_pagination_render(products, 'product/pagination.html.twig') }}</div>
+         </div>
+      </div>
     </div>
 {% endblock %}
 
 {% block script %}
-<script>
-    $(document).ready(function() {
-        // Initialiser le curseur de prix
-        $('#priceSlider').slider({
-            min: {{ 0 }},
-            max: {{ 5000 }},
-            step: 1,
-            value: [{{ 0 }}, {{ 5000 }}], // Utiliser minPrice et maxPrice ici
-            tooltip: 'always'
-        });
-        // Mettre à jour les valeurs du champ caché lorsque le curseur est modifié
-        $('#priceSlider').on('slideStop', function(event) {
-            var minPrice = event.target.value[0];
-            var maxPrice = event.target.value[1];
-            $('#priceRangeInput').val(minPrice + ',' + maxPrice);
-        });
-    });
-</script>
+
 {% endblock %}

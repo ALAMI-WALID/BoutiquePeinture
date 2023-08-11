@@ -5,6 +5,10 @@ use App\Entity\Category;
 
 class Search{
 
+    /**
+     * @var int
+     */
+    public $page = 1;
 
     /**
     * @var string
@@ -19,10 +23,19 @@ class Search{
      public $categories = [];
 
      /**
-      * @var int 
+      * @var null|integer 
       */
-      public $priceRange = null ;
+    public $max;
 
+    /**
+      * @var null|integer 
+      */
+      public $min;
+
+      /**
+     * @var boolean
+     */
+    public $promo = false;
 
 
 }
