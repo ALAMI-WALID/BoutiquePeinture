@@ -57,7 +57,13 @@ class Product
     #[ORM\Column(nullable: true)]
     private ?bool $promo = null;
 
+    #[ORM\ManyToOne(inversedBy: 'products')]
+    private ?Buses $buses = null;
 
+    public function __toString()
+    {
+        return $this->getSubtitle();
+    }
 
     public function getId(): ?int
     {
@@ -228,6 +234,18 @@ class Product
     public function setPromo(?bool $promo): static
     {
         $this->promo = $promo;
+
+        return $this;
+    }
+
+    public function getBuses(): ?Buses
+    {
+        return $this->buses;
+    }
+
+    public function setBuses(?Buses $buses): static
+    {
+        $this->buses = $buses;
 
         return $this;
     }

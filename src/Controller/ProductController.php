@@ -6,6 +6,7 @@ use App\Classe\MegaMenu;
 use App\Classe\Search;
 use App\Entity\Product;
 use App\Form\SearchType;
+use App\Repository\ProductRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -32,23 +33,25 @@ class ProductController extends AbstractController
         $search->page = $request->get('page', 1);
         $form = $this->createForm(SearchType::class, $search);
 
+
         $form->handleRequest($request);
-        // if ($form->isSubmitted() && $form->isValid()) {
+        
         [$min,$max] = $this->entityManager->getRepository(Product::class)->findMinMax($search);
 
-        
+        if ($form->isSubmitted() && $form->isValid()) {
+            
             $products = $this->entityManager->getRepository(Product::class)->findWithSearch($search);
+        } else {
+
+            $products = $this->entityManager->getRepository(Product::class)->findWithAll($search);
+        }
+ 
 
 
-        // } else {
-        //     $products = $this->entityManager->getRepository(Product::class)->findAll();
-        // }
+        
         $categories = $this->megaMenu->mega();
         $Scategories = $this->megaMenu->megaS();
         $SScategories = $this->megaMenu->megaSS();
-
-
-
         return $this->render('product/index.html.twig', [
         
             'products' => $products,
