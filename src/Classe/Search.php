@@ -1,7 +1,9 @@
 <?php
 
 namespace App\Classe;
+use App\Entity\Buses;
 use App\Entity\Category;
+use App\Entity\Product;
 
 class Search{
 
@@ -14,13 +16,24 @@ class Search{
     * @var string
     */
 
-    public $string = '';
+    public $string ='';
+
+    /**
+    * @var Product[]
+    */
+    public $subtitle = []; 
 
     /**
      * @var Category[]
      */
 
      public $categories = [];
+
+
+     /**
+      * @var null|integer
+      */
+      public $buses ='';
 
      /**
       * @var null|integer 

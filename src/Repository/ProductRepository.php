@@ -25,7 +25,6 @@ class ProductRepository extends ServiceEntityRepository
         parent::__construct($registry, Product::class);
         $this->paginator = $paginator;
     }
-
     public function save(Product $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
@@ -59,8 +58,33 @@ class ProductRepository extends ServiceEntityRepository
         );
 
     }
+    /**
+     * @return PaginationInterface
+     */
 
-      /**
+     public function findWithAll(Search $search): PaginationInterface
+     {
+         $query = $this->getAllQuery()->getQuery();
+         return $this->paginator->paginate(
+             $query,
+             $search->page,
+             9
+         );
+     }
+ 
+     private function getAllQuery($ignorePrice = false): QueryBuilder
+     {
+         $query = $this->createQueryBuilder('p')
+             ->select('p');
+ 
+         // You can add more conditions to your query here if needed
+         // Example: $query->where('p.someColumn = :someValue');
+ 
+         return $query;
+     }
+    
+
+    /**
      * @return integer[]
      */
     public function findMinMax(Search $search): array
@@ -80,14 +104,30 @@ class ProductRepository extends ServiceEntityRepository
     {
         $query = $this
         ->createQueryBuilder('p')
-        ->select('c', 'p')
-        ->join('p.category', 'c');
+        ->select('b','c', 'p')
+        ->join('p.category', 'c')
+        ->join('p.buses','b');
 
     if (!empty($search->categories)) {
         $query = $query
             ->andWhere('c.id IN (:categories)')
             ->setParameter('categories', $search->categories);
     }
+
+    if (!empty($search->buses)) {
+        $query = $query
+            ->andWhere('b.id IN (:buses)')
+            ->setParameter('buses', $search->buses);
+    }
+
+    if (!empty($search->subtitle)) {
+        $query = $query
+        ->andWhere('p.id IN (:subtitle)')
+        ->setParameter('subtitle', $search->subtitle);
+        // dd($query);
+
+    }
+
 
     if (!empty($search->string)) {
         $query = $query
@@ -110,9 +150,14 @@ class ProductRepository extends ServiceEntityRepository
         $query = $query
             ->andWhere('p.promo = 1');
     }
-
+    
     return $query;
+    
     }
+
+
+
+
 
 
 //    /**
