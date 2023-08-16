@@ -260,5 +260,17 @@ margin-left: -1em;
     margin-left: 2em;
     color: red;
 }
-
+#btnp{
+    padding: 5em;
+    margin-right: 1em;
+    
+}
+#typepeinture{
+    padding: 5.6em;
+    margin-right: 1em;
+}
+.btn-selected {
+    background-color: #007bff;
+    color: #fff;
+}
 

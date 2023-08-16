@@ -1,0 +1,132 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nos-produits Peinture{% endblock %}
+
+
+
+{% block content %}
+
+<div class="container mt-5">
+         <div class="text-center">
+        <h1>Faites votre choix</h1>
+        <div class="btn-group mt-3">
+            <button type="button" id="btnp"  class="btn btn-primary choix-btn " data-choix="bombe">Bombe</button>
+            <button type="button" id="btnp" class="btn btn-primary choix-btn" data-choix="stylo">Stylo</button>
+            <button type="button" id="btnp" class="btn btn-primary choix-btn" data-choix="pot">Pot</button>
+        </div>
+    </div>
+        
+        <div class="mt-4 text-center" id="codeInput" style="display: none;">
+            <h2>Entrez le code de peinture</h2>
+            <input type="text" id="marquePeinture" class="form-control mt-3" placeholder="Marque de voiture">
+            <input type="text" id="codePeinture" class="form-control mt-3" placeholder="Code de peinture">
+
+            <button type="button" class="btn btn-success mt-3" id="validerCode">Valider</button>
+        </div>
+        
+        <div class="mt-4 text-center" id="choixType" style="display: none;">
+            <h2>Choisissez le type</h2>
+            <div class="btn-group mt-3">
+                <button type="button" id="typepeinture"   class="btn btn-secondary type-btn" data-type="bd">BD</button>
+                <button type="button" id="typepeinture"  class="btn btn-secondary type-btn" data-type="eau">Eau</button>
+                <button type="button"  id="typepeinture" class="btn btn-secondary type-btn" data-type="sol">Sol</button>
+            </div>
+        </div>
+        
+        <div class="mt-4 text-center" id="choixQuantite" style="display: none;">
+            <h2>Choisissez la quantité</h2>
+            <select id="quantiteSelect" class="form-control mt-3">
+                <option value="100">100g</option>
+                <option value="200">200g</option>
+                <option value="300">300g</option>
+                <option value="400">400g</option>
+                <option value="500">500g</option>
+                <option value="1">1kg</option>
+                <option value="2">2kg</option>
+                <option value="3">3kg</option>
+                <option value="4">4kg</option>
+                <option value="5">5kg</option>
+            </select>
+            <button type="button" class="btn btn-success mt-3" id="validerQuantite">Valider</button>
+        </div>
+        
+        <div class="mt-4 text-center" id="panier" style="display: none;">
+            <h2>Votre panier</h2>
+            <p>Vous avez choisi: <span id="choixFinal"></span></p>
+            <p>Quantité: <span id="quantiteFinal"></span></p>
+            <!-- Ajoutez ici le contenu du panier -->
+        </div>
+         <div class="mt-4 text-center" id="resetButton" style="display: none;">
+        <button type="button" class="btn btn-danger" id="resetForm">Réinitialiser le formulaire</button>
+    </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script>
+$(document).ready(function() {
+    var currentStep = 'choix';
+    var selectedChoice = '';
+
+    $('.choix-btn').click(function() {
+        $('.choix-btn').removeClass('btn-selected');
+        $(this).addClass('btn-selected');
+        selectedChoice = $(this).data('choix');
+        currentStep = 'codeInput';
+        updateView();
+    });
+
+    $('#validerCode').click(function() {
+        currentStep = 'choixType';
+        updateView();
+    });
+
+    $('.type-btn').click(function() {
+        $('.type-btn').removeClass('btn-selected');
+        $(this).addClass('btn-selected');
+        currentStep = 'choixQuantite';
+        updateView();
+    });
+
+    $('#validerQuantite').click(function() {
+        currentStep = 'panier';
+        updateView();
+    });
+
+    $('#resetForm').click(function() {
+        currentStep = 'choix';
+        selectedChoice = '';
+        updateView();
+    });
+
+    $('#resetToStep0').click(function() {
+        currentStep = 'choix';
+        selectedChoice = '';
+        updateView();
+    });
+
+    function updateView() {
+        $('.step').hide();
+        $('#' + currentStep).show();
+
+        if (currentStep !== 'choix') {
+            $('#resetButton').show();
+        } else {
+            $('#resetButton').hide();
+        }
+
+        if (currentStep !== 'choix' && currentStep !== 'codeInput') {
+            $('#resetToStep0').show();
+        } else {
+            $('#resetToStep0').hide();
+        }
+
+        if (currentStep === 'panier') {
+            $('#choixFinal').text(selectedChoice + ' - ' + $('#codePeinture').val() + ' (' + $('#marquePeinture').val() + ')');
+            $('#quantiteFinal').text($('#quantiteSelect').val());
+        }
+    }
+});
+
+
+    </script>
+{% endblock %}
