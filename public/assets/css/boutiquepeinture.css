@@ -260,5 +260,24 @@ margin-left: -1em;
     margin-left: 2em;
     color: red;
 }
+#bombe{
+    background-size:cover;
+    margin-bottom: 0.5em;
 
+}
+#red{
+    /* background-color: #f9080878; */
+    
+}
+ #stylo{
+    background-size:inherit;
+    margin-bottom: 0.5em;
+ }
+#textepeinture{
 
+    color:#ffffff
+    
+}
+#texteFaites{
+    margin-top: 1.5em;
+}
