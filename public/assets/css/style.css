@@ -18,29 +18,29 @@
   --bg: #f5f5f5;
 }
 
-html {
-  font-size: 80%;
+/* html {
+  font-size:40%;
   font-family: "Montserrat", sans-serif;
   scroll-behavior: smooth;
-}
+} */
 
-@media (min-width: 768px) {
+/* @media (min-width: 768px) {
   html {
-    zoom: 1.5;
+    zoom: inherit;
   }
 }
 
 @media (min-width: 2560px) {
   html {
-    zoom: 1.7;
+    zoom: inherit;
   }
 }
 
 @media (min-width: 3860px) {
   html {
-    zoom: 2.5;
+    zoom: inherit;
   }
-}
+} */
 
 ::-webkit-scrollbar {
   width: 1.3rem;
@@ -65,11 +65,12 @@ html {
   background: var(--bg);
 } */
 
-.container {
-  max-width: 124rem;
+/* .container{
+  max-width: 80rem;
   padding: 0 1rem;
   margin: 0 auto;
-}
+
+} */
 
 .text-center {
   text-align: center;
@@ -92,7 +93,7 @@ html {
 }
 
 #tranding .tranding-slider {
-  height: 52rem;
+  height: 40rem;
   padding: 2rem 0;
   position: relative;
 }
@@ -121,10 +122,12 @@ html {
 }
 
 .tranding-slide .tranding-slide-img img {
-  width: 37rem;
-  height: 42rem;
+  width: 11rem;
+  height: 19rem;
   border-radius: 2rem;
   object-fit: cover;
+  margin-left: 11em;
+
 }
 
 .tranding-slide .tranding-slide-content {
@@ -236,4 +239,69 @@ html {
 
 .tranding-slider-control .swiper-pagination .swiper-pagination-bullet-active {
   background: var(--primary);
+}
+
+
+
+
+
+
+.swiper-3d, .swiper-3d.swiper-css-mode .swiper-wrapper {
+  /* perspective: 200px; */
+  perspective: 400px;
+}
+
+#tranding .tranding-slider {
+  /* height: 40rem; */
+  height: 42rem;
+}
+
+.tranding-slide-content .tranding-slide-content-bottom {
+  /* bottom: 2rem; */
+  bottom: 15rem;
+}
+
+#texteid{
+  color: #000;
+  font-size: 1em;
+}
+
+/* style.css | http://127.0.0.1:8000/assets/css/style.css */
+
+.tranding-slider-control {
+  /* bottom: 2rem; */
+  bottom: 8rem;
+}
+
+#texteprice{
+  color: #000;
+}
+
+
+
+/* style.css | http://127.0.0.1:8000/assets/css/style.css */
+
+
+/* style.css | http://127.0.0.1:8000/assets/css/style.css */
+
+/* .tranding-slide .tranding-slide-img img {
+  margin-left: 11em;
+} */
+
+.tranding-slide-content .tranding-slide-content-bottom {
+  margin-left: 7em;
+}
+
+/* Élément | http://127.0.0.1:8000/ */
+
+
+/* swiper-bundle.min.css | https://unpkg.com/swiper@8/swiper-bundle.min.css */
+
+.swiper-3d .swiper-cube-shadow, .swiper-3d .swiper-slide, .swiper-3d .swiper-slide-shadow, .swiper-3d .swiper-slide-shadow-bottom, .swiper-3d .swiper-slide-shadow-left, .swiper-3d .swiper-slide-shadow-right, .swiper-3d .swiper-slide-shadow-top, .swiper-3d .swiper-wrapper {
+  background-color: rgba(213, 221, 230, 0.36);
+}
+
+#colorimage{
+  background-color: #ffffff;
+  
 }
