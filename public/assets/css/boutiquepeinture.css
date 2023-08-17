@@ -265,10 +265,6 @@ margin-left: -1em;
     margin-bottom: 0.5em;
 
 }
-#red{
-    /* background-color: #f9080878; */
-    
-}
  #stylo{
     background-size:inherit;
     margin-bottom: 0.5em;
@@ -281,3 +277,8 @@ margin-left: -1em;
 #texteFaites{
     margin-top: 1.5em;
 }
+
+#espasecol{
+    margin-bottom: 1em;
+}
+
