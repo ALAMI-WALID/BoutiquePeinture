@@ -5,18 +5,7 @@
 {% block carousel %}{% endblock %}
 
 {% block content %}
-
-    <h3>Nos meilleures ventes</h3>
-    <p>Découvrez les articles les plus vendus.</p>
-    <div class="row">
-        {% for product in products %}
-            <div class="col-md-3">
-                {% include 'product/single_product.html.twig' %}
-            </div>
-        {% endfor %}
-    </div>
-
-    <h3 id="texteFaites">Personnalisé votre peinture</h3>
+ <h3 id="texteFaites">Personnalisé votre peinture</h3>
     <p>Faites votre choix</p>
 
 
@@ -88,33 +77,40 @@
     </div>
   </div>
 
+    {# <h3>Nos meilleures ventes</h3>
+    <p>Découvrez les articles les plus vendus.</p>
+    <div class="row">
+        {% for product in products %}
+            <div class="col-md-3">
+                {% include 'product/single_product.html.twig' %}
+            </div>
+        {% endfor %}
+    </div> #}
 
-<h3 id="texteFaites">Promo</h3>
-
+   
   <section id="tranding">
       <div class="container">
-        <h3 class="text-center section-subheading">-Découvrez les articles les plus vendus -</h3>
-        <h1 class="text-center section-heading">Nos produits</h1>
+        {# <h3 class="text-center section-subheading">Nos meilleures ventes</h3> #}
+        <h1 class="text-center section-heading">Nos meilleures ventes</h1>
       </div>
-      <div class="container">
-        <div class="swiper tranding-slider">
-          <div class="swiper-wrapper">
-
+      <div  classe="container" >
+        <div class="swiper tranding-slider"  >
+          <div class="swiper-wrapper" id="colorimage" >
            {% for product in products %}
             <!-- Slide-start -->
-            <div class="swiper-slide tranding-slide">
-              <div class="tranding-slide-img">
+            <div class="swiper-slide tranding-slide"  >
+              <div class="tranding-slide-img" >
                <a href={{ path('product', {'slug': product.slug})}}> <img src="/uploads/{{ product.illustration }}" alt="Tranding"><a>
               </div>
               <div class="tranding-slide-content">
-                <h1 class="food-price">{{product.price}}</h1>
                 <div class="tranding-slide-content-bottom">
-                  <h2 class="food-name">
+                  <h2 class="food-name" id="texteid">
                     {{product.name}}
                   </h2>
+                    <span class="product-price-page" id="texteid">{{ (product.price / 100)|number_format(2, ',','.')}}€</span>
                   <h3 class="food-rating">
-                    <span>4.5</span>
-                    <div class="rating">
+                    <span id="texteid">4.5</span>
+                    <div class="rating" >
                       <ion-icon name="star"></ion-icon>
                       <ion-icon name="star"></ion-icon>
                       <ion-icon name="star"></ion-icon>
