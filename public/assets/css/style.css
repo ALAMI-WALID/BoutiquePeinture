@@ -1,6 +1,3 @@
-
-
-
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap");
 *,
 *::before,
@@ -19,26 +16,26 @@
 }
 
 /* html {
-  font-size:40%;
+  font-size: 62.5%;
   font-family: "Montserrat", sans-serif;
   scroll-behavior: smooth;
 } */
 
-/* @media (min-width: 768px) {
+/* @media (min-width: 1440px) {
   html {
-    zoom: inherit;
+    zoom: 1.5;
   }
 }
 
 @media (min-width: 2560px) {
   html {
-    zoom: inherit;
+    zoom: 1.7;
   }
 }
 
 @media (min-width: 3860px) {
   html {
-    zoom: inherit;
+    zoom: 2.5;
   }
 } */
 
@@ -60,17 +57,15 @@
   background: #f9f9f9;
 }
 
-/* body {
-  font-size: 1.6rem;
-  background: var(--bg);
-} */
 
-/* .container{
-  max-width: 80rem;
+section{
+  padding: 10rem;
+}
+.container {
+  max-width: 77rem;
   padding: 0 1rem;
   margin: 0 auto;
-
-} */
+}
 
 .text-center {
   text-align: center;
@@ -85,28 +80,28 @@
 #tranding {
   padding: 4rem 0;
 }
-
+/* 
 @media (max-width:1440px) {
   #tranding {
     padding: 7rem 0;
   }
-}
+} */
 
 #tranding .tranding-slider {
-  height: 40rem;
+  height: 52rem;
   padding: 2rem 0;
   position: relative;
 }
 
-@media (max-width:500px) {
+/* @media (max-width:500px) {
   #tranding .tranding-slider {
     height: 45rem;
   }
-}
+} */
 
 .tranding-slide {
-  width: 37rem;
-  height: 42rem;
+  width: 20rem;
+  height: 47rem;
   position: relative;
 }
 
@@ -122,12 +117,10 @@
 }
 
 .tranding-slide .tranding-slide-img img {
-  width: 11rem;
-  height: 19rem;
+  width: 37rem;
+  height: 42rem;
   border-radius: 2rem;
   object-fit: cover;
-  margin-left: 11em;
-
 }
 
 .tranding-slide .tranding-slide-content {
@@ -242,66 +235,64 @@
 }
 
 
+/* style.css | http://127.0.0.1:8000/assets/css/style.css */
 
+.tranding-slide-content .food-price {
+  /* color: var(--white); */
+  color: #000;
+  font-size: 62.5% !important;
 
-
-
-.swiper-3d, .swiper-3d.swiper-css-mode .swiper-wrapper {
-  /* perspective: 200px; */
-  perspective: 400px;
 }
+
+
+/* carousel.css | http://127.0.0.1:8000/assets/css/carousel.css */
+
+
+
+
+/* style.css | http://127.0.0.1:8000/assets/css/style.css */
+
+#random-rating{
+  color: #000;
+}
+#colorspan{
+  font-size: 15px;
+  text-transform: uppercase;
+  margin-bottom: 1px;
+  color: #5a5a5a
+}
+
+
+
+.img-fluidd {
+  /* max-width: 100%; */
+  /* height: auto; */
+  /* width: 10%; */
+  width: -8em;
+  width: 158%;
+  height: -67em;
+  padding: 5em;
+  font-style: normal;
+}
+
+/* style.css | http://127.0.0.1:8000/assets/css/style.css */
+
+.tranding-slide .tranding-slide-img img {
+  /* width: 37rem; */
+  /* height: 42rem; */
+  width: 24rem;
+  height: 37rem;
+}
+#centerprice{
+padding-left: 5 em;
+  color: #000;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+
+/* style.css | http://127.0.0.1:8000/assets/css/style.css */
 
 #tranding .tranding-slider {
-  /* height: 40rem; */
-  height: 42rem;
-}
-
-.tranding-slide-content .tranding-slide-content-bottom {
-  /* bottom: 2rem; */
-  bottom: 15rem;
-}
-
-#texteid{
-  color: #000;
-  font-size: 1em;
-}
-
-/* style.css | http://127.0.0.1:8000/assets/css/style.css */
-
-.tranding-slider-control {
-  /* bottom: 2rem; */
-  bottom: 8rem;
-}
-
-#texteprice{
-  color: #000;
-}
-
-
-
-/* style.css | http://127.0.0.1:8000/assets/css/style.css */
-
-
-/* style.css | http://127.0.0.1:8000/assets/css/style.css */
-
-/* .tranding-slide .tranding-slide-img img {
-  margin-left: 11em;
-} */
-
-.tranding-slide-content .tranding-slide-content-bottom {
-  margin-left: 7em;
-}
-
-/* Élément | http://127.0.0.1:8000/ */
-
-
-/* swiper-bundle.min.css | https://unpkg.com/swiper@8/swiper-bundle.min.css */
-
-.swiper-3d .swiper-cube-shadow, .swiper-3d .swiper-slide, .swiper-3d .swiper-slide-shadow, .swiper-3d .swiper-slide-shadow-bottom, .swiper-3d .swiper-slide-shadow-left, .swiper-3d .swiper-slide-shadow-right, .swiper-3d .swiper-slide-shadow-top, .swiper-3d .swiper-wrapper {
-  background-color: rgba(213, 221, 230, 0.36);
-}
-
-#colorimage{
-  background-color: #ffffff;
-  
+  margin-top: -8em;
 }
