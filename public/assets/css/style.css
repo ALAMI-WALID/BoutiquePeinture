@@ -356,3 +356,9 @@ padding-left: 5em;
   /* bottom: 2rem; */
   bottom: 9rem;
 }
+
+
+.tranding-slide-content-bottom a:active,
+.tranding-slide-content-bottom a:focus {
+  outline: none;
+}

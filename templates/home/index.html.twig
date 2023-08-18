@@ -99,14 +99,15 @@
             <!-- Slide-start -->
             <div class="swiper-slide tranding-slide">
               <div class="tranding-slide-img">
-                <img src="/uploads/{{ product.illustration }}" alt="{{product.name}}" class="img-fluidd" alt="Tranding">
+                <a href={{ path('product', {'slug': product.slug})}}><img src="/uploads/{{ product.illustration }}" alt="{{product.name}}" class="img-fluidd" alt="Tranding"></a>
               </div>
               <div class="tranding-slide-content">
                 <div class="tranding-slide-content-bottom">
                   <h2 class="food-name">
-                  <h5 id="colorspan"> {{product.name}}</h5><br>
+                  <a href={{ path('product', {'slug': product.slug})}}> 
+                    <h5 id="colorspan"> {{product.name}}</h5><br>
                     <span  id="centerprice" class="product-price">{{ (product.price / 100)|number_format(2, ',','.')}}€</span>
-
+                  </a>
                   </h2>
                   <h3 class="food-rating">
                     <span  id="random-rating">4.5</span>
@@ -171,19 +172,5 @@ var TrandingSlider = new Swiper('.tranding-slider', {
   }
   
 });
-
-  // Génère un nombre aléatoire entre 4 et 5
-  function generateRandomRating() {
-    return (Math.random() * (5 - 4) + 4).toFixed(1);
-  }
-
-  // Obtient une référence à l'élément <div> où vous souhaitez afficher le nombre aléatoire
-  var randomRatingElement = document.getElementById('random-rating');
-
-  // Génère le nombre aléatoire
-  var randomRating = generateRandomRating();
-
-  // Insère le nombre aléatoire dans l'élément <div>
-  randomRatingElement.textContent = randomRating;
 </script>
 {% endblock %}
