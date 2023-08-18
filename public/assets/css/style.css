@@ -93,11 +93,54 @@ section{
   position: relative;
 }
 
-/* @media (max-width:500px) {
+@media (max-width:500px) {
   #tranding .tranding-slider {
     height: 45rem;
   }
-} */
+}
+
+
+
+
+/* style.css | http://127.0.0.1:8000/assets/css/style.css */
+
+@media (max-width: 500px) {
+  #tranding .tranding-slider {
+    /* margin-right: 2em; */
+    margin-right: -7em;
+  }
+  .tranding-slide-content .tranding-slide-content-bottom {
+    /* margin-bottom: -9rem; */
+    margin-bottom: -10rem;
+    margin-left: -1rem;
+    margin-right: 8rem;
+  }
+  .tranding-slide .tranding-slide-img img {
+     height: 37rem; 
+     margin-left: -7em;
+     width: 35rem !important;
+
+}
+
+/* style.css | http://127.0.0.1:8000/assets/css/style.css */
+
+.tranding-slider-control {
+  /* bottom: 2rem; */
+  bottom: 3rem;
+  margin-left: -7rem;
+}
+
+
+/* style.css | http://127.0.0.1:8000/assets/css/style.css */
+
+@media (max-width: 500px) {
+  .tranding-slide .tranding-slide-img img {
+    padding-left: 10rem;
+  }
+}
+
+
+}
 
 .tranding-slide {
   width: 20rem;
@@ -295,4 +338,21 @@ padding-left: 5 em;
 
 #tranding .tranding-slider {
   margin-top: -8em;
+}
+
+
+/* style.css | http://127.0.0.1:8000/assets/css/style.css */
+
+.tranding-slide .tranding-slide-img img {
+  /* width: 24rem; */
+  /* height: 37rem; */
+  width: 34rem;
+  height: 34rem;
+  transform: scale(0.8);
+  margin-left: -7em;
+}
+
+.tranding-slide-content .tranding-slide-content-bottom {
+  /* bottom: 2rem; */
+  bottom: 9rem;
 }
