@@ -16,18 +16,29 @@
             <div class="col-md-7">
                     <h3>{{product.name}}</h3>
                     <p> {{product.subtitle}} | {{product.articleCode}}</p>
+                    {% if product.articleCode == 'POTBD' and form.vars.valid %}
+
+                         <span class="product-price-page">{{ (potbd / 100)|number_format(2, ',','.')}}€</span>
+                    {% else %}
                     <span class="product-price-page">{{ (product.price / 100)|number_format(2, ',','.')}}€</span>
+                    {% endif %}
+
+
+
+
                     <hr>
                     <p>
                     {{product.description}}
-                    <a   class="badge badge-warning">Fichier technique</a>
+
+                    {% if  product.articleCode == 'POTBD' %}
+                        <h5>Conditionnement</h5>
+                        {{ form(form) }}
+                    {% endif %}
+
                     </p>
                     <a href={{ path('add_to_cart', { 'id' : product.id }) }} class="btn btn-primary"> Ajouter au panier</a>
-                      <a class="btn btn-primary" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Toggle first element</a>
+                      <a class="btn btn-primary" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Fichier technique</a>
              </div>
-
-
-
              
     </div>
     <hr>
@@ -42,8 +53,8 @@
     </div><!-- /.row -->
 
 
+{% endblock %}
 
-
-
+{% block script %}
 
 {% endblock %}

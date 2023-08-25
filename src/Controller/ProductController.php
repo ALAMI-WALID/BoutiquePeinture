@@ -4,7 +4,9 @@ namespace App\Controller;
 
 use App\Classe\MegaMenu;
 use App\Classe\Search;
+use App\Entity\PotBD;
 use App\Entity\Product;
+use App\Form\PotDBType;
 use App\Form\SearchType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -100,20 +102,40 @@ class ProductController extends AbstractController
     }
 
     #[Route('/produit/{slug}', name: 'product')]
-    public function show($slug): Response
+    public function show($slug, Request $request): Response
     {   
 
         $product = $this->entityManager->getRepository(Product::class)->findOneBySlug($slug);
         $products = $this->entityManager->getRepository(Product::class)->findByIsBest(1);
 
 
-
         if(!$product){
             return $this->redirectToRoute('products');
         }
+        
+
+        $form = $this->createForm(PotDBType::class);
+
+        $form->handleRequest($request);
+
+    
+        //la forme de pot qui va search les prix dans la table potbd        
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $potQ = $form->get('potQ')->getData();
+            $potbdprice= $potQ->getPriceBd();
+            $product->setPrice($potbdprice);
+            
+            $this->entityManager->flush();
+
+        } else {
+            $potbdprice= $product->getPrice();
+        }
+
         $categories = $this->megaMenu->mega();
         $Scategories = $this->megaMenu->megaS();
         $SScategories = $this->megaMenu->megaSS();
+
 
 
         return $this->render('product/show.html.twig', [
@@ -122,7 +144,10 @@ class ProductController extends AbstractController
             'products' => $products,
             'categories' =>$categories,
             'Scategories' =>$Scategories,
-            'SScategories'=>$SScategories
+            'SScategories'=>$SScategories,
+            'potbd'=>$potbdprice,
+            'form' => $form->createView()
+
 
         ]);
     }
