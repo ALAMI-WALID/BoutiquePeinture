@@ -45,6 +45,9 @@ class Order
     #[ORM\Column]
     private ?int $state = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $delivery_billing = null;
+
     public function __construct()
     {
         $this->orderDetails = new ArrayCollection();
@@ -190,6 +193,18 @@ class Order
     public function setState(int $state): static
     {
         $this->state = $state;
+
+        return $this;
+    }
+
+    public function getDeliveryBilling(): ?string
+    {
+        return $this->delivery_billing;
+    }
+
+    public function setDeliveryBilling(?string $delivery_billing): static
+    {
+        $this->delivery_billing = $delivery_billing;
 
         return $this;
     }
