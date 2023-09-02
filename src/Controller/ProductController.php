@@ -32,10 +32,8 @@ class ProductController extends AbstractController
         $search = new Search();
         $search->page = $request->get('page', 1);
         $form = $this->createForm(SearchType::class, $search);
-
-
         $form->handleRequest($request);
-        
+
         [$min,$max] = $this->entityManager->getRepository(Product::class)->findMinMax($search);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -45,9 +43,6 @@ class ProductController extends AbstractController
 
             $products = $this->entityManager->getRepository(Product::class)->findWithAll($search);
         }
- 
-
-
         
         $categories = $this->megaMenu->mega();
         $Scategories = $this->megaMenu->megaS();
@@ -72,27 +67,30 @@ class ProductController extends AbstractController
     {   
 
         $search = new Search();
+        $search->page = $request->get('page', 1);
         $form = $this->createForm(SearchType::class, $search);
-
         $form->handleRequest($request);
 
 
+        [$min,$max] = $this->entityManager->getRepository(Product::class)->findMinMax($search);
         if ($form->isSubmitted() && $form->isValid()) {
             $products = $this->entityManager->getRepository(Product::class)->findWithSearch($search);
         } else {
-            $products = $this->entityManager->getRepository(Product::class)->findBy(['SScategory' => $id]);
-
+            $products = $this->entityManager->getRepository(Product::class)->findWithAll($search, $id);
         }
+
+
+        
         $categories = $this->megaMenu->mega();
         $Scategories = $this->megaMenu->megaS();
         $SScategories = $this->megaMenu->megaSS();
-
-
 
         return $this->render('product/index.html.twig', [
         
             'products' => $products,
             'form' => $form->createView(),
+            'min'=>$min,
+            'max'=>$max,
             'categories' =>$categories,
             'Scategories' =>$Scategories,
             'SScategories'=>$SScategories

@@ -62,21 +62,19 @@ class ProductRepository extends ServiceEntityRepository
      * @return PaginationInterface
      */
 
-     public function findWithAll(Search $search): PaginationInterface
+     public function findWithAll(Search $search,int $id): PaginationInterface
      {
-         $query = $this->getAllQuery()->getQuery();
-         return $this->paginator->paginate(
-             $query,
-             $search->page,
-             9
-         );
+         $query = $this->createQueryBuilder('p')
+         ->select('p')
+         ->andWhere('p.SScategory = :id')
+         ->setParameter('id', $id);
+         return $this->paginator->paginate($query,$search->page,9);
      }
  
      private function getAllQuery($ignorePrice = false): QueryBuilder
      {
          $query = $this->createQueryBuilder('p')
              ->select('p');
- 
          // You can add more conditions to your query here if needed
          // Example: $query->where('p.someColumn = :someValue');
  
