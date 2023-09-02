@@ -24,10 +24,18 @@ class OrderType extends AbstractType
             'class' => Address::class,
             'choices' => $user->getAddresses(),
             'multiple' => false,
-            'expanded' => true
+            'expanded' => false
+        ])
+        ->add('addressess', EntityType::class, [
+            'label' => false,
+            'required' => true,
+            'class' => Address::class,
+            'choices' => $user->getAddresses(),
+            'multiple' => false,
+            'expanded' => false
         ])
         ->add('carriers', EntityType::class, [
-            'label' => 'Choisissez votre transporteur',
+            'label' => false,
             'attr'=> [
                 'class'=> 'text-bold',
 
@@ -35,7 +43,7 @@ class OrderType extends AbstractType
             'required' => true,
             'class' => Carrier::class,
             'choice_label' => function ($carrier) {
-                return  $carrier->getName() .' - '. $carrier->getDescription() ;
+                return $carrier->getName().' - '.$carrier->getDescription() ;
             },
             'multiple' => false,
             'expanded' => true

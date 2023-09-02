@@ -22,6 +22,9 @@ class Carrier
     #[ORM\Column]
     private ?float $price = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $illustration = null;
+
     public function __toString()
     {
         return $this->getName().'[br]'.$this->getDescription().'[br]'.number_format(($this->getPrice() / 100), 2, ',',',').' €';
@@ -65,6 +68,18 @@ class Carrier
     public function setPrice(float $price): self
     {
         $this->price = $price;
+
+        return $this;
+    }
+
+    public function getIllustration(): ?string
+    {
+        return $this->illustration;
+    }
+
+    public function setIllustration(string $illustration): static
+    {
+        $this->illustration = $illustration;
 
         return $this;
     }

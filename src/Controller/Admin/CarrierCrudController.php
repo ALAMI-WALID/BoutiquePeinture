@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\Carrier;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\MoneyField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
@@ -22,6 +23,11 @@ class CarrierCrudController extends AbstractCrudController
             TextField::new('name'),
             TextareaField::new('description'),
             MoneyField::new('price')->setCurrency('EUR'),
+            ImageField::new('illustration')
+            ->setBasePath('uploads/') // qui renvoye les photo pour affichier sur Dashboard
+            ->setUploadDir('public/uploads') // pour stocké les photos 
+            ->setUploadedFileNamePattern('[randomhash].[extension]')
+            ->setFormTypeOptions([ 'required'=> false]), //  pour évite de stocké Data sur Illustration
 
         ];
     }

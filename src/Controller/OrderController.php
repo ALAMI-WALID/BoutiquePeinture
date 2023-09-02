@@ -40,14 +40,18 @@ class OrderController extends AbstractController
         ]);
 
         $form->handleRequest($request);
+
+        $carrier = $this->entityManager->getRepository(Carrier::class)->findById(1);
+
+
         $categories = $this->megaMenu->mega();
         $Scategories = $this->megaMenu->megaS();
         $SScategories = $this->megaMenu->megaSS();
 
-
         return $this->render('order/index.html.twig',[
             'form' => $form->createView(),
             'cart' => $cart->getfull(),
+            'carrier'=>$carrier,
             'categories' =>$categories,
             'Scategories' =>$Scategories,
             'SScategories'=>$SScategories
@@ -73,17 +77,32 @@ class OrderController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $date = new DateTimeImmutable('now');
             $carriers = $form->get('carriers')->getData();
+            $deliveryb= $form->get('addressess')->getData();
             $delivery = $form->get('addresses')->getData();
+
+            //add de addresse de livraison
             $delivery_content = $delivery->getFirstname().' '.$delivery->getLastname();
             $delivery_content .= '<br/>'.$delivery->getPhone();
-
             if ($delivery->getCompany()) {
                 $delivery_content .= '<br/>'.$delivery->getCompany();
             }
-
             $delivery_content .= '<br/>'.$delivery->getAddress();
             $delivery_content .= '<br/>'.$delivery->getPostal().' '.$delivery->getCity();
             $delivery_content .= '<br/>'.$delivery->getCountry();
+
+            //add de addresse de facturation
+            $delivery_content_b = $deliveryb->getFirstname().' '.$deliveryb->getLastname();
+            $delivery_content_b .= '<br/>'.$deliveryb->getPhone();
+            if ($deliveryb->getCompany()) {
+                $delivery_content_b .= '<br/>'.$deliveryb->getCompany();
+            }
+            $delivery_content_b .= '<br/>'.$deliveryb->getAddress();
+            $delivery_content_b .= '<br/>'.$deliveryb->getPostal().' '.$delivery->getCity();
+            $delivery_content_b .= '<br/>'.$deliveryb->getCountry();
+
+           
+
+            
 
             //vérification de livraison hors ile-de-france
             $codesPostauxIleDeFrance = $this->entityManager->getRepository(BaseOfficielleDesCodesPostaux::class)->findByCode($delivery->getPostal());
@@ -133,6 +152,7 @@ class OrderController extends AbstractController
             $order->setCarrierName($carriers->getName());
             $order->setCarrierPrice($totalShipping);
             $order->setDelivery($delivery_content);
+            $order->setDeliveryBilling($delivery_content_b);
             $order->setState(0);
 
 
@@ -165,6 +185,7 @@ class OrderController extends AbstractController
             'cart' => $cart->getFull(),
             'carrier' => $carriers,
             'delivery' => $delivery_content,
+            'deliveryb' => $delivery_content_b,
             'reference' => $order->getReference(),
             'totalShipping'=>$totalShipping,
             'categories' =>$categories,
