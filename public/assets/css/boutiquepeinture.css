@@ -291,3 +291,74 @@ margin-left: -1em;
 #imagecolissimo{
     padding-left: 3em;
 }
+
+.clause{
+    padding: 2em;
+}
+#image_papg{
+    margin-top: -12em;
+    margin-left: 42em;
+}
+
+@media (max-width:850px) {
+    #image_papg{
+        margin-top: 1em;
+        margin-left: 4em;
+    }
+  }
+
+#image_logoblack {
+    width: 104px;
+    margin-top: -15em;
+    margin-left: 58em;
+  }
+  
+  @media (max-width:850px) {
+    #image_logoblack {
+        width: 100px;
+        margin-top: 1em;
+        margin-left:4em;
+    }
+  }
+  
+#image_payment{
+    width: 40em;
+    margin-left: 18%;
+}
+#image_stripe{
+    width:20em;
+    margin-left: 24em
+}
+
+@media (max-width:850px) {
+    #image_stripe{
+        width:14em;
+        margin-left: 2em
+    }
+    #image_payment{
+        width: 19em;
+        margin-left: 0em;
+    }
+  }
+
+#image_rgpd{
+    margin-left: 27em
+
+}
+
+
+#image_super {
+    /* margin-left: 27em; */
+    /* width: 20em; */
+    margin-left: 43em;
+    width: 6em;
+    margin-top: -9em;
+  }
+  
+  #image_loi {
+    /* margin-left: 24em; */
+    margin-left: 18em;
+    width:20em;
+
+  }
+  

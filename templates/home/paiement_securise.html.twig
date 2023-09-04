@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+<style>
+        body {
+            background-color: #f8f9fa;
+        }
+        
+    </style>
+<div class="container mt-5">
+        <h1 class="text-center">Paiement Sécurisé </h1>
+        <hr>
+
+        <section class="clause">
+            <h3>La sécurité chez Stripe </h3>
+            <img src={{asset('assets/img/Stripe-logo.png')}} id="image_stripe" alt="PAPG">
+
+            <p>Stripe accorde une priorité absolue à la sécurisation des données de ses clients. Pour garantir un niveau de sécurité exceptionnel, Stripe a été soumis à un audit rigoureux effectué par un auditeur certifié PCI, aboutissant à l'obtention de la certification de fournisseur de services PCI de niveau 1, le niveau de certification le plus élevé dans l'industrie des paiements. Cette certification atteste de l'engagement de Stripe envers la protection des données sensibles de ses utilisateurs.</p>
+            <p>L'une des mesures essentielles prises par Stripe pour assurer la sécurité est l'utilisation généralisée du protocole HTTPS (HTTP Secure) et de HSTS (HTTP Strict Transport Security) pour toutes les connexions. Cela inclut le site Web public de Stripe ainsi que le Dashboard, garantissant ainsi des connexions sécurisées à tout moment. Stripe.js n'est accessible que via le protocole TLS (SSL), et les bibliothèques officielles de Stripe se connectent aux serveurs de Stripe via le protocole TLS en vérifiant systématiquement les certificats TLS à chaque connexion. De plus, Stripe maintient une surveillance continue de ses détails de déploiement, y compris les certificats, les autorités de certification et les protocoles de chiffrement pris en charge.</p>
+            <p>En ce qui concerne le chiffrement des données, tous les numéros de carte bancaire sont soumis à un chiffrement AES-256 des données au repos. Les clés de déchiffrement sont stockées sur des machines distinctes, garantissant que les serveurs internes de Stripe ne peuvent pas accéder aux numéros de carte en clair. Tout accès aux numéros de carte bancaire nécessite une requête vers un fournisseur de services figurant sur une liste blanche statique. De plus, l'infrastructure de Stripe utilisée pour le stockage, le déchiffrement et la transmission des numéros de carte bancaire est hébergée dans un environnement distinct qui ne partage aucune information d'identification avec les principaux services de Stripe, y compris l'API et le site Web.</p>
+
+            <!-- ... Ajoutez le reste du contenu de la clause 1 ici ... -->
+        </section>
+
+           <section class="clause">
+            <h3>Certificat TLS </h3>
+
+            <p>Le certificat TLS (Transport Layer Security) de Stripe est un élément crucial de sa sécurité. Il garantit que toutes les communications entre les utilisateurs et Stripe sont cryptées et protégées. Stripe utilise le chiffrement AES-256, l'un des plus sécurisés, et met régulièrement à jour ses certificats pour rester à jour avec les normes de sécurité. En résumé, le certificat TLS de Stripe assure une protection constante des données des utilisateurs, témoignant de l'engagement de Stripe envers la sécurité et la confidentialité des données.</p>
+            <img src={{asset('assets/img/payment.png')}} id="image_payment" alt="PAPG">
+            <hr>
+            <p><b>N° Siren : 840656805</b><br><b>N° Siret : 84065680500016</b><p>
+            <p>Le site a été développé par : l'équipe de développement PAPG <br>Adresse : 69 Av de la division Leclerc 93430 Villetaneuse. <br> Courriel: walidfr.digital@gmail.com<br> 
+            <p><b>Le site est hébergé par OVH Cloud</b></P>
+               
+            
+
+            <!-- ... Ajoutez le reste du contenu de la clause 1 ici ... -->
+        </section>
+        <img src={{asset('assets/img/papg.png')}} id="image_papg" alt="PAPG">
+        <img src={{asset('assets/img/logoblack.png')}} id="image_logoblack" alt="PAE">
+
+    </div>
+{% endblock %}

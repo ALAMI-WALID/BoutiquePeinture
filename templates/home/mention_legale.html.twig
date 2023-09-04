@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+<style>
+        body {
+            background-color: #f8f9fa;
+        }
+        
+    </style>
+<div class="container mt-5">
+        <h1 class="text-center">Mentions légales </h1>
+        <hr>
+
+        <section class="clause">
+            <h5>Ce site est édité par Peinture Auto Pro Gros dénommé PAPG, établissement privé siégeant au 69 avenue division leclerc 93430 Villetaneuse. </h5>
+            <hr>
+            <p><b>N° Siren : 840656805</b><br><b>N° Siret : 84065680500016</b><p>
+            <p>Le site a été développé par : l'équipe de développement PAPG <br>Adresse : 69 Av de la division Leclerc 93430 Villetaneuse. <br> Courriel: walidfr.digital@gmail.com<br> 
+            <p><b>Le site est hébergé par OVH Cloud</b></P>
+               
+            
+
+            <!-- ... Ajoutez le reste du contenu de la clause 1 ici ... -->
+        </section>
+        <img src={{asset('assets/img/papg.png')}} id="image_papg" alt="PAPG">
+        <img src={{asset('assets/img/logoblack.png')}} id="image_logoblack" alt="PAE">
+
+    </div>
+{% endblock %}

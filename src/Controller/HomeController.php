@@ -93,4 +93,68 @@ class HomeController extends AbstractController
         ]);
     }
     }
+
+    #[Route('Condition_generals', name: 'CGV')]
+    public function condition(): Response
+    {
+        $categories = $this->megaMenu->mega();
+        $Scategories = $this->megaMenu->megaS();
+        $SScategories = $this->megaMenu->megaSS();
+        return $this->render('home/condition.html.twig',[
+            'categories' =>$categories,
+            'Scategories' =>$Scategories,
+            'SScategories'=>$SScategories
+        ]);
+    }
+
+    #[Route('Mention_legales', name: 'MLS')]
+    public function legal(): Response
+    {
+        $categories = $this->megaMenu->mega();
+        $Scategories = $this->megaMenu->megaS();
+        $SScategories = $this->megaMenu->megaSS();
+        return $this->render('home/mention_legale.html.twig',[
+            'categories' =>$categories,
+            'Scategories' =>$Scategories,
+            'SScategories'=>$SScategories
+        ]);
+    }
+
+    #[Route('paiement_securisé', name: 'PS')]
+    public function paiement(): Response
+    {
+        $categories = $this->megaMenu->mega();
+        $Scategories = $this->megaMenu->megaS();
+        $SScategories = $this->megaMenu->megaSS();
+        return $this->render('home/paiement_securise.html.twig',[
+            'categories' =>$categories,
+            'Scategories' =>$Scategories,
+            'SScategories'=>$SScategories
+        ]);
+    }
+
+    #[Route('RGPD', name: 'RGPD')]
+    public function RGPD(): Response
+    {
+        $categories = $this->megaMenu->mega();
+        $Scategories = $this->megaMenu->megaS();
+        $SScategories = $this->megaMenu->megaSS();
+        return $this->render('home/Rgpd.html.twig',[
+            'categories' =>$categories,
+            'Scategories' =>$Scategories,
+            'SScategories'=>$SScategories
+        ]);
+    }
+    #[Route('Installation_de_labo', name: 'labo')]
+    public function labo(): Response
+    {
+        $categories = $this->megaMenu->mega();
+        $Scategories = $this->megaMenu->megaS();
+        $SScategories = $this->megaMenu->megaSS();
+        return $this->render('home/labo.html.twig',[
+            'categories' =>$categories,
+            'Scategories' =>$Scategories,
+            'SScategories'=>$SScategories
+        ]);
+    }
 }
