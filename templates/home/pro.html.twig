@@ -1,0 +1,94 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+<style>
+        body {
+            background-color: #f8f9fa;
+        }
+        
+    </style>
+
+    <div class="container mt-5">
+        <h1 class="text-center">Créer un Compte Professionnel</h1>
+        <hr>
+        <section class="clause">
+                    <h3>Pourquoi un compte professionnel ?</h3>
+                    <p>Profitez de réductions exclusives aux professionnels sur l’ensemble du catalogue, ainsi qu’une livraison gratuite à partir de 500€ d'achat HT.</p>
+                    <p>Lorsque vous êtes connecté sur votre compte professionnel, les prix s'affichent directement Hors Taxe.</p>
+                    <p><small>*Les réductions professionnelles ne sont pas cumulables avec les promotions en cours.*</small></p>
+        </section>
+    </div>
+
+
+         {# form d'inscription  au compte pro        #}
+        <form>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="nom">Nom du Représentant</label>
+                    <input type="text" class="form-control" id="nom" placeholder="Nom">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="prenom">Prénom du Représentant</label>
+                    <input type="text" class="form-control" id="prenom" placeholder="Prénom">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="email">Adresse Email</label>
+                    <input type="email" class="form-control" id="email" placeholder="Email">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="telephone">N° de Téléphone</label>
+                    <input type="text" class="form-control" id="telephone" placeholder="N° de Téléphone">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="entreprise">Nom de l’entreprise</label>
+                <input type="text" class="form-control" id="entreprise" placeholder="Nom de l’entreprise">
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="tva">Numéro de TVA</label>
+                    <input type="text" class="form-control" id="tva" placeholder="Numéro de TVA">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="siret">Numéro de Siret</label>
+                    <input type="text" class="form-control" id="siret" placeholder="Numéro de Siret">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="adresse">Adresse du siège</label>
+                <input type="text" class="form-control" id="adresse" placeholder="Adresse du siège">
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="codePostal">Code postal</label>
+                    <input type="text" class="form-control" id="codePostal" placeholder="Code postal">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="carteIdentite">Carte d’identité du gérant</label>
+                    <input type="text" class="form-control" id="carteIdentite" placeholder="Carte d’identité du gérant">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="kbis">KBIS</label>
+                <input type="text" class="form-control" id="kbis" placeholder="KBIS">
+            </div>
+            <div class="form-group">
+                <label for="ville">Ville</label>
+                <input type="text" class="form-control" id="ville" placeholder="Ville">
+            </div>
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="recevoirNewsletter">
+                <label class="form-check-label" for="recevoirNewsletter">Recevoir la newsletter</label>
+            </div>
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="accepterCGV">
+                <label class="form-check-label" for="accepterCGV">Accepter les CGV</label>
+            </div>
+            <!-- Continuer à ajouter d'autres champs de formulaire ici selon votre besoin -->
+            <button type="submit" class="btn btn-primary">Créer un Compte</button>
+        </form>
+    </div>
+
+{% endblock %}

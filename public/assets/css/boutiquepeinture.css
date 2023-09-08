@@ -361,4 +361,47 @@ margin-left: -1em;
     width:20em;
 
   }
+  .video-container {
+    position: relative;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    z-index: 1;
+    margin-top: 2em;
+  }
+  
+  #myVideo {
+    width: 60%;
+    height: auto; /* Ajustez la hauteur en fonction de vos besoins */
+  }
+  
+
+.form_codepeinture {
+    /* margin-top: 5em; */
+    /* margin-right: 5em; */
+    margin-right: -7em;
+    margin-left: 46em;
+    margin-top: -22.5em;
+    margin-bottom: 8em;
+  }
+  
+
+/* boutiquepeinture.css | http://127.0.0.1:8000/assets/css/boutiquepeinture.css */
+
+#image_papg_peinture {
+    /* margin-right: 2em; */
+    /* width: 10px; */
+    width: 139px;
+    margin-left: 54em;
+    margin-top: -10em;
+  }
+  
+  #image_logoblack_peinture {
+    /* margin-right: 2em; */
+    /* width: 10px; */
+    width: 91px;
+    margin-left: 65em;
+    margin-top: -13em;
+  }
   
