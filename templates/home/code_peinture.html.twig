@@ -1,0 +1,85 @@
+{% extends 'base.html.twig' %}
+
+
+{% block content %}
+                <style>
+                   /* Styles pour le popup */
+        .popup-container {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 72px;
+            border: 1px solid #ccc;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+
+        /* Style pour le bouton d'ouverture */
+        #open-popup-button {
+            cursor: pointer;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+        }
+                    </style>
+<div class="container mt-5">
+        <h1 class="text-center">Recherche de code couleur</h1>
+</div>
+
+<div class="video-container">
+
+    <video autoplay muted loop id="myVideo">
+          <source src="{{ asset('assets/img/pro2.mp4') }}" type="video/mp4">
+    </video>
+
+    <div class="form_codepeinture">
+         {{ form_start(form) }}
+
+        {{form_row(form.Hersteller)}}
+        {{form_row(form.name)}}
+        {{ form_row(form.submit, { 'id': 'open-popup-button', 'attr': {'type': 'button'} }) }}
+        {{ form_end(form) }}
+
+    </div>
+    <img src={{asset('assets/img/papg.png')}} id="image_papg_peinture" alt="PAPG">
+    <img src={{asset('assets/img/logoblack.png')}} id="image_logoblack_peinture" alt="PAE">
+
+    </div>
+
+    <!-- Contenu du popup -->
+    <div class="popup-container" id="popup">
+        {% for peinture in peintures %}
+            <div class="col-md-4">
+            <b>{{peinture.Hersteller}}</b>
+
+            </div>  
+        {% endfor %}
+        <button id="close-popup-button">Fermer</button>
+    </div>
+
+{% endblock %}
+{% block script %}
+<script>
+        
+const submitButton = document.getElementById('open-popup-button');
+const closePopupButton = document.getElementById('close-popup-button');
+const popup = document.getElementById('popup');
+
+// Ajoutez un écouteur d'événement pour ouvrir le popup
+submitButton.addEventListener('click', (event) => {
+    event.preventDefault(); // Empêche le formulaire de se soumettre
+    popup.style.display = 'block';
+});
+
+
+// Ajoutez un écouteur d'événement pour fermer le popup
+closePopupButton.addEventListener('click', () => {
+    popup.style.display = 'none';
+});
+</script>
+{% endblock %}

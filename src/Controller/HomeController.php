@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use App\Classe\MegaMenu;
 use App\Classe\Search;
+use App\Entity\CodePeinture;
+use App\Form\CodePeintureType;
 use App\Form\SearchGlobalType;
 use App\Entity\Product;
 use Doctrine\ORM\EntityManagerInterface;
@@ -155,6 +157,66 @@ class HomeController extends AbstractController
             'categories' =>$categories,
             'Scategories' =>$Scategories,
             'SScategories'=>$SScategories
+        ]);
+    }
+
+    #[Route('Compte_professionnel', name: 'pro')]
+    public function pro(): Response
+    {
+        $categories = $this->megaMenu->mega();
+        $Scategories = $this->megaMenu->megaS();
+        $SScategories = $this->megaMenu->megaSS();
+        return $this->render('home/pro.html.twig',[
+            'categories' =>$categories,
+            'Scategories' =>$Scategories,
+            'SScategories'=>$SScategories
+        ]);
+    }
+    #[Route('code_peinture', name: 'CodeP')]
+    public function CodeP(Request $request): Response
+    {
+        //récupere les données sans doublon
+        $marques = $this->entityManager->getRepository(CodePeinture::class)->FindByMarque();
+        $brands=[];
+        //stock les marque dans un tab
+        foreach($marques as $marque){
+            if (isset($marque["Hersteller"])) {
+                $brands[] = $marque["Hersteller"];
+            }
+        }
+
+        $form = $this->createForm(CodePeintureType::class, null, [
+            //array_combine pour élimine les index.
+            'marques' => array_combine($brands, $brands),
+        ]);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $brand = $form->get('Hersteller')->getData();
+            $name_coleur = $form->get('name')->getData();
+
+            if($name_coleur->getName() != 'Non'){
+                $marques = $name_coleur;
+            }
+            else{
+                $marques = $this->entityManager->getRepository(CodePeinture::class)->findByHersteller($brand);
+            }
+
+            foreach($marques as $marque){
+
+                dd($marque->getName());
+            }
+
+        }
+        $categories = $this->megaMenu->mega();
+        $Scategories = $this->megaMenu->megaS();
+        $SScategories = $this->megaMenu->megaSS();
+        return $this->render('home/code_peinture.html.twig',[
+            'categories' =>$categories,
+            'Scategories' =>$Scategories,
+            'SScategories'=>$SScategories,
+            'form' => $form->createView(),
+            'peintures'=>$marques,
+
         ]);
     }
 }
