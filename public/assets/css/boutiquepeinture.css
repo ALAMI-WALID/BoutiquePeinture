@@ -445,7 +445,6 @@ margin-left: -1em;
 }
 
 
-/* boutiquepeinture.css | http://127.0.0.1:8000/assets/css/boutiquepeinture.css */
 
 #fontScategory {
     /* margin-right: 1em; */
@@ -456,3 +455,7 @@ margin-left: -1em;
     font-weight: bold;
   }
   
+  #bar-width img{
+    width: 5em;
+
+  }
