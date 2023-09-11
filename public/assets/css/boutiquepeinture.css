@@ -405,3 +405,29 @@ margin-left: -1em;
     margin-top: -13em;
   }
   
+/* css de barre de marques  */
+.containerbarre {
+    overflow: hidden;
+}
+
+.image-bar {
+    white-space: nowrap;
+    animation: moveImages 15s linear infinite;
+}
+
+.image-bar img {
+    width: 10em;
+    height: auto;
+    margin-right: 20px;
+}
+
+@keyframes moveImages {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+/* fin css de barre des marques  */
