@@ -2,7 +2,7 @@
 
 
 {% block content %}
-                <style>
+    <style>
                    /* Styles pour le popup */
         .popup-container {
             display: none;
@@ -26,7 +26,7 @@
             border: none;
             border-radius: 5px;
         }
-                    </style>
+    </style>
 <div class="container mt-5">
         <h1 class="text-center">Recherche de code couleur</h1>
 </div>
@@ -42,20 +42,19 @@
 
         {{form_row(form.Hersteller)}}
         {{form_row(form.name)}}
-        {{ form_row(form.submit, { 'id': 'open-popup-button', 'attr': {'type': 'button'} }) }}
+        {{ form_row(form.submit, { 'id': 'open-popup-button' }) }}
         {{ form_end(form) }}
 
     </div>
     <img src={{asset('assets/img/papg.png')}} id="image_papg_peinture" alt="PAPG">
     <img src={{asset('assets/img/logoblack.png')}} id="image_logoblack_peinture" alt="PAE">
-
     </div>
 
     <!-- Contenu du popup -->
     <div class="popup-container" id="popup">
         {% for peinture in peintures %}
             <div class="col-md-4">
-            <b>{{peinture.Hersteller}}</b>
+            <b>{{peinture}}</b>
 
             </div>  
         {% endfor %}

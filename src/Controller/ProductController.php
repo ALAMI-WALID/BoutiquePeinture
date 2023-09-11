@@ -78,8 +78,6 @@ class ProductController extends AbstractController
         } else {
             $products = $this->entityManager->getRepository(Product::class)->findWithAll($search, $id);
         }
-
-
         
         $categories = $this->megaMenu->mega();
         $Scategories = $this->megaMenu->megaS();
@@ -112,6 +110,11 @@ class ProductController extends AbstractController
         if(!$product){
             return $this->redirectToRoute('products');
         }
+
+
+
+
+
         $categories = $this->megaMenu->mega();
         $Scategories = $this->megaMenu->megaS();
         $SScategories = $this->megaMenu->megaSS();
@@ -124,6 +127,41 @@ class ProductController extends AbstractController
             'categories' =>$categories,
             'Scategories' =>$Scategories,
             'SScategories'=>$SScategories
+
+        ]);
+    }
+
+    #[Route('/nos_marques/{brand}', name: 'productsInBrand')]
+    public function ShowBrands(Request $request,$brand): Response
+    {   
+
+        $search = new Search();
+        $search->page = $request->get('page', 1);
+        $form = $this->createForm(SearchType::class, $search);
+        $form->handleRequest($request);
+
+        [$min,$max] = $this->entityManager->getRepository(Product::class)->findMinMax($search);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $products = $this->entityManager->getRepository(Product::class)->findWithSearch($search);
+        } else {
+            $products = $this->entityManager->getRepository(Product::class)->findWithBrand($search, $brand);
+        }
+        
+        $categories = $this->megaMenu->mega();
+        $Scategories = $this->megaMenu->megaS();
+        $SScategories = $this->megaMenu->megaSS();
+
+        return $this->render('product/index.html.twig', [
+        
+            'products' => $products,
+            'form' => $form->createView(),
+            'min'=>$min,
+            'max'=>$max,
+            'categories' =>$categories,
+            'Scategories' =>$Scategories,
+            'SScategories'=>$SScategories
+
+
 
         ]);
     }

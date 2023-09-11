@@ -70,7 +70,24 @@ class ProductRepository extends ServiceEntityRepository
          ->setParameter('id', $id);
          return $this->paginator->paginate($query,$search->page,9);
      }
- 
+
+
+
+
+    //search with brands
+     /**
+     * @return PaginationInterface
+     */
+     public function findWithBrand(Search $search,string $brand): PaginationInterface
+     {
+         $query = $this->createQueryBuilder('p')
+         ->select('p')
+         ->andWhere('p.subtitle = :brand')
+         ->setParameter('brand', $brand);
+         return $this->paginator->paginate($query,$search->page,9);
+     }
+
+
      private function getAllQuery($ignorePrice = false): QueryBuilder
      {
          $query = $this->createQueryBuilder('p')

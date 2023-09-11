@@ -145,7 +145,24 @@
     <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
     <script src="script.js"></script>
 
+{# la barre des brands  #}
+        <h3 class="text-center section-subheading">Nos marques</h3>
 
+     <div class="containerbarre container_div">
+        <div class="image-bar">
+            <a href={{ path('productsInBrand', {'brand': 'crystal'})}}> <img src={{asset('assets/img/crystal.png')}} alt="crystal"></a>
+            <a href={{ path('productsInBrand', {'brand': 'finixa'})}}><img src={{asset('assets/img/finixa.jpg')}} alt="finixa"></a>
+            <a href={{ path('productsInBrand', {'brand': 'gys'})}}><img src={{asset('assets/img/GYS.png')}} alt="gys"></a>
+            <a href={{ path('productsInBrand', {'brand': 'INFRADIS'})}}><img src={{asset('assets/img/INFRADIS.jpg')}} alt="infradis"></a>
+            <a href={{ path('productsInBrand', {'brand': 'iwata'})}}><img src={{asset('assets/img/iwata.png')}} alt="iwata"></a>
+            <a href={{ path('productsInBrand', {'brand': 'app'})}}><img src="{{ asset('assets/img/app.png') }}" alt="app"></a>
+            <a href={{ path('productsInBrand', {'brand': 'mipa'})}}><img src={{asset('assets/img/mipa.png')}} alt="mipa"></a>
+            <a href={{ path('productsInBrand', {'brand': 'mirka'})}}><img src={{asset('assets/img/mirka.png')}} alt="mirka"></a>
+            <a href={{ path('productsInBrand', {'brand': 'provist'})}}><img src={{asset('assets/img/provist.png')}} alt="provist"></a>
+            <a href={{ path('productsInBrand', {'brand': 'tlescado'})}}><img src={{asset('assets/img/tlescado.jpg')}} alt="tlescado"></a>
+            <a href={{ path('productsInBrand', {'brand': 'torton'})}}><img src={{asset('assets/img/torton.png')}} alt="torton"></a>
+        </div>
+    </div>
 {% endblock %}
 
 {% block script %}
@@ -172,5 +189,6 @@ var TrandingSlider = new Swiper('.tranding-slider', {
   }
   
 });
+
 </script>
 {% endblock %}
