@@ -76,7 +76,9 @@ class ProductController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $products = $this->entityManager->getRepository(Product::class)->findWithSearch($search);
         } else {
-            $products = $this->entityManager->getRepository(Product::class)->findWithAll($search, $id);
+
+            //search with Sous S category
+            $products = $this->entityManager->getRepository(Product::class)->findWithAllSSc($search, $id);
         }
         
         $categories = $this->megaMenu->mega();
@@ -98,6 +100,46 @@ class ProductController extends AbstractController
         ]);
     }
 
+
+    #[Route('/nos_categorais/{id}', name: 'productsInSCategory')]
+    public function ShowSCategory(Request $request,$id): Response
+    {   
+
+        $search = new Search();
+        $search->page = $request->get('page', 1);
+        $form = $this->createForm(SearchType::class, $search);
+        $form->handleRequest($request);
+
+
+        [$min,$max] = $this->entityManager->getRepository(Product::class)->findMinMax($search);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $products = $this->entityManager->getRepository(Product::class)->findWithSearch($search);
+        } else {
+            
+            //search with Sous S category
+            $products = $this->entityManager->getRepository(Product::class)->findWithAllSc($search, $id);
+        }
+        
+        $categories = $this->megaMenu->mega();
+        $Scategories = $this->megaMenu->megaS();
+        $SScategories = $this->megaMenu->megaSS();
+
+        return $this->render('product/index.html.twig', [
+        
+            'products' => $products,
+            'form' => $form->createView(),
+            'min'=>$min,
+            'max'=>$max,
+            'categories' =>$categories,
+            'Scategories' =>$Scategories,
+            'SScategories'=>$SScategories
+
+
+
+        ]);
+    }
+
+
     #[Route('/produit/{slug}', name: 'product')]
     public function show($slug): Response
     {   
@@ -110,10 +152,6 @@ class ProductController extends AbstractController
         if(!$product){
             return $this->redirectToRoute('products');
         }
-
-
-
-
 
         $categories = $this->megaMenu->mega();
         $Scategories = $this->megaMenu->megaS();

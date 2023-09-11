@@ -62,7 +62,7 @@ class ProductRepository extends ServiceEntityRepository
      * @return PaginationInterface
      */
 
-     public function findWithAll(Search $search,int $id): PaginationInterface
+     public function findWithAllSSc(Search $search,int $id): PaginationInterface
      {
          $query = $this->createQueryBuilder('p')
          ->select('p')
@@ -70,6 +70,19 @@ class ProductRepository extends ServiceEntityRepository
          ->setParameter('id', $id);
          return $this->paginator->paginate($query,$search->page,9);
      }
+
+     /**
+     * @return PaginationInterface
+     */
+     public function findWithAllSc(Search $search,int $id): PaginationInterface
+     {
+         $query = $this->createQueryBuilder('p')
+         ->select('p')
+         ->andWhere('p.Scategory = :id')
+         ->setParameter('id', $id);
+         return $this->paginator->paginate($query,$search->page,9);
+     }
+
 
 
 
