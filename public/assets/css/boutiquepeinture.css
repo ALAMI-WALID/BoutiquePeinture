@@ -431,3 +431,28 @@ margin-left: -1em;
 }
 
 /* fin css de barre des marques  */
+
+
+
+
+#fontScategory{
+    background-color: rgb(123, 197, 207);
+    margin-left: 1em;
+    margin-top: 1em;
+    font-style: bold;
+    font-size: bols;
+    font-weight: bold;
+}
+
+
+/* boutiquepeinture.css | http://127.0.0.1:8000/assets/css/boutiquepeinture.css */
+
+#fontScategory {
+    /* margin-right: 1em; */
+    margin-left: 1em;
+    margin-top: 1em;
+    font-style: bold;
+    font-size: bols;
+    font-weight: bold;
+  }
+  

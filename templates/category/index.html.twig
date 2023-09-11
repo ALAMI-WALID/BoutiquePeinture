@@ -1,5 +1,4 @@
-  
-  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+ <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
       <div class="container-fluid">
          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02"
           aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
@@ -24,11 +23,10 @@
                         {%  if smenu.categoryID.id == menu.id %}
 
                             <div class="col-md-6 col-lg-3 mb-3 mb-lg-0">
-                                <div class="list-group list-group-flush">
-                                    <a href="" class="list-group-item list-group-item-action">
-                                                <a href={{ path('productsInSCategory', {'id': smenu.id}) }} class="list-group-item list-group-item-action ml-3">
+                                <div class="list-group list-group-flush" id="colorScategory">
+                                    <a href={{ path('productsInSCategory', {'id': smenu.id}) }} id="fontScategory" class="list-group-item list-group-item-action">
                                                     {{ smenu.name}}
-                                                </a>                                    </a>
+                                                </a>                                    
                                       <div class="list-group" id="subSubMenu{{ smenu.id }}">
                                         {% for ssmenu in SScategories %}
                                             {% if ssmenu.IdsousCategory.id == smenu.id %}
@@ -80,8 +78,35 @@
         </div>
       </div>
     </nav>
-    
 {% block script %}
+
+
+<script>
+// Sélectionnez tous les éléments avec la classe category-item
+var categoryItems = document.querySelectorAll('.category-item');
+
+// Parcourez chaque élément category-item
+categoryItems.forEach(function(categoryItem) {
+    // Ajoutez un gestionnaire d'événements pour le survol
+    categoryItem.addEventListener('mouseover', function() {
+        // Sélectionnez les sous-catégories à l'intérieur de cet élément
+        var subcategories = this.querySelector('.subcategory-list');
+        // Affichez les sous-catégories
+        subcategories.style.display = 'block';
+    });
+
+    // Ajoutez un gestionnaire d'événements pour le survol
+    categoryItem.addEventListener('mouseout', function() {
+        // Sélectionnez les sous-catégories à l'intérieur de cet élément
+        var subcategories = this.querySelector('.subcategory-list');
+        // Masquez les sous-catégories
+        subcategories.style.display = 'none';
+    });
+});
+</script>
+
+
+
 <script>
  $(document).ready(function() {
   // Cacher tous les menus déroulants au chargement de la page
@@ -132,3 +157,5 @@
 });
 </script>
 {% endblock %}
+
+
