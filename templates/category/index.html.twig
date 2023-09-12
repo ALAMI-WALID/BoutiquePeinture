@@ -79,34 +79,6 @@
       </div>
     </nav>
 {% block script %}
-
-
-<script>
-// Sélectionnez tous les éléments avec la classe category-item
-var categoryItems = document.querySelectorAll('.category-item');
-
-// Parcourez chaque élément category-item
-categoryItems.forEach(function(categoryItem) {
-    // Ajoutez un gestionnaire d'événements pour le survol
-    categoryItem.addEventListener('mouseover', function() {
-        // Sélectionnez les sous-catégories à l'intérieur de cet élément
-        var subcategories = this.querySelector('.subcategory-list');
-        // Affichez les sous-catégories
-        subcategories.style.display = 'block';
-    });
-
-    // Ajoutez un gestionnaire d'événements pour le survol
-    categoryItem.addEventListener('mouseout', function() {
-        // Sélectionnez les sous-catégories à l'intérieur de cet élément
-        var subcategories = this.querySelector('.subcategory-list');
-        // Masquez les sous-catégories
-        subcategories.style.display = 'none';
-    });
-});
-</script>
-
-
-
 <script>
  $(document).ready(function() {
   // Cacher tous les menus déroulants au chargement de la page

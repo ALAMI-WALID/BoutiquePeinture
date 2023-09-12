@@ -26,9 +26,7 @@ class CodePeinture
         return $this->id;
     }
 
-    public function __toString(){
-        return $this->getHersteller();
-    }
+   
 
     public function getCodePeinture(): ?string
     {

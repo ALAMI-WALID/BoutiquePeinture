@@ -115,7 +115,7 @@ font-weight: bold;
      width: 67%;
    
     margin-top: 1.5em;
-    margin-right: 30em;
+    margin-right: 25em;
     padding-left: 3em;
    
 
@@ -412,7 +412,7 @@ margin-left: -1em;
 
 .image-bar {
     white-space: nowrap;
-    animation: moveImages 15s linear infinite;
+    animation: moveImages 20s linear infinite;
 }
 
 .image-bar img {
@@ -422,11 +422,11 @@ margin-left: -1em;
 }
 
 @keyframes moveImages {
-    0% {
-        transform: translateX(100%);
+    90% {
+        transform: translateX(10%);
     }
-    100% {
-        transform: translateX(-100%);
+    50% {
+        transform: translateX(-80%);
     }
 }
 
@@ -436,7 +436,7 @@ margin-left: -1em;
 
 
 #fontScategory{
-    background-color: rgb(123, 197, 207);
+    background-color: #f77b87;
     margin-left: 1em;
     margin-top: 1em;
     font-style: bold;

@@ -30,12 +30,14 @@ class SearchGlobalType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Search::class,
-            'method'=>'GET',
-            'crsf_protection' =>false,
+            'method' => 'GET',
+            'crsf_protection' => false,
         ]);
     }
-    
-    public function getBlockPrefix(){
+
+    public function getBlockPrefix()
+    {
         return '';
     }
+
 }
