@@ -44,7 +44,7 @@ class HomeController extends AbstractController
 
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $products = $this->entityManager->getRepository(Product::class)->findWithSearch($search);
+            $products = $this->entityManager->getRepository(Product::class)->findWithSearchGlobal($search);
 
 
             $categories = $this->megaMenu->mega();

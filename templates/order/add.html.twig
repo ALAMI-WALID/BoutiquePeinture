@@ -58,13 +58,13 @@
             </div>
 
             <hr>
-            <strong>Sous-Total : </strong> {{ (total / 100)|number_format(2, ',', '.') }} €<br/>
+            <strong>Sous-Total TTC : </strong> {{ (total / 100)|number_format(2, ',', '.') }} €<br/>
             <strong>Livraison : </strong> {{ (totalShipping / 100)|number_format(2, ',', '.') }} €<br>
             <hr>
-            <strong>TOTAL : </strong> {{ ((total / 100) + (totalShipping / 100))|number_format(2, ',', '.') }} €<br>
+            <strong>TOTAL TTC : </strong> {{ ((total / 100) + (totalShipping / 100))|number_format(2, ',', '.') }} €<br>
             (<small class="taxe-incluses">Taxes incluses {{ (((total * 20) / 100) / 100)|number_format(2, ',', '.')}} € </small>)
 
-            <a class="btn btn-success btn-block mt-3" id="checkout-button">Payer | {{ ((total / 100) + (totalShipping / 100))|number_format(2, ',', '.') }} €</a>
+            <a class="btn btn-success btn-block mt-3" id="checkout-button">Payer | {{ ((total / 100) + (totalShipping / 100))|number_format(2, ',', '.') }} € TTC</a>
         </div>
     </div>
 {% endblock %}

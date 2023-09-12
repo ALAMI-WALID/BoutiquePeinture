@@ -58,6 +58,29 @@ class ProductRepository extends ServiceEntityRepository
         );
 
     }
+
+    /**
+     * @return PaginationInterface
+     */
+
+     //chercher par code et par nom et la marque
+    public function findWithSearchGlobal(Search $search) : PaginationInterface
+    {
+        $query = $this->createQueryBuilder('p')
+        ->select('p')
+        ->andWhere('p.name LIKE :string OR p.subtitle LIKE :string OR p.articleCode LIKE :string')
+        ->setParameter('string', '%' . $search->string . '%');
+
+        return $this->paginator->paginate(
+            $query,
+            $search->page,
+            9
+        );
+
+    }
+
+
+    //Search with SousSous-category
     /**
      * @return PaginationInterface
      */
@@ -71,6 +94,9 @@ class ProductRepository extends ServiceEntityRepository
          return $this->paginator->paginate($query,$search->page,9);
      }
 
+
+
+     //search with sOUS Category
      /**
      * @return PaginationInterface
      */
@@ -132,9 +158,9 @@ class ProductRepository extends ServiceEntityRepository
     {
         $query = $this
         ->createQueryBuilder('p')
-        ->select('b','c', 'p')
-        ->join('p.category', 'c')
-        ->join('p.buses','b');
+        ->select('c', 'p')
+        ->join('p.category', 'c');
+        // ->join('p.buses','b');
 
     if (!empty($search->categories)) {
         $query = $query
