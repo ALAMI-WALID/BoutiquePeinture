@@ -29,11 +29,24 @@ class Search{
 
      public $categories = [];
 
+     /**
+     * @var Contenance[]
+     */
+
+     public $Contenance = [];
+
+      /**
+     * @var TypePeinture[]
+     */
+
+     public $TypePeinture = [];
+
+
 
      /**
-      * @var null|integer
+      * @var Buses[]
       */
-      public $buses ='';
+      public $buses =[];
 
      /**
       * @var null|integer 

@@ -93,10 +93,110 @@ class ProductRepository extends ServiceEntityRepository
          ->setParameter('id', $id);
          return $this->paginator->paginate($query,$search->page,9);
      }
+     //search form with SScategory
+    /**
+     * @return PaginationInterface
+     */
+
+     public function findWithSearchSSc(Search $search,int $id,$ignorePrice = false): PaginationInterface
+     {
+         $query = $this->createQueryBuilder('p')
+         ->select('p')
+         ->andWhere('p.SScategory = :id')
+         ->setParameter('id', $id);
+
+         if (!empty($search->string)) {
+            $query = $query
+                ->andWhere('p.name LIKE :string OR p.articleCode LIKE :string')
+                ->setParameter('string', "%" . $search->string . "%");
+        }
+    
+        if (!empty($search->min) && $ignorePrice === false ) {
+            $query = $query
+                ->andWhere('p.price >= :min')
+                ->setParameter('min', $search->min * 100);
+        }
+
+        if (!empty($search->buses)) {
+            $query = $query
+                 ->select('p','b')
+                 ->join('p.buses', 'b')
+                ->andWhere('b.id IN (:busIds)') // Assuming 'b.id' is the ID property of the 'buses' entity
+                ->setParameter('busIds', $search->buses);
+        }
+        if (!empty($search->Contenance)) {
+            $query = $query
+                 ->select('p','c')
+                 ->join('p.Size_Gobelet', 'c')
+                ->andWhere('c.id IN (:ConID)') // Assuming 'c.id' is the ID property of the 'Contenance' entity
+                ->setParameter('ConID', $search->Contenance);
+        }
+        if (!empty($search->TypePeinture)) {
+            $query = $query
+                 ->select('p','pcfes')
+                 ->join('p.FiltrePeinture', 'pcfes')
+                ->andWhere('pcfes.id IN (:ConID)') // Assuming 'c.id' is the ID property of the 'Contenance' entity
+                ->setParameter('ConID', $search->TypePeinture);
+        }
+    
+        if (!empty($search->max) && $ignorePrice === false ) {
+            $query = $query
+                ->andWhere('p.price <= :max')
+                ->setParameter('max', $search->max * 100);
+        }
+        if (!empty($search->promo)) {
+            $query = $query
+                ->andWhere('p.promo = 1');
+        }
+         return $this->paginator->paginate($query,$search->page,9);
+     }
 
 
+     //search form with Sous category
+     /**
+     * @return PaginationInterface
+     */
 
-     //search with sOUS Category
+     public function findWithSearchSc(Search $search,int $id,$ignorePrice = false): PaginationInterface
+     {
+         $query = $this->createQueryBuilder('p')
+         ->select('p')
+        // Assuming 'b' is the alias for your 'buses' relation
+         ->andWhere('p.Scategory = :id')
+         ->setParameter('id', $id);
+
+         if (!empty($search->string)) {
+            $query = $query
+                ->andWhere('p.name LIKE :string OR p.articleCode LIKE :string')
+                ->setParameter('string', "%" . $search->string . "%");
+        }
+    
+        if (!empty($search->min) && $ignorePrice === false ) {
+            $query = $query
+                ->andWhere('p.price >= :min')
+                ->setParameter('min', $search->min * 100);
+        }
+        if (!empty($search->buses)) {
+            $query = $query
+                 ->select('p','b')
+                 ->join('p.buses', 'b')
+                ->andWhere('b.id IN (:busIds)') // Assuming 'b.id' is the ID property of the 'buses' entity
+                ->setParameter('busIds', $search->buses);
+        }
+    
+        if (!empty($search->max) && $ignorePrice === false ) {
+            $query = $query
+                ->andWhere('p.price <= :max')
+                ->setParameter('max', $search->max * 100);
+        }
+        if (!empty($search->promo)) {
+            $query = $query
+                ->andWhere('p.promo = 1');
+        }
+         return $this->paginator->paginate($query,$search->page,9);
+     }
+
+     //search with Sous Category
      /**
      * @return PaginationInterface
      */
@@ -108,10 +208,6 @@ class ProductRepository extends ServiceEntityRepository
          ->setParameter('id', $id);
          return $this->paginator->paginate($query,$search->page,9);
      }
-
-
-
-
 
     //search with brands
      /**
@@ -158,36 +254,7 @@ class ProductRepository extends ServiceEntityRepository
     {
         $query = $this
         ->createQueryBuilder('p')
-        ->select('c', 'p')
-        ->join('p.category', 'c');
-        // ->join('p.buses','b');
-
-    if (!empty($search->categories)) {
-        $query = $query
-            ->andWhere('c.id IN (:categories)')
-            ->setParameter('categories', $search->categories);
-    }
-
-    if (!empty($search->buses)) {
-        $query = $query
-            ->andWhere('b.id IN (:buses)')
-            ->setParameter('buses', $search->buses);
-    }
-
-    if (!empty($search->subtitle)) {
-        $query = $query
-        ->andWhere('p.id IN (:subtitle)')
-        ->setParameter('subtitle', $search->subtitle);
-        // dd($query);
-
-    }
-
-
-    if (!empty($search->string)) {
-        $query = $query
-            ->andWhere('p.name LIKE :string OR p.articleCode LIKE :string')
-            ->setParameter('string', "%{$search->string}%");
-    }
+        ->select('p');
 
     if (!empty($search->min) && $ignorePrice === false ) {
         $query = $query
@@ -200,19 +267,10 @@ class ProductRepository extends ServiceEntityRepository
             ->andWhere('p.price <= :max')
             ->setParameter('max', $search->max * 100);
     }
-    if (!empty($search->promo)) {
-        $query = $query
-            ->andWhere('p.promo = 1');
-    }
     
     return $query;
     
     }
-
-
-
-
-
 
 //    /**
 //     * @return Product[] Returns an array of Product objects

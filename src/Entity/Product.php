@@ -60,6 +60,12 @@ class Product
     #[ORM\ManyToOne(inversedBy: 'products')]
     private ?Buses $buses = null;
 
+    #[ORM\ManyToOne(inversedBy: 'products')]
+    private ?Contenance $Size_Gobelet = null;
+
+    #[ORM\ManyToOne(inversedBy: 'products')]
+    private ?PCFES $FiltrePeinture = null;
+
     public function __toString()
     {
         return $this->getSubtitle();
@@ -246,6 +252,30 @@ class Product
     public function setBuses(?Buses $buses): static
     {
         $this->buses = $buses;
+
+        return $this;
+    }
+
+    public function getSizeGobelet(): ?Contenance
+    {
+        return $this->Size_Gobelet;
+    }
+
+    public function setSizeGobelet(?Contenance $Size_Gobelet): static
+    {
+        $this->Size_Gobelet = $Size_Gobelet;
+
+        return $this;
+    }
+
+    public function getFiltrePeinture(): ?PCFES
+    {
+        return $this->FiltrePeinture;
+    }
+
+    public function setFiltrePeinture(?PCFES $FiltrePeinture): static
+    {
+        $this->FiltrePeinture = $FiltrePeinture;
 
         return $this;
     }

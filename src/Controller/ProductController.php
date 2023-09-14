@@ -5,9 +5,11 @@ namespace App\Controller;
 use App\Classe\MegaMenu;
 use App\Classe\Search;
 use App\Entity\Product;
+use App\Entity\SousCategory;
 use App\Form\SearchType;
 use App\Repository\ProductRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Proxies\__CG__\App\Entity\SousSousCategory;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -65,16 +67,48 @@ class ProductController extends AbstractController
     #[Route('/nos_produits/{id}', name: 'productsInCategory')]
     public function ShowCategory(Request $request,$id): Response
     {   
-
+        $showBusFilter = false;
+        $showContenanceFilter = false;
+        $showFiltrepeinture = false;
         $search = new Search();
         $search->page = $request->get('page', 1);
-        $form = $this->createForm(SearchType::class, $search);
+         //recherche par le nom pour affiche le filtre dans le Scategory Vernis
+         $SScategory = $this->entityManager->getRepository(SousSousCategory::class)->findByid($id);
+
+         
+
+         foreach($SScategory as $name){
+
+         if($name->getName() === 'Pinceau'){
+             $showBusFilter = true;
+         }
+         if($name->getName() === 'Godet de mélange'){
+            $showContenanceFilter = true;
+         }
+
+         if($name->getName() === 'Filtre cône'){
+            $showFiltrepeinture = true;
+         }
+
+         }
+
+
+
+         $form = $this->createForm(SearchType::class, $search,[
+            'showBusFilter' => $showBusFilter,
+            'showContenanceFilter'=>$showContenanceFilter,
+            'showFiltrepeinture'=>$showFiltrepeinture,
+
+        ]);
         $form->handleRequest($request);
+
+ 
 
 
         [$min,$max] = $this->entityManager->getRepository(Product::class)->findMinMax($search);
         if ($form->isSubmitted() && $form->isValid()) {
-            $products = $this->entityManager->getRepository(Product::class)->findWithSearch($search);
+            //j'ai besoin de passe la liste selon les categorise
+            $products = $this->entityManager->getRepository(Product::class)->findWithSearchSSc($search,$id);
         } else {
 
             //search with Sous S category
@@ -84,6 +118,7 @@ class ProductController extends AbstractController
         $categories = $this->megaMenu->mega();
         $Scategories = $this->megaMenu->megaS();
         $SScategories = $this->megaMenu->megaSS();
+        
 
         return $this->render('product/index.html.twig', [
         
@@ -104,18 +139,36 @@ class ProductController extends AbstractController
     #[Route('/nos_categorais/{id}', name: 'productsInSCategory')]
     public function ShowSCategory(Request $request,$id): Response
     {   
-
+        $showBusFilter = false;
         $search = new Search();
         $search->page = $request->get('page', 1);
-        $form = $this->createForm(SearchType::class, $search);
+
+        //recherche par le nom pour affiche le filtre dans le Scategory Vernis
+        $Scategory = $this->entityManager->getRepository(SousCategory::class)->findByid($id);
+        foreach($Scategory as $name){
+        if($name->getName() === 'Vernis'){
+            $showBusFilter = true;
+        }
+        }
+
+        $form = $this->createForm(SearchType::class, $search,[
+            'showBusFilter' => $showBusFilter,
+        ]);
         $form->handleRequest($request);
 
+        // if ( $form->getClickedButton() && 'reset' === $form->getClickedButton()->getName()) {
+        //     // The "Réinitialiser" button was clicked, reset the filters
+        //     $search = new Search();
+        //     $search->page = $request->get('page', 1);
+        //     $form = $this->createForm(SearchType::class, $search);
+        // }
 
         [$min,$max] = $this->entityManager->getRepository(Product::class)->findMinMax($search);
         if ($form->isSubmitted() && $form->isValid()) {
-            $products = $this->entityManager->getRepository(Product::class)->findWithSearch($search);
+
+        $products = $this->entityManager->getRepository(Product::class)->findWithSearchSc($search,$id);
+
         } else {
-            
             //search with Sous S category
             $products = $this->entityManager->getRepository(Product::class)->findWithAllSc($search, $id);
         }
