@@ -66,6 +66,30 @@ class Product
     #[ORM\ManyToOne(inversedBy: 'products')]
     private ?PCFES $FiltrePeinture = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $FiltreContenance = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $PackVernisFiltre = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $Diluant = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $grain = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $dimensionCale = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $matierePapier = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $qualitePapier = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $epaisseurRuban = null;
+
     public function __toString()
     {
         return $this->getSubtitle();
@@ -276,6 +300,102 @@ class Product
     public function setFiltrePeinture(?PCFES $FiltrePeinture): static
     {
         $this->FiltrePeinture = $FiltrePeinture;
+
+        return $this;
+    }
+
+    public function getFiltreContenance(): ?string
+    {
+        return $this->FiltreContenance;
+    }
+
+    public function setFiltreContenance(?string $FiltreContenance): static
+    {
+        $this->FiltreContenance = $FiltreContenance;
+
+        return $this;
+    }
+
+    public function getPackVernisFiltre(): ?string
+    {
+        return $this->PackVernisFiltre;
+    }
+
+    public function setPackVernisFiltre(?string $PackVernisFiltre): static
+    {
+        $this->PackVernisFiltre = $PackVernisFiltre;
+
+        return $this;
+    }
+
+    public function getDiluant(): ?string
+    {
+        return $this->Diluant;
+    }
+
+    public function setDiluant(?string $Diluant): static
+    {
+        $this->Diluant = $Diluant;
+
+        return $this;
+    }
+
+    public function getGrain(): ?string
+    {
+        return $this->grain;
+    }
+
+    public function setGrain(?string $grain): static
+    {
+        $this->grain = $grain;
+
+        return $this;
+    }
+
+    public function getDimensionCale(): ?string
+    {
+        return $this->dimensionCale;
+    }
+
+    public function setDimensionCale(?string $dimensionCale): static
+    {
+        $this->dimensionCale = $dimensionCale;
+
+        return $this;
+    }
+
+    public function getMatierePapier(): ?string
+    {
+        return $this->matierePapier;
+    }
+
+    public function setMatierePapier(?string $matierePapier): static
+    {
+        $this->matierePapier = $matierePapier;
+
+        return $this;
+    }
+
+    public function getQualitePapier(): ?string
+    {
+        return $this->qualitePapier;
+    }
+
+    public function setQualitePapier(?string $qualitePapier): static
+    {
+        $this->qualitePapier = $qualitePapier;
+
+        return $this;
+    }
+
+    public function getEpaisseurRuban(): ?string
+    {
+        return $this->epaisseurRuban;
+    }
+
+    public function setEpaisseurRuban(?string $epaisseurRuban): static
+    {
+        $this->epaisseurRuban = $epaisseurRuban;
 
         return $this;
     }

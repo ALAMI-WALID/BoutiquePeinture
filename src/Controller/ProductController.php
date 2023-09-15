@@ -70,6 +70,18 @@ class ProductController extends AbstractController
         $showBusFilter = false;
         $showContenanceFilter = false;
         $showFiltrepeinture = false;
+        $showFiltrebrands= false;
+        $showFiltreDiluant=false;
+        $showbrandspestole=false;
+        $showPotbombe =false;
+        $showbrandsAbrasif=false;
+        $showGrain=false;
+        $showPapiercale=false;
+        $showMatiereCale=false;
+        $showQalitePapier=false;
+        $showbrandMasquage=false;
+        $showepaisseur=false;
+
         $search = new Search();
         $search->page = $request->get('page', 1);
          //recherche par le nom pour affiche le filtre dans le Scategory Vernis
@@ -77,19 +89,65 @@ class ProductController extends AbstractController
 
          
 
-         foreach($SScategory as $name){
-
-         if($name->getName() === 'Pinceau'){
+         foreach($SScategory as $sscategory){
+             $idScategory= $sscategory->getIdSousCategory();
+             //Condition de filtre selon les SousSous category
+         if(in_array($sscategory->getId(), [126,127])){
              $showBusFilter = true;
          }
-         if($name->getName() === 'Godet de mélange'){
+         if($sscategory->getId() == 1){
             $showContenanceFilter = true;
          }
 
-         if($name->getName() === 'Filtre cône'){
+         if($sscategory->getid() == 3 ){
             $showFiltrepeinture = true;
          }
 
+         if(in_array($sscategory->getId(), [6,7, 8,9]) || in_array($idScategory->getId(),[3,4])){
+            $showFiltrebrands= true;
+         }
+         if($sscategory->getId() == 17){
+            $showFiltreDiluant=true;
+         }
+         if(in_array($idScategory->getId(),[5])){
+            $showbrandspestole=true;
+         }
+         if($idScategory->getId() == 6){
+            $showPotbombe =true;
+         }
+         if($idScategory->getId() == 7){
+            $showbrandsAbrasif=true;
+         }
+
+         if(in_array($sscategory->getId(), [34,35,36,37,128])){
+            $showGrain=true;
+         }
+
+         if($sscategory->getId() == 36){
+            $showPapiercale=true;
+        }
+        
+        if($sscategory->getId() == 128){
+            $showMatiereCale = true;
+        }
+
+       
+        if(in_array($sscategory->getId(), [34,35,36])){
+            $showQalitePapier=true;
+        }
+
+        if($idScategory->getId() == 8){
+            $showbrandMasquage=true;
+        }
+
+        if($sscategory->getId() == 42){
+            $showepaisseur=true;
+        }
+
+
+       
+
+       
          }
 
 
@@ -98,6 +156,18 @@ class ProductController extends AbstractController
             'showBusFilter' => $showBusFilter,
             'showContenanceFilter'=>$showContenanceFilter,
             'showFiltrepeinture'=>$showFiltrepeinture,
+            'showFiltrebrands'=>$showFiltrebrands,
+            'showFiltreDiluant'=>$showFiltreDiluant,
+            'showbrandspestole'=>$showbrandspestole,
+            'showPotbombe'=>$showPotbombe,
+            'showbrandsAbrasif'=>$showbrandsAbrasif,
+            'showGrain'=>$showGrain,
+            'showPapiercale'=>$showPapiercale,
+            'showMatiereCale'=>$showMatiereCale,
+            'showQalitePapier'=>$showQalitePapier,
+            'showbrandMasquage'=>$showbrandMasquage,
+            'showepaisseur'=>$showepaisseur,
+   
 
         ]);
         $form->handleRequest($request);
@@ -107,6 +177,7 @@ class ProductController extends AbstractController
 
         [$min,$max] = $this->entityManager->getRepository(Product::class)->findMinMax($search);
         if ($form->isSubmitted() && $form->isValid()) {
+
             //j'ai besoin de passe la liste selon les categorise
             $products = $this->entityManager->getRepository(Product::class)->findWithSearchSSc($search,$id);
         } else {
