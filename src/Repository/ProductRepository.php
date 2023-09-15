@@ -110,6 +110,74 @@ class ProductRepository extends ServiceEntityRepository
                 ->andWhere('p.name LIKE :string OR p.articleCode LIKE :string')
                 ->setParameter('string', "%" . $search->string . "%");
         }
+
+        if (!empty($search->marque)) {
+            $query = $query
+                ->andWhere('p.subtitle LIKE :marque ')
+                ->setParameter('marque', $search->marque );
+        }
+        if (!empty($search->Matiere)) {
+            $query = $query
+                ->andWhere('p.matierePapier LIKE :matiere ')
+                ->setParameter('matiere', $search->Matiere );
+        }
+        if (!empty($search->marqueabrasif)) {
+            $query = $query
+                ->andWhere('p.subtitle LIKE :marque ')
+                ->setParameter('marque', $search->marqueabrasif );
+        }
+        if (!empty($search->epaisseur)) {
+            $query = $query
+                ->andWhere('p.epaisseurRuban LIKE :epaisseur ')
+                ->setParameter('epaisseur', $search->epaisseur);
+        }
+        if (!empty($search->bransMasquage)) {
+            $query = $query
+                ->andWhere('p.subtitle LIKE :marque ')
+                ->setParameter('marque', $search->bransMasquage );
+        }
+        if (!empty($search->qualitePapier)) {
+            $query = $query
+                ->andWhere('p.qualitePapier LIKE :qualite ')
+                ->setParameter('qualite', $search->qualitePapier );
+        }
+        if (!empty($search->potbombe)) {
+            $query = $query
+                ->andWhere('p.name LIKE :potbombe ')
+                ->setParameter('potbombe', $search->potbombe. "%" );
+        }
+        if (!empty($search->Grain)) {
+            $query = $query
+                ->andWhere('p.grain LIKE :grain ')
+                ->setParameter('grain', $search->Grain );
+        }
+        if (!empty($search->Papiercale)) {
+            $query = $query
+                ->andWhere('p.dimensionCale LIKE :dimension ')
+                ->setParameter('dimension', $search->Papiercale );
+        }
+        if (!empty($search->marquepestole)) {
+            $query = $query
+                ->andWhere('p.subtitle LIKE :marque ')
+                ->setParameter('marque', $search->marquepestole );
+        }
+        if (!empty($search->Diluant)) {
+            $query = $query
+                ->andWhere('p.Diluant LIKE :diluant')
+                ->setParameter('diluant', $search->Diluant );
+        }
+        if (!empty($search->pack)) {
+            $query = $query
+                ->andWhere('p.PackVernisFiltre LIKE :pack ')
+                ->setParameter('pack', $search->pack );
+        }
+
+        if (!empty($search->FiltreContenance)) {
+            $query = $query
+                ->andWhere('p.FiltreContenance LIKE :FiltreContenance ')
+                ->setParameter('FiltreContenance', "%" . $search->FiltreContenance . "%");
+        }
+
     
         if (!empty($search->min) && $ignorePrice === false ) {
             $query = $query

@@ -35,13 +35,75 @@ class Search{
 
      public $Contenance = [];
 
-      /**
+     /**
+      * @var string 
+      */
+      public $Papiercale;
+
+    /**
+     * @var string
+     */
+    public $Matiere;
+    /**
+     * @var string
+     */
+    public $qualitePapier;
+    /**
+     * @var string
+     */
+    public $bransMasquage;
+    /**
+     * @var string
+     */
+    public $epaisseur;
+    /**
+     * @var string
+     */
+
+     public $FiltreContenance;
+
+     /**
+     * @var string
+     */
+
+     public $Grain;
+
+     /**
+      * @var string
+      */
+    public $marqueabrasif;
+
+
+    /**
+     * @var string
+     */
+
+     public $pack;
+    /**
+     * @var string
+     */
+    public $potbombe;
+     /**
+      * @var string
+      */
+    public $marquepestole;
+
+     /**
+      * @var 
+      */
+    public $Diluant;
+
+    /**
      * @var TypePeinture[]
      */
 
      public $TypePeinture = [];
 
 
+     /**
+      * @var string
+      */
+      public $marque;
 
      /**
       * @var Buses[]
