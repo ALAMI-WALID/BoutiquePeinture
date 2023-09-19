@@ -52,6 +52,39 @@ class Search{
      * @var string
      */
     public $bransMasquage;
+
+    /**
+     * @var string
+     */
+    public $dimensionpapier;
+    /**
+     * @var string
+     */
+    public $dimensiontuyau; 
+
+    /**
+     * @var string
+     */
+    public $dimensionFiltre;
+
+    /**
+     * @var string
+     */
+    public $typefiltreCabine;
+    
+    /**
+     * @var string 
+     */
+    public $raccordAir;
+    /**
+     * @var string
+     */
+    public $TypeTuyau;
+    /**
+     * @var string
+     */
+    public $colorsAppret;
+    
     /**
      * @var string
      */

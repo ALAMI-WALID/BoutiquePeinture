@@ -77,7 +77,23 @@ class SearchType extends AbstractType
       
         
 
+        if ($options['showContenance']) {
+            $builder
+            ->add('FiltreContenance', ChoiceType::class, [
+                'choices' => [
+                    'bombe aérosol' => 'bombe aérosol',
+                    '0.5L'=>'0.5L',
+                    '1L' => '1L',
+                    '2L'=>'2L',
+                    '2.5L'=>'2.5L',
+                    '3L'=>'3L',
+                    '3.5L'=>'3.75L'
+                ],
+                'placeholder' => 'Sélectionnez une option',
+                'required'=>false
 
+            ]);
+        }
         if ($options['showFiltrebrands']) {
             $builder
             ->add('FiltreContenance', ChoiceType::class, [
@@ -101,8 +117,13 @@ class SearchType extends AbstractType
                 ],
                 'placeholder' => 'Sélectionnez une option',
                 'required'=>false
-            ])
+            ]);
 
+       
+        }
+
+        if ($options['showvernis']) {
+            $builder
             ->add('pack', ChoiceType::class, [
                 'choices' => [
                     'Pack vernis' => 'Pack vernis',
@@ -112,6 +133,8 @@ class SearchType extends AbstractType
                 'required'=>false
             ]);
         }
+
+
         
 
         if ($options['showBusFilter']) {
@@ -163,6 +186,21 @@ class SearchType extends AbstractType
                 'required'=>false
             ]);
         }
+
+        if ($options['showDimensionPapeir']) {
+            $builder
+            ->add('dimensionpapier', ChoiceType::class, [
+                'choices' => [
+                    '450mm' => '450mm',
+                    '700mm' => '700mm',
+                    '900mm'=>'900mm',
+                    '1200mm'=>'1200mm'
+                ],
+                'placeholder' => 'Tous les dimension',
+                'label'=>'Dimension de papier',
+                'required'=>false
+            ]);
+        }
         if ($options['showbrandspestole']) {
             $builder
             ->add('marquepestole', ChoiceType::class, [
@@ -183,14 +221,57 @@ class SearchType extends AbstractType
                 'choices' => [
                     'MIRKA' => 'MIRKA',
                     'APP' => 'APP',
-                    'MIPA'=>'MIPA'
+                    'MIPA'=>'MIPA',
+                    'TROTTON'=>'TROTTON',
+                    'RUPES'=>'RUPES ',
+                    'PREVOST'=>'PREVOST',
+                    'GYS'=>'GYS',
+                    'INFRADIS'=>'INFRADIS',
+                    'IWATA'=>'IWATA',
+                    'SATA'=>'SATA'
                 ],
                 'label'=>'Marque',
                 'placeholder' => 'Toutes les marques',
                 'required'=>false
             ]);
-
         }
+            if ($options['showraccordAir']) {
+                $builder
+                ->add('raccordAir', ChoiceType::class, [
+                    'choices' => [
+                       'Raccord Male'=>'Raccord Male',
+                       'Raccord Femele'=>'Raccord Femele'
+                    ],
+                    'label'=>'Sélectionnez le type de raccord d\'air',
+                    'placeholder' => 'Choisissez un type de raccord',
+                    'required'=>false
+                ]);
+        }
+        if ($options['showrdimensionFiltre']) {
+            $builder
+            ->add('dimensionFiltre', ChoiceType::class, [
+                'choices' => [
+                   '0,76mm X 20m'=>'0,76mm X 20m',
+                   '0,86mm X 20m'=>'0,86mm X 20m',
+                    '1mm X 20m'=>'1mm X 20m'
+                ],
+                'label'=>'Sélectionnez une dimension',
+                'placeholder' => 'Choisissez une dimension',
+                'required'=>false
+            ])
+            ->add('typefiltreCabine', ChoiceType::class, [
+                'choices' => [
+                    'Filtre plafond'=>'Filtre plafond',
+                    'Filtre sol'=>'Filtre sol' 
+                            
+                ],
+                'label'=>'Type',
+                'placeholder' => 'Type filtre',
+                'required'=>false
+            ]);
+
+
+    }
         if ($options['showGrain']) {
             $builder
             ->add('Grain', ChoiceType::class, [
@@ -226,7 +307,7 @@ class SearchType extends AbstractType
                     '70X420mm'=>'70X420mm',
                     '70x450mm'=>'70x450mm'         
                 ],
-                'label'=>'Dimension',
+                'label'=>'Dimension papier cale',
                 'placeholder' => 'Tous les dimension',
                 'required'=>false
             ]);
@@ -238,7 +319,8 @@ class SearchType extends AbstractType
                 'choices' => [
                     'Plastique '=>'plastique',
                     'Caoutchouc'=>'caoutchouc',
-                    'Bois '=>'bois'
+                    'Bois '=>'bois',
+                    'acier'=>'acier'
                             
                 ],
                 'label'=>'Matière',
@@ -247,6 +329,7 @@ class SearchType extends AbstractType
             ]);
 
         }
+      
         if ($options['showQalitePapier']) {
             $builder
             ->add('qualitePapier', ChoiceType::class, [
@@ -259,6 +342,48 @@ class SearchType extends AbstractType
                 'placeholder' => 'Toutes les Qualités',
                 'required'=>false
             ]);
+
+        }
+        if ($options['showColorsAppret']) {
+            $builder
+            ->add('colorsAppret', ChoiceType::class, [
+                'choices' => [
+                   
+                    'Blanc' => 'Blanc',
+                    'Gris foncer'=> 'Gris foncer',
+                    'Noir'=>'Noir'
+                            
+                ],
+                'label'=>'couleur',
+                'placeholder' => 'Toutes les couleur',
+                'required'=>false
+            ]);
+
+        }
+        if ($options['showDimensimTuyau']) {
+            $builder
+            ->add('dimensiontuyau', ChoiceType::class, [
+                'choices' => [
+                   
+                    '10mmX8mm'=>'10mmX8mm',
+                    '20mmX8mm'=>'20mmX8mm',
+                    '18x10mm'=>'18x10mm'
+                ],
+                'label'=>'Sélectionnez les dimensions du tuyau',
+                'placeholder' => 'Choisissez les dimensions du tuyau',
+                'required'=>false
+            ])
+            ->add('TypeTuyau', ChoiceType::class, [
+                'choices' => [
+                   
+                    'Tuyau éléctrique'=>'Tuyau éléctrique',
+                     'Tuyau antistatique'=>'Tuyau antistatique' 
+                ],
+                'label'=>'Sélectionnez un type de tuyau',
+                'placeholder' => 'Choisissez un type de tuyau',
+                'required'=>false
+            ]);
+           
 
         }
         
@@ -325,6 +450,13 @@ class SearchType extends AbstractType
             'showQalitePapier'=>false,
             'showbrandMasquage'=>false,
             'showepaisseur'=>false,
+            'showDimensionPapeir'=>false,
+            'showContenance'=>false,
+            'showColorsAppret'=>false,
+            'showraccordAir'=>false,
+            'showDimensimTuyau'=>false,
+            'showrdimensionFiltre'=>false,
+            'showvernis'=>false
         ]);
     }
     

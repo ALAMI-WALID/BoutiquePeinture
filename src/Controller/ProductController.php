@@ -59,8 +59,6 @@ class ProductController extends AbstractController
             'Scategories' =>$Scategories,
             'SScategories'=>$SScategories
 
-
-
         ]);
     }
 
@@ -81,13 +79,19 @@ class ProductController extends AbstractController
         $showQalitePapier=false;
         $showbrandMasquage=false;
         $showepaisseur=false;
+        $showDimensionPapeir=false;
+        $showContenance=false;
+        $showColorsAppret=false;
+        $showraccordAir=false;
+        $showDimensimTuyau=false;
+        $showrdimensionFiltre=false;
+        $showvernis=false;
+      
 
         $search = new Search();
         $search->page = $request->get('page', 1);
          //recherche par le nom pour affiche le filtre dans le Scategory Vernis
          $SScategory = $this->entityManager->getRepository(SousSousCategory::class)->findByid($id);
-
-         
 
          foreach($SScategory as $sscategory){
              $idScategory= $sscategory->getIdSousCategory();
@@ -106,16 +110,22 @@ class ProductController extends AbstractController
          if(in_array($sscategory->getId(), [6,7, 8,9]) || in_array($idScategory->getId(),[3,4])){
             $showFiltrebrands= true;
          }
+
+         if(in_array($idScategory->getId(),[2,3])){
+            $showvernis= true;
+         }
+
+
          if($sscategory->getId() == 17){
             $showFiltreDiluant=true;
          }
-         if(in_array($idScategory->getId(),[5])){
+         if(in_array($idScategory->getId(),[5,])){
             $showbrandspestole=true;
          }
          if($idScategory->getId() == 6){
             $showPotbombe =true;
          }
-         if($idScategory->getId() == 7){
+         if(in_Array($idScategory->getId(), [7,9,10,11,13,16,17,20,29])){
             $showbrandsAbrasif=true;
          }
 
@@ -123,7 +133,7 @@ class ProductController extends AbstractController
             $showGrain=true;
          }
 
-         if($sscategory->getId() == 36){
+         if(in_array($sscategory->getId(),[60,36])){
             $showPapiercale=true;
         }
         
@@ -144,11 +154,32 @@ class ProductController extends AbstractController
             $showepaisseur=true;
         }
 
+        if($sscategory->getId() == 46){
+            $showDimensionPapeir=true;
+        } 
 
-       
-
-       
+        if(in_array($idScategory->getId(),[3,4,10,11]) || in_array($sscategory->getId(),[72])){
+            $showContenance=true;
+           
          }
+
+         if(in_array($idScategory->getId(),[10,11])){
+            $showColorsAppret=true;
+         }
+         if($sscategory->getId()==109){
+            $showraccordAir=true;
+
+         }
+         if($sscategory->getId()==110){
+
+             $showDimensimTuyau=true;
+         }
+         if($sscategory->getId()==113){
+
+            $showrdimensionFiltre=true;
+        }
+       
+        }
 
 
 
@@ -167,6 +198,14 @@ class ProductController extends AbstractController
             'showQalitePapier'=>$showQalitePapier,
             'showbrandMasquage'=>$showbrandMasquage,
             'showepaisseur'=>$showepaisseur,
+            'showDimensionPapeir'=>$showDimensionPapeir,
+            'showContenance'=>$showContenance,
+            'showColorsAppret'=>$showColorsAppret,
+            'showraccordAir'=>$showraccordAir,
+            'showDimensimTuyau'=>$showDimensimTuyau,
+            'showrdimensionFiltre'=>$showrdimensionFiltre,
+            'showvernis'=>$showvernis,
+           
    
 
         ]);
@@ -211,19 +250,112 @@ class ProductController extends AbstractController
     public function ShowSCategory(Request $request,$id): Response
     {   
         $showBusFilter = false;
+        $showContenanceFilter = false;
+        $showFiltrepeinture = false;
+        $showFiltrebrands= false;
+        $showFiltreDiluant=false;
+        $showbrandspestole=false;
+        $showPotbombe =false;
+        $showbrandsAbrasif=false;
+        $showGrain=false;
+        $showPapiercale=false;
+        $showMatiereCale=false;
+        $showQalitePapier=false;
+        $showbrandMasquage=false;
+        $showepaisseur=false;
+        $showDimensionPapeir=false;
+        $showContenance=false;
+        $showColorsAppret=false;
+        $showraccordAir=false;
+        $showDimensimTuyau=false;
+        $showrdimensionFiltre=false;
+        $showvernis=false;
+
         $search = new Search();
         $search->page = $request->get('page', 1);
 
         //recherche par le nom pour affiche le filtre dans le Scategory Vernis
         $Scategory = $this->entityManager->getRepository(SousCategory::class)->findByid($id);
-        foreach($Scategory as $name){
-        if($name->getName() === 'Vernis'){
-            $showBusFilter = true;
+       
+
+        foreach($Scategory as $scategory){
+           
+            //Condition de filtre selon les Sous category
+        if(in_array($scategory->getId(), [1])){
+            $showFiltrepeinture = true;
+            $showContenanceFilter=true;
+
         }
+        if(in_array($scategory->getId(), [2,3])){
+            $showFiltrebrands=true;
+            $showvernis=true;
         }
 
+        if(in_array($scategory->getId(), [4])){
+            $showFiltrebrands=true;
+            $showFiltreDiluant=true;
+           
+        }
+        if(in_array($scategory->getId(), [5])){
+            $showbrandspestole=true;
+            $showBusFilter=true;
+           
+        }
+        if(in_array($scategory->getId(), [6])){
+            $showPotbombe=true;
+           
+        }
+        if(in_array($scategory->getId(), [7])){
+            $showbrandsAbrasif=true;
+            $showGrain=true;
+            $showPapiercale=true;
+            $showMatiereCale=true;
+            $showQalitePapier=true;
+        }
+        if(in_array($scategory->getId(), [8])){
+           $showbrandMasquage=true;
+           $showepaisseur=true;
+        }
+
+        if(in_array($scategory->getId(), [9])){
+            $showbrandsAbrasif=true;
+            $showMatiereCale=true;
+         }
+         if(in_array($scategory->getId(), [10,11])){
+          $showbrandsAbrasif=true;
+          $showColorsAppret=true;
+          $showContenance=true;
+          
+         }
+         if(in_array($scategory->getId(), [13])){
+            $showbrandsAbrasif=true;
+            $showContenance=true;
+           }      
+       }
+
         $form = $this->createForm(SearchType::class, $search,[
+            
             'showBusFilter' => $showBusFilter,
+            'showContenanceFilter'=>$showContenanceFilter,
+            'showFiltrepeinture'=>$showFiltrepeinture,
+            'showFiltrebrands'=>$showFiltrebrands,
+            'showFiltreDiluant'=>$showFiltreDiluant,
+            'showbrandspestole'=>$showbrandspestole,
+            'showPotbombe'=>$showPotbombe,
+            'showbrandsAbrasif'=>$showbrandsAbrasif,
+            'showGrain'=>$showGrain,
+            'showPapiercale'=>$showPapiercale,
+            'showMatiereCale'=>$showMatiereCale,
+            'showQalitePapier'=>$showQalitePapier,
+            'showbrandMasquage'=>$showbrandMasquage,
+            'showepaisseur'=>$showepaisseur,
+            'showDimensionPapeir'=>$showDimensionPapeir,
+            'showContenance'=>$showContenance,
+            'showColorsAppret'=>$showColorsAppret,
+            'showraccordAir'=>$showraccordAir,
+            'showDimensimTuyau'=>$showDimensimTuyau,
+            'showrdimensionFiltre'=>$showrdimensionFiltre,
+            'showvernis'=>$showvernis,
         ]);
         $form->handleRequest($request);
 

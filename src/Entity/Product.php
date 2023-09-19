@@ -90,6 +90,27 @@ class Product
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $epaisseurRuban = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $DimensionPapierCacher = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $colorsAppret = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $raccordAir = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $DimensionTuyau = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $typeTuyau = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $dimensionfiltreCabine = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $typeFiltreCabine = null;
+
     public function __toString()
     {
         return $this->getSubtitle();
@@ -396,6 +417,90 @@ class Product
     public function setEpaisseurRuban(?string $epaisseurRuban): static
     {
         $this->epaisseurRuban = $epaisseurRuban;
+
+        return $this;
+    }
+
+    public function getDimensionPapierCacher(): ?string
+    {
+        return $this->DimensionPapierCacher;
+    }
+
+    public function setDimensionPapierCacher(?string $DimensionPapierCacher): static
+    {
+        $this->DimensionPapierCacher = $DimensionPapierCacher;
+
+        return $this;
+    }
+
+    public function getColorsAppret(): ?string
+    {
+        return $this->colorsAppret;
+    }
+
+    public function setColorsAppret(?string $colorsAppret): static
+    {
+        $this->colorsAppret = $colorsAppret;
+
+        return $this;
+    }
+
+    public function getRaccordAir(): ?string
+    {
+        return $this->raccordAir;
+    }
+
+    public function setRaccordAir(?string $raccordAir): static
+    {
+        $this->raccordAir = $raccordAir;
+
+        return $this;
+    }
+
+    public function getDimensionTuyau(): ?string
+    {
+        return $this->DimensionTuyau;
+    }
+
+    public function setDimensionTuyau(?string $DimensionTuyau): static
+    {
+        $this->DimensionTuyau = $DimensionTuyau;
+
+        return $this;
+    }
+
+    public function getTypeTuyau(): ?string
+    {
+        return $this->typeTuyau;
+    }
+
+    public function setTypeTuyau(?string $typeTuyau): static
+    {
+        $this->typeTuyau = $typeTuyau;
+
+        return $this;
+    }
+
+    public function getDimensionfiltreCabine(): ?string
+    {
+        return $this->dimensionfiltreCabine;
+    }
+
+    public function setDimensionfiltreCabine(?string $dimensionfiltreCabine): static
+    {
+        $this->dimensionfiltreCabine = $dimensionfiltreCabine;
+
+        return $this;
+    }
+
+    public function getTypeFiltreCabine(): ?string
+    {
+        return $this->typeFiltreCabine;
+    }
+
+    public function setTypeFiltreCabine(?string $typeFiltreCabine): static
+    {
+        $this->typeFiltreCabine = $typeFiltreCabine;
 
         return $this;
     }
