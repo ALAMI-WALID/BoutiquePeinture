@@ -166,6 +166,16 @@ class ProductRepository extends ServiceEntityRepository
                 ->andWhere('p.Diluant LIKE :diluant')
                 ->setParameter('diluant', $search->Diluant );
         }
+        if (!empty($search->colorsAppret)) {
+            $query = $query
+                ->andWhere('p.colorsAppret LIKE :colors')
+                ->setParameter('colors', $search->colorsAppret );
+        }
+        if (!empty($search->dimensionpapier)) {
+            $query = $query
+                ->andWhere('p.DimensionPapierCacher  LIKE :dimension')
+                ->setParameter('dimension', $search->dimensionpapier);
+        }
         if (!empty($search->pack)) {
             $query = $query
                 ->andWhere('p.PackVernisFiltre LIKE :pack ')
@@ -176,6 +186,31 @@ class ProductRepository extends ServiceEntityRepository
             $query = $query
                 ->andWhere('p.FiltreContenance LIKE :FiltreContenance ')
                 ->setParameter('FiltreContenance', "%" . $search->FiltreContenance . "%");
+        }
+        if (!empty($search->dimensionFiltre)) {
+            $query = $query
+                ->andWhere('p.dimensionfiltreCabine LIKE :Filtre')
+                ->setParameter('Filtre',$search->dimensionFiltre);
+        }
+        if (!empty($search->typefiltreCabine)) {
+            $query = $query
+                ->andWhere('p.typeFiltreCabine LIKE :Filtre')
+                ->setParameter('Filtre',$search->typefiltreCabine);
+        }
+        if (!empty($search->TypeTuyau)) {
+            $query = $query
+                ->andWhere('p.typeTuyau LIKE :typetuyau')
+                ->setParameter('typetuyau',$search->TypeTuyau);
+        }
+        if (!empty($search->raccordAir)) {
+            $query = $query
+                ->andWhere('p.raccordAir LIKE :raccord')
+                ->setParameter('raccord',$search->raccordAir);
+        }
+        if (!empty($search->dimensiontuyau)) {
+            $query = $query
+                ->andWhere('p.DimensionTuyau LIKE :tuyau')
+                ->setParameter('tuyau',$search->dimensiontuyau);
         }
 
     
@@ -237,6 +272,122 @@ class ProductRepository extends ServiceEntityRepository
             $query = $query
                 ->andWhere('p.name LIKE :string OR p.articleCode LIKE :string')
                 ->setParameter('string', "%" . $search->string . "%");
+        }
+
+        if (!empty($search->Matiere)) {
+            $query = $query
+                ->andWhere('p.matierePapier LIKE :matiere ')
+                ->setParameter('matiere', $search->Matiere );
+        }
+        if (!empty($search->marque)) {
+            $query = $query
+                ->andWhere('p.subtitle LIKE :marque ')
+                ->setParameter('marque', $search->marque );
+        }
+        if (!empty($search->marqueabrasif)) {
+            $query = $query
+                ->andWhere('p.subtitle LIKE :marque ')
+                ->setParameter('marque', $search->marqueabrasif );
+        }
+        if (!empty($search->epaisseur)) {
+            $query = $query
+                ->andWhere('p.epaisseurRuban LIKE :epaisseur ')
+                ->setParameter('epaisseur', $search->epaisseur);
+        }
+        if (!empty($search->bransMasquage)) {
+            $query = $query
+                ->andWhere('p.subtitle LIKE :marque ')
+                ->setParameter('marque', $search->bransMasquage );
+        }
+        if (!empty($search->qualitePapier)) {
+            $query = $query
+                ->andWhere('p.qualitePapier LIKE :qualite ')
+                ->setParameter('qualite', $search->qualitePapier );
+        }
+        if (!empty($search->potbombe)) {
+            $query = $query
+                ->andWhere('p.name LIKE :potbombe ')
+                ->setParameter('potbombe', $search->potbombe. "%" );
+        }
+        if (!empty($search->Grain)) {
+            $query = $query
+                ->andWhere('p.grain LIKE :grain ')
+                ->setParameter('grain', $search->Grain );
+        }
+        if (!empty($search->Papiercale)) {
+            $query = $query
+                ->andWhere('p.dimensionCale LIKE :dimension ')
+                ->setParameter('dimension', $search->Papiercale );
+        }
+        if (!empty($search->marquepestole)) {
+            $query = $query
+                ->andWhere('p.subtitle LIKE :marque ')
+                ->setParameter('marque', $search->marquepestole );
+        }
+        if (!empty($search->Diluant)) {
+            $query = $query
+                ->andWhere('p.Diluant LIKE :diluant')
+                ->setParameter('diluant', $search->Diluant );
+        }
+        if (!empty($search->colorsAppret)) {
+            $query = $query
+                ->andWhere('p.colorsAppret LIKE :colors')
+                ->setParameter('colors', $search->colorsAppret );
+        }
+        if (!empty($search->dimensionpapier)) {
+            $query = $query
+                ->andWhere('p.DimensionPapierCacher  LIKE :dimension')
+                ->setParameter('dimension', $search->dimensionpapier);
+        }
+        if (!empty($search->pack)) {
+            $query = $query
+                ->andWhere('p.PackVernisFiltre LIKE :pack ')
+                ->setParameter('pack', $search->pack );
+        }
+
+        if (!empty($search->FiltreContenance)) {
+            $query = $query
+                ->andWhere('p.FiltreContenance LIKE :FiltreContenance ')
+                ->setParameter('FiltreContenance', "%" . $search->FiltreContenance . "%");
+        }
+        if (!empty($search->dimensionFiltre)) {
+            $query = $query
+                ->andWhere('p.dimensionfiltreCabine LIKE :Filtre')
+                ->setParameter('Filtre',$search->dimensionFiltre);
+        }
+        if (!empty($search->typefiltreCabine)) {
+            $query = $query
+                ->andWhere('p.typeFiltreCabine LIKE :Filtre')
+                ->setParameter('Filtre',$search->typefiltreCabine);
+        }
+        if (!empty($search->TypeTuyau)) {
+            $query = $query
+                ->andWhere('p.typeTuyau LIKE :typetuyau')
+                ->setParameter('typetuyau',$search->TypeTuyau);
+        }
+        if (!empty($search->raccordAir)) {
+            $query = $query
+                ->andWhere('p.raccordAir LIKE :raccord')
+                ->setParameter('raccord',$search->raccordAir);
+        }
+        if (!empty($search->dimensiontuyau)) {
+            $query = $query
+                ->andWhere('p.DimensionTuyau LIKE :tuyau')
+                ->setParameter('tuyau',$search->dimensiontuyau);
+        }
+        if (!empty($search->Contenance)) {
+            $query = $query
+                 ->select('p','c')
+                 ->join('p.Size_Gobelet', 'c')
+                ->andWhere('c.id IN (:ConID)') // Assuming 'c.id' is the ID property of the 'Contenance' entity
+                ->setParameter('ConID', $search->Contenance);
+        }
+        if (!empty($search->TypePeinture)) {
+            $query = $query
+                 ->select('p','pcfes')
+                 ->join('p.FiltrePeinture', 'pcfes')
+                ->andWhere('pcfes.id IN (:ConID)') // Assuming 'c.id' is the ID property of the 'Contenance' entity
+                ->setParameter('ConID', $search->TypePeinture);
         }
     
         if (!empty($search->min) && $ignorePrice === false ) {
