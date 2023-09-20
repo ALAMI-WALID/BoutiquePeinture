@@ -111,6 +111,9 @@ class Product
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $typeFiltreCabine = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $tailleEquipementProtection = null;
+
     public function __toString()
     {
         return $this->getSubtitle();
@@ -501,6 +504,18 @@ class Product
     public function setTypeFiltreCabine(?string $typeFiltreCabine): static
     {
         $this->typeFiltreCabine = $typeFiltreCabine;
+
+        return $this;
+    }
+
+    public function getTailleEquipementProtection(): ?string
+    {
+        return $this->tailleEquipementProtection;
+    }
+
+    public function setTailleEquipementProtection(?string $tailleEquipementProtection): static
+    {
+        $this->tailleEquipementProtection = $tailleEquipementProtection;
 
         return $this;
     }
