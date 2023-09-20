@@ -413,6 +413,8 @@ class ProductController extends AbstractController
         $Scategories = $this->megaMenu->megaS();
         $SScategories = $this->megaMenu->megaSS();
 
+   
+
 
         return $this->render('product/show.html.twig', [
         
