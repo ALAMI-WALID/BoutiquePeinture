@@ -110,22 +110,46 @@ font-weight: bold;
 
 .ma-input {
 
-    width: 100%; 
-    border-radius: .25rem; 
-     width: 67%;
-   
-    margin-top: 1.5em;
-    margin-right: 25em;
-    padding-left: 3em;
+  border-radius: .25rem;
+  margin-top: 1.5em;
+  width: 66%;
+  margin-right: 30em;
+  padding-left: 6em;
+  margin-bottom: -38px;
+
    
 
  }
  #chercher {
 
-    margin-top: -4em;
-margin-left: -1em;
+    margin-top: -1em;
+    margin-left: 0em;
+    padding-left: 5px;
+    padding-top: -36px;
+    transition: transform 0.3s;
+    margin-bottom: -0.5em;
+
 
  }
+ #ma-search{
+    margin-left: 1px;
+    padding: 6px;
+    margin-top: 2px;
+    border: none;
+    position: absolute;
+    border-radius: 2px; 
+}
+
+
+ .cart-icon {
+    transition: transform 0.3s; /* Ajoute une transition fluide pour l'effet de zoom */
+}
+
+.cart-icon:hover {
+    transform: scale(0.9); /* Réduit l'échelle de l'image lors du survol */
+}
+  
+  
 
 
 
@@ -430,6 +454,16 @@ margin-left: -1em;
     }
 }
 
+.image-bar img {
+    transition: transform 0.3s; /* Ajoute une transition fluide pour l'effet de zoom */
+}
+
+.image-bar img:hover {
+    transform: scale(0.9); /* Réduit l'échelle de l'image lors du survol */
+
+}
+
+
 /* fin css de barre des marques  */
 
 
@@ -458,4 +492,16 @@ margin-left: -1em;
   #bar-width img{
     width: 5em;
 
+  }
+
+  .brandscolors{
+
+    background-color: #f3f3f3;
+    margin-left: -10em;
+    margin-right: -10em;
+    padding: 1em;
+  }
+
+  #brandscontent{
+    padding-left: 9em;
   }

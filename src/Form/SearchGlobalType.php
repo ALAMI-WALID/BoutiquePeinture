@@ -16,14 +16,21 @@ class SearchGlobalType extends AbstractType
             'label'=>false,
             'required'=>false,
             'attr'=>[
-                'placeholder'=> 'Trouver votre bonheur en quelques clics ... ',
+                'placeholder'=> 'Rechercher un produit ou une marque...',
                 'class'=>'form-control ma-input'
             ]
 
-        ])
+            ])
+            ->add('submit', SubmitType::class, [
+                'label'=>false,
+                'attr'=>[
+                    'class'=> 'search-icon-button ma-search'
+                ]
+                ]);
+            
+            
+
         
-        
-        ;
         
     }
     public function configureOptions(OptionsResolver $resolver)

@@ -1,103 +1,50 @@
 {% extends 'base.html.twig' %}
 
+
+
+{% block javascript %}
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+  <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" />
+  <link href={{asset('assets/js/script.js')}}>
+
+{% endblock %}
+
 {% block search %}{% endblock %}
 
 {% block carousel %}{% endblock %}
 
+
 {% block content %}
- <div class="custom-paint-section">
+ {# <div class="custom-paint-section">
     <h3 id="texteFaites" class="section-subheading">Peinture Personnalisée pour Votre Voiture</h3>
     <p class="section-description">Faites votre choix parmi notre large gamme d'options de couleurs et de finitions pour donner une nouvelle vie à votre véhicule. Avec notre service de personnalisation de peinture automobile, réalisez la voiture de vos rêves.</p>
 </div>
-  <div class="container px-4 py-5" id="custom-cards">
-
-    <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5">
-      <div class="col"  id="espasecol">
-      <div class="card card-cover h-100 overflow-hidden  rounded-5 shadow-lg" id="red" >
-          <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1" id="bombe" style="background-image:url('{{ asset('assets/img/bombe5.png') }}')">
-              <h2 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold" id="textepeinture">Offrez une nouvelle vie à votre voiture avec nos bombes</h2>
-            <ul class="d-flex list-unstyled mt-auto">
-              <li class="me-auto">
-                <img src={{asset('assets/img/bombe2.png')}} alt="Bootstrap" width="32" height="32" class="rounded-circle border border-white">
-              </li>
-              <li class="d-flex align-items-center me-3">
-                <svg class="bi me-2" width="1em" height="1em"><use xlink:href="#geo-fill"/></svg>
-                <small></small>
-              </li>
-              <li class="d-flex align-items-center">
-                <svg class="bi me-2 black" width="1em" height="1em"><use xlink:href="#calendar3"/></svg>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <div class="col"  id="espasecol">
-        <div class="card card-cover h-100 overflow-hidden  rounded-5 shadow-lg" >
-<div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1" id="stylo" style="background-image:url('{{ asset('assets/img/pots9.png') }}');background-repeat: no-repeat; background-size: cover;">
-            <h2 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold" id="textepeinture">Choisissez la quantité de peinture selon votre surface à peindre.</h2>
-            <ul class="d-flex list-unstyled mt-auto">
-              <li class="me-auto">
-                <img src={{asset('assets/img/pots.png')}} alt="Bootstrap" width="32" height="32" class="rounded-circle border border-white">
-              </li>
-              <li class="d-flex align-items-center me-3">
-                <svg class="bi me-2" width="1em" height="1em"><use xlink:href="#geo-fill"/></svg>
-                <small></small>
-              </li>
-              <li class="d-flex align-items-center">
-                <svg class="bi me-2" width="1em" height="1em"><use xlink:href="#calendar3"/></svg>
-                <small></small>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <div class="col"  id="espasecol">
-        <div class="card card-cover h-100 overflow-hidden   rounded-5 shadow-lg"  >
-          <div class="d-flex flex-column h-100 p-5 pb-3 text-shadow-1" id="stylo" style="background-image:url('{{ asset('assets/img/stylo1.png') }}')">
-            <h2 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold" id="textepeinture">Faites disparaitre efficacement les fines rayures. Une retouche efficace qui fera plaisir. </h2>
-            <ul class="d-flex list-unstyled mt-auto">
-              <li class="me-auto">
-                <img src={{asset('assets/img/stylo11.png')}} alt="Bootstrap" width="32" height="32" class="rounded-circle border border-white">
-              </li>
-              <li class="d-flex align-items-center me-3">
-                <svg class="bi me-2" width="1em" height="1em"><use xlink:href="#geo-fill"/></svg>
-                <small></small>
-              </li>
-              <li class="d-flex align-items-center">
-                <svg class="bi me-2" width="1em" height="1em"><use xlink:href="#calendar3"/></svg>
-                <small></small>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+   #}
 
 {# la barre des brands  #}
-       <div class="brand-section">
-    <h3 class="brand-section-heading">Découvrez nos marques</h3>
-    <p class="brand-section-description">Explorez notre sélection de peintures, d'outillage et de produits de carrosserie de qualité, soigneusement choisis parmi les marques les plus renommées de l'industrie.</p>
-</div>
-
-
-     <div class="containerbarre container_div">
-        <div class="image-bar">
-            <a href={{ path('productsInBrand', {'brand': 'crystal'})}}> <img src={{asset('assets/img/crystal.png')}} alt="crystal"></a>
-            <a href={{ path('productsInBrand', {'brand': 'finixa'})}}><img src={{asset('assets/img/finixa.jpg')}} alt="finixa"></a>
-            <a href={{ path('productsInBrand', {'brand': 'gys'})}}><img src={{asset('assets/img/GYS.png')}} alt="gys"></a>
-            <a href={{ path('productsInBrand', {'brand': 'INFRADIS'})}}><img src={{asset('assets/img/INFRADIS.jpg')}} alt="infradis"></a>
-            <a href={{ path('productsInBrand', {'brand': 'iwata'})}}><img src={{asset('assets/img/iwata.png')}} alt="iwata"></a>
-            <a href={{ path('productsInBrand', {'brand': 'app'})}}><img src="{{ asset('assets/img/app.png') }}" alt="app"></a>
-            <a href={{ path('productsInBrand', {'brand': 'mipa'})}}><img src={{asset('assets/img/mipa.png')}} alt="mipa"></a>
-            <a href={{ path('productsInBrand', {'brand': 'mirka'})}}><img src={{asset('assets/img/mirka.png')}} alt="mirka"></a>
-            <a href={{ path('productsInBrand', {'brand': 'provist'})}}><img src={{asset('assets/img/provist.png')}} alt="provist"></a>
-            <a href={{ path('productsInBrand', {'brand': 'tlescado'})}}><img src={{asset('assets/img/tlescado.jpg')}} alt="tlescado"></a>
-            <a href={{ path('productsInBrand', {'brand': 'torton'})}}><img src={{asset('assets/img/torton.png')}} alt="torton"></a>
-        </div>
-    </div>
+<div class="brandscolors">
+      <div class="brand-section" id="brandscontent">
+          <h3 class="brand-section-heading">Découvrez nos marques</h3>
+          <p class="brand-section-description">Explorez notre sélection de peintures, d'outillage et de produits de carrosserie de qualité, soigneusement choisis parmi les marques les plus renommées de l'industrie.</p>
+      </div>
+      <div class="containerbarre container_div" >
+          <div class="image-bar" id="brandscontent">
+              <a href={{ path('productsInBrand', {'brand': 'crystal'})}}> <img src={{asset('assets/img/crystal.png')}} alt="crystal"></a>
+              <a href={{ path('productsInBrand', {'brand': 'finixa'})}}><img src={{asset('assets/img/finixa.jpg')}} alt="finixa"></a>
+              <a href={{ path('productsInBrand', {'brand': 'gys'})}}><img src={{asset('assets/img/GYS.png')}} alt="gys"></a>
+              <a href={{ path('productsInBrand', {'brand': 'INFRADIS'})}}><img src={{asset('assets/img/INFRADIS.jpg')}} alt="infradis"></a>
+              <a href={{ path('productsInBrand', {'brand': 'iwata'})}}><img src={{asset('assets/img/iwata.png')}} alt="iwata"></a>
+              <a href={{ path('productsInBrand', {'brand': 'app'})}}><img src="{{ asset('assets/img/app.png') }}" alt="app"></a>
+              <a href={{ path('productsInBrand', {'brand': 'mipa'})}}><img src={{asset('assets/img/mipa.png')}} alt="mipa"></a>
+              <a href={{ path('productsInBrand', {'brand': 'mirka'})}}><img src={{asset('assets/img/mirka.png')}} alt="mirka"></a>
+              <a href={{ path('productsInBrand', {'brand': 'provist'})}}><img src={{asset('assets/img/provist.png')}} alt="provist"></a>
+              <a href={{ path('productsInBrand', {'brand': 'tlescado'})}}><img src={{asset('assets/img/tlescado.jpg')}} alt="tlescado"></a>
+              <a href={{ path('productsInBrand', {'brand': 'torton'})}}><img src={{asset('assets/img/torton.png')}} alt="torton"></a>
+          </div>
+      </div>
+  </div>
 
     {# <h3>Nos meilleures ventes</h3>
     <p>Découvrez les articles les plus vendus.</p>
@@ -110,13 +57,12 @@
     </div> #}
 <div class="swipersize">
     <section id="tranding">
-      <div class="container">
-<div class="blog-section">
-    <h3 class="text-center blog-subheading">Découvrez nos articles les plus populaires</h3>
-    <p class="text-center blog-description">Restez à jour avec nos dernières publications et découvrez des informations essentielles sur la peinture, la carrosserie et l'outillage. Notre blog est votre source de conseils d'experts, d'astuces pratiques et d'inspiration pour vos projets.</p>
-</div>
-
+    <div class="container">
+      <div class="blog-section">
+      <h3 class="text-center blog-subheading">Découvrez nos articles les plus populaires</h3>
+      <p class="text-center blog-description">Restez à jour avec nos dernières publications et découvrez des informations essentielles sur la peinture, la carrosserie et l'outillage. Notre blog est votre source de conseils d'experts, d'astuces pratiques et d'inspiration pour vos projets.</p>
       </div>
+    </div>
       <div class="container">
         <div class="swiper tranding-slider">
           <div class="swiper-wrapper">
@@ -165,10 +111,7 @@
       </div>
     </section>
 </div>
-    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-    <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
-    <script src="script.js"></script>
+  
 
 
 
@@ -197,6 +140,7 @@
 {% endblock %}
 
 {% block script %}
+
 <script>
 var TrandingSlider = new Swiper('.tranding-slider', {
   effect: 'coverflow',
@@ -223,7 +167,6 @@ var TrandingSlider = new Swiper('.tranding-slider', {
 
 </script>
 {% endblock %}
-
 
 
 
