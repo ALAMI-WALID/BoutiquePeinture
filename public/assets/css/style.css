@@ -362,3 +362,14 @@ padding-left: 5em;
 .tranding-slide-content-bottom a:focus {
   outline: none;
 }
+
+
+
+
+/* style.css | http://127.0.0.1:8000/assets/css/style.css */
+
+#tranding .tranding-slider {
+  /* height: 52rem; */
+  height: 48rem;
+}
+

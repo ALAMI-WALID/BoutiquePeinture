@@ -9,7 +9,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" />
 
     {% block javascript %}{% endblock %}
 
@@ -138,11 +137,20 @@
 
             {% if block('search') is defined %}
             <div class="ma-form">
-           {{ form_start(form) }}
-            {{ form_widget(form.string) }}
-            <img src={{asset('assets/img/chercher.png')}} class="cart-icon" id="chercher" alt="Mon panier">
-            {{ form_end(form) }}
-             </div>
+              {{ form_start(form) }}
+              {{ form_widget(form.string) }}
+              {{ form_errors(form.string) }} {# Display validation errors for the 'string' field #}
+
+              <div class="input-group">
+                  <div class="input-group-append">
+                      <button type="submit" class="btn btn-outline-secondary" id="ma-search">
+                          <img src="{{ asset('assets/img/chercher.png') }}" class="cart-icon" id="chercher" alt="Search Button">
+                      </button>
+                  </div>
+              </div>
+
+              {{ form_end(form) }}
+                </div>
             {% endif %}
             
 
