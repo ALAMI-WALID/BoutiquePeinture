@@ -21,7 +21,7 @@ class RegisterType extends AbstractType
     {
         $builder
             ->add('firstname', TextType::class, [
-                'label' => 'Votre Prénom',
+                'label' => 'Votre Prénom*',
                 'constraints' => [
                     new NotBlank(),
                     new Length(['min' => 3,
@@ -31,7 +31,7 @@ class RegisterType extends AbstractType
                 ]
             ])
             ->add('lastname', TextType::class, [
-                'label' => 'Votre Nom',
+                'label' => 'Votre Nom*',
                 'constraints' => [
                     new NotBlank(),
                     new Length(['min' => 3,
@@ -41,7 +41,7 @@ class RegisterType extends AbstractType
                 ]
             ])
             ->add('email',EmailType::class, [
-                'label' => 'Votre Email',
+                'label' => 'Votre Email*',
                 'constraints' => [
                     new NotBlank(),
                     new Length(['min' => 3,
@@ -52,16 +52,16 @@ class RegisterType extends AbstractType
             ])
             ->add('password', RepeatedType::class, [
                 'type' => PasswordType::class,
-                'label' => 'Votre mot de passe',
+                'label' => 'Votre mot de passe*',
                 'required' => true,
                 'first_options' => [
-                    'label' => 'Entrz votre mot de passe',
+                    'label' => 'Entrez votre mot de passe*',
                     'attr' => [
                         'placeholder'=> 'Merci de saisir votre mot de passe'
                     ]
             ],
                 'second_options' =>[
-                    'label' => 'Confirmez votre mot de passe',
+                    'label' => 'Confirmez votre mot de passe*',
                     'attr' => [
                         'placeholder'=> 'Merci de confirmer votre mot de passe '
                     ]
@@ -69,7 +69,7 @@ class RegisterType extends AbstractType
                 'invalid_message' => 'le mot de passe et la confirmation doivent être identique.',
                 'constraints' => [
                     new Regex([
-                        'pattern' => '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@])[A-Za-z\d@]{8,}$/',
+                        'pattern' => '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@~#_^*%\/+.:;\"-])[A-Za-z\d@~#_^*%\/+.:;\"-]{8,}$/',
                         'message' => 'Le mot de passe doit contenir au moins une lettre minuscule, une lettre majuscule, un chiffre et un caractère spécial (@).'
                     ])
                 ],
