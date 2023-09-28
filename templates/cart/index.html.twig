@@ -5,18 +5,17 @@
 {% block content %}
     <h1>Mon panier</h1>
     Retrouvez l'ensemble des produits que vous avez ajouté à votre panier.
-    <hr>
     {% if cart| length > 0 %}
 
     <table class="table mt-3">
     {% set total = null %}
     <thead>
     <tr>
-    <th scope="col">Produit</th>
+    <th scope="col">Référence</th>
     <th scope="col"></th>
     <th scope="col">Qantité</th>
-    <th scope="col">Prix</th>
-    <th scope="col">Total</th>
+    <th scope="col">Prix unitaire</th>
+    <th scope="col">Total TTC</th>
     <th scope="col"></th>
     </tr>
     </thead>
@@ -31,13 +30,14 @@
     </td>
             
             <th >
+            <a href={{path('decrease_my_product',{ id: product.product.id})}}>
+                <img src={{asset('assets/img/moins.png')}} alt="moins" height="10px">
+            </a>
+            {{ product.quantity}}
             <a href={{path('add_to_cart',{ id: product.product.id})}}>
                 <img src={{asset('assets/img/plus.png')}} alt="Plus" height="10px" >
             </a>
-            {{ product.quantity}}
-             <a href={{path('decrease_my_product',{ id: product.product.id})}}>
-                <img src={{asset('assets/img/moins.png')}} alt="moins" height="10px">
-            </a>
+             
             </th>
            
             <th >{{ (product.product.price / 100)|number_format(2, ',','.')}} €</th> 
@@ -55,11 +55,12 @@
     </table>
 
     <div class="text-right mb-5">
-    <b>Nombre de produit :</b> {{cart |length}} <br/>
+    <b>Nombre de réfernce :</b> {{cart |length}} <br/>
     <b>Total de mon panier: </b>{{ total |number_format(2, ',','.')}}€ <br/>
     <a href={{ path('order') }} class="btn btn-success btn-block mt-3">Valider mon panier</a>
     </div>
     {% else %}
+    <hr>
     <p><b> Votre panier est vide </b></p>
 {% endif %}
 {% endblock %}

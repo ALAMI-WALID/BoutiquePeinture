@@ -111,9 +111,16 @@ class OrderController extends AbstractController
                 foreach($cart->getFull() as $product){
 
                     if(!$product['product']->getLivrableHorsIleDeFrance()){
+                        $categories = $this->megaMenu->mega();
+                        $Scategories = $this->megaMenu->megaS();
+                        $SScategories = $this->megaMenu->megaSS();
 
 
-                        return $this->render('order/nonlivraison.html.twig'); 
+                        return $this->render('order/nonlivraison.html.twig',[
+                            'categories' =>$categories,
+                            'Scategories' =>$Scategories,
+                            'SScategories'=>$SScategories
+                        ]); 
                     }
                 }
             }

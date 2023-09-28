@@ -505,3 +505,9 @@ font-weight: bold;
   #brandscontent{
     padding-left: 9em;
   }
+
+.custom-google-button{
+    background-color: #f4f4f6; /* Couleur de fond du bouton */
+    color: #000000; /* Couleur du texte */
+    border-style: none;
+}

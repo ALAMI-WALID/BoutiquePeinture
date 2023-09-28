@@ -44,6 +44,10 @@
         <hr>
         <p class="text-center"><a href={{ path('reset_password') }}>Mot de passe oublié</a> ?</p>
         <p class="text-center">Ou souhaitez vous<a href={{path('register')}}> créer un compte</a>?</p>
-    </form>
+        <a href="{{ path('connect_google') }}" class="btn btn-lg btn-danger btn-block mt-3 custom-google-button">
+            <img src={{asset('assets/img/google.png')}} alt="Google Icon" class="cart-icon">
+            Continuer avec Google
+        </a>    
+        </form>
 </div>
 {% endblock %}
