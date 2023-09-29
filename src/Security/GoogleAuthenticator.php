@@ -70,7 +70,7 @@ class GoogleAuthenticator extends OAuth2Authenticator
                     $this->entityManager->flush();
 
                     $mail = new Mail();
-                    $mail->welcome($existingUserr->getEmail(), $existingUser->getFirstname(), 'Bienvenue sur Peinture Auto Expert');
+                    $mail->welcome($existingUser->getEmail(), $existingUser->getFirstname(), 'Bienvenue sur Peinture Auto Expert');
                 }
                 
 
