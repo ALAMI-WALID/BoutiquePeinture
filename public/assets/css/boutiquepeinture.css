@@ -487,6 +487,8 @@ font-weight: bold;
     font-style: bold;
     font-size: bols;
     font-weight: bold;
+    background-color: #ff6366;
+
   }
   
   #bar-width img{
@@ -511,3 +513,4 @@ font-weight: bold;
     color: #000000; /* Couleur du texte */
     border-style: none;
 }
+
