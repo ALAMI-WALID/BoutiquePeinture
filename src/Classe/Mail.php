@@ -47,7 +47,7 @@ public function send($to_email, $to_name, $subject, $content)
     
     }
 
-    public function welcom($to_email, $to_name, $subject, $content)
+    public function welcome($to_email, $to_name, $subject)
          {
             
             $mj = new Client($this->api_key ,$this->api_key_secret,true,['version' => 'v3.1']);
@@ -56,7 +56,7 @@ public function send($to_email, $to_name, $subject, $content)
                     [
                         'From' => [
                             'Email' => "info@peintureautoexpert.com",
-                            'Name' => "peinture Auto Expert"
+                            'Name' => "PEINTURE AUTO EXPERT"
                         ],
                         'To' => [
                             [
