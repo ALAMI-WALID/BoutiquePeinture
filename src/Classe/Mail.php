@@ -23,7 +23,7 @@ public function send($to_email, $to_name, $subject, $content)
                     [
                         'From' => [
                             'Email' => "info@peintureautoexpert.com",
-                            'Name' => "peinture Auto Expert"
+                            'Name' => "PEINTURE AUTO EXPERT"
                         ],
                         'To' => [
                             [
@@ -89,7 +89,7 @@ public function send($to_email, $to_name, $subject, $content)
                     [
                         'From' => [
                             'Email' => "info@peintureautoexpert.com",
-                            'Name' => "peinture Auto Expert"
+                            'Name' => "PEINTURE AUTO EXPERT"
                         ],
                         'To' => [
                             [
@@ -101,8 +101,8 @@ public function send($to_email, $to_name, $subject, $content)
                         'TemplateLanguage' => true,
                         'Subject' => $subject,
                         'Variables' => [
-                            'content' => $content,
                             'name'=>$name,
+                            'content' => $content,
                         ]
     
                     ]
@@ -114,6 +114,40 @@ public function send($to_email, $to_name, $subject, $content)
     
     }
 
+    public function confirmationOrder($to_email, $to_name, $subject, $content)
+    {
+       
+       $mj = new Client($this->api_key ,$this->api_key_secret,true,['version' => 'v3.1']);
+       $body = [
+           'Messages' => [
+               [
+                   'From' => [
+                       'Email' => "info@peintureautoexpert.com",
+                       'Name' => "PEINTURE AUTO EXPERT"
+                   ],
+                   'To' => [
+                       [
+                           'Email' => $to_email,
+                           'Name' => $to_name,
+                       ]
+                   ],
+                   'TemplateID' =>5139499,
+                   'TemplateLanguage' => true,
+                   'Subject' => $subject,
+                   'Variables' => [
+                       'name'=>$to_name,
+                       'content' => $content,
+                   ]
+
+               ]
+           ]
+       ];
+       $response = $mj->post(Resources::$Email, ['body' => $body]);
+       $response->success() ;
+     
+
+}
+    
 
     
 

@@ -34,7 +34,7 @@ class ResetPasswordType extends AbstractType
                     ],
                 'constraints' => [
                     new Regex([
-                        'pattern' => '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@])[A-Za-z\d@]{8,}$/',
+                        'pattern' => '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@~#_^*%\/+.:;\"-])[A-Za-z\d@~#_^*%\/+.:;\"-]{8,}$/',
                         'message' => 'Le mot de passe doit contenir au moins une lettre minuscule, une lettre majuscule, un chiffre et un caractère spécial (@).'
                     ])
                 ],

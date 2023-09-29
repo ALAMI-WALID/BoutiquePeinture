@@ -10,6 +10,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Entity\OrderDetails;
 
 class OrderValidateController extends AbstractController
 {
@@ -29,12 +30,15 @@ class OrderValidateController extends AbstractController
         $order = $this->entityManager->getRepository(Order::class)->findOneByStripeSessionId($stripeSessionId);
 
         if (!$order || $order->getUser() != $this->getUser()) {
-            return $this->redirectToRoute('home');
+            return $this->redirectToRoute('app_home');
         }
 
         if ($order->getState() == 0) {
             // Vider la session "cart"
             $cart->remove();
+            $order_detail = $this->entityManager->getRepository(OrderDetails::class)->findOneByMyorder($order->getId());
+            
+
 
             // Modifier le statut isPaid de notre commande en mettant 1
             $order->setState(1);
@@ -42,8 +46,9 @@ class OrderValidateController extends AbstractController
 
             // Envoyer un email à notre client pour lui confirmer sa commande
             $mail = new Mail();
-            $content = "Bonjour ".$order->getUser()->getFirstname()."<br/>Merci pour votre commande.<br><br/>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam expedita fugiat ipsa magnam mollitia optio voluptas! Alias, aliquid dicta ducimus exercitationem facilis, incidunt magni, minus natus nihil odio quos sunt?";
-            $mail->send($order->getUser()->getEmail(), $order->getUser()->getFirstname(), 'Votre commande Peinture Auto Expert est bien validée.', $content);
+            $content = "<br/>Merci pour votre commande N°".$order->getReference()."<br/>";
+
+            $mail->confirmationOrder($order->getUser()->getEmail(), $order->getUser()->getFirstname(), 'Votre commande Peinture Auto Expert est bien validée.', $content);
 
         }
         $categories = $this->megaMenu->mega();
