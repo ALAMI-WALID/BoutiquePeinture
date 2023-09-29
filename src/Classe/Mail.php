@@ -9,8 +9,8 @@ class Mail
 {   
     
                 
-                private $api_key = '1c437027b04731f5bd48d14c8d19c990';
-                private $api_key_secret = '3579eb81c2eb5d8ba92ab7b15c7944b9';
+                private $api_key = '879d04506a21c1f48cee943197eecbf4';
+                private $api_key_secret = '588307969731d5d7b6ac510f60bddf7f';
 
                 
 
@@ -22,8 +22,8 @@ public function send($to_email, $to_name, $subject, $content)
                 'Messages' => [
                     [
                         'From' => [
-                            'Email' => "developpeur@peintureautoexpert.com",
-                            'Name' => "Mailjet"
+                            'Email' => "info@peintureautoexpert.com",
+                            'Name' => "peinture Auto Expert"
                         ],
                         'To' => [
                             [
@@ -31,11 +31,11 @@ public function send($to_email, $to_name, $subject, $content)
                                 'Name' => $to_name,
                             ]
                         ],
-                        'TemplateID' => 4839195,
+                        'TemplateID' => 5129983,
                         'TemplateLanguage' => true,
                         'Subject' => $subject,
                         'Variables' => [
-                            'content' => $content,
+                            'content' => $to_name,
                         ]
     
                     ]
@@ -46,6 +46,40 @@ public function send($to_email, $to_name, $subject, $content)
           
     
     }
+
+    public function welcom($to_email, $to_name, $subject, $content)
+         {
+            
+            $mj = new Client($this->api_key ,$this->api_key_secret,true,['version' => 'v3.1']);
+            $body = [
+                'Messages' => [
+                    [
+                        'From' => [
+                            'Email' => "info@peintureautoexpert.com",
+                            'Name' => "peinture Auto Expert"
+                        ],
+                        'To' => [
+                            [
+                                'Email' => $to_email,
+                                'Name' => $to_name,
+                            ]
+                        ],
+                        'TemplateID' => 5129983,
+                        'TemplateLanguage' => true,
+                        'Subject' => $subject,
+                        'Variables' => [
+                            'content' => $to_name,
+                        ]
+    
+                    ]
+                ]
+            ];
+            $response = $mj->post(Resources::$Email, ['body' => $body]);
+            $response->success() ;
+          
+    
+    }
+
 
     
 
