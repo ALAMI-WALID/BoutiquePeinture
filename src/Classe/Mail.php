@@ -147,6 +147,76 @@ public function send($to_email, $to_name, $subject, $content)
      
 
 }
+
+
+public function preparation($to_email, $to_name, $subject, $content)
+{
+   
+   $mj = new Client($this->api_key ,$this->api_key_secret,true,['version' => 'v3.1']);
+   $body = [
+       'Messages' => [
+           [
+               'From' => [
+                   'Email' => "info@peintureautoexpert.com",
+                   'Name' => "PEINTURE AUTO EXPERT"
+               ],
+               'To' => [
+                   [
+                       'Email' => $to_email,
+                       'Name' => $to_name,
+                   ]
+               ],
+               'TemplateID' =>5147523,
+               'TemplateLanguage' => true,
+               'Subject' => $subject,
+               'Variables' => [
+                   'name'=>$to_name,
+                   'content' => $content,
+               ]
+
+           ]
+       ]
+   ];
+   $response = $mj->post(Resources::$Email, ['body' => $body]);
+   $response->success() ;
+ 
+
+}
+
+
+public function shipping($to_email, $to_name, $subject, $content)
+{
+   
+   $mj = new Client($this->api_key ,$this->api_key_secret,true,['version' => 'v3.1']);
+   $body = [
+       'Messages' => [
+           [
+               'From' => [
+                   'Email' => "info@peintureautoexpert.com",
+                   'Name' => "PEINTURE AUTO EXPERT"
+               ],
+               'To' => [
+                   [
+                       'Email' => $to_email,
+                       'Name' => $to_name,
+                   ]
+               ],
+               'TemplateID' =>5139458,
+               'TemplateLanguage' => true,
+               'Subject' => $subject,
+               'Variables' => [
+                   'name'=>$to_name,
+                   'content' => $content,
+               ]
+
+           ]
+       ]
+   ];
+   $response = $mj->post(Resources::$Email, ['body' => $body]);
+   $response->success() ;
+ 
+
+}
     
 
     
