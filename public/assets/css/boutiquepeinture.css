@@ -514,3 +514,8 @@ font-weight: bold;
     border-style: none;
 }
 
+#colortechnique{
+    background-color: #ffc107;
+    border: none;
+    color: #000000;
+}

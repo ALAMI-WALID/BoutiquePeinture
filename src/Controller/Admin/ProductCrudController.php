@@ -15,6 +15,8 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
+
+
 class ProductCrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string
@@ -37,6 +39,9 @@ class ProductCrudController extends AbstractCrudController
             TextField::new('subtitle'),
             NumberField::new('weight'),
             TextareaField::new('description'),
+            ImageField::new('technique')
+            ->setBasePath('uploads/technique') 
+            ->setUploadDir('public/uploads/technique'),
             BooleanField::new('isBest'),
             MoneyField::new('price')->setCurrency('EUR'),
             AssociationField::new('category'),

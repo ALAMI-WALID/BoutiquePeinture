@@ -20,9 +20,19 @@
                     <hr>
                     <p>
                     {{product.description}}
-                    <a   class="badge badge-warning">Fichier technique</a>
                     </p>
-                    <a href={{ path('add_to_cart', { 'id' : product.id }) }} class="btn btn-primary"> Ajouter au panier</a>
+                    <a href={{ path('add_to_cart', { 'id' : product.id }) }} class="btn btn-primary" > Ajouter au panier</a>
+                    {% if product.technique is not null %}
+                    <a class="btn btn-primary"   href="{{ asset('uploads/technique/' ~ product.technique) }}" target="_blank" id="colortechnique">Voir la notice</a>
+                    {% elseif product.lienExterne is not null %}
+                    <a class="btn btn-primary"   href="{{product.lienExterne}}" target="_blank" id="colortechnique">Voir la notice</a>
+                    {% else %}
+                    <a class="btn btn-primary"   href="#"  id="colortechnique">Pas de notice</a>
+                    {% endif %}
+
+
+
+
              </div>
 
 

@@ -67,8 +67,8 @@ class OrderCrudController extends AbstractCrudController
         
         //email pour la livraison 
         $mail = new Mail();
-        $content = "Bonjour ".$order->getUser()->getFirstname()."<br/>Merci pour votre commande.<br><br/>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam expedita fugiat ipsa magnam mollitia optio voluptas! Alias, aliquid dicta ducimus exercitationem facilis, incidunt magni, minus natus nihil odio quos sunt?";
-        $mail->send($order->getUser()->getEmail(), $order->getUser()->getFirstname(), 'Votre commande auprès de Peinture Auto Expert est en cours de préparation.', $content);
+        $content = "Bonjour ".$order->getUser()->getFirstname()."<br/>Merci pour votre commande.";
+        $mail->preparation($order->getUser()->getEmail(), $order->getUser()->getFirstname(), 'Votre commande auprès de Peinture Auto Expert est en cours de préparation.', $content);
 
         return $this->redirect($url);
     }
@@ -88,8 +88,8 @@ class OrderCrudController extends AbstractCrudController
         
          //email de livraison 
          $mail = new Mail();
-         $content = "Bonjour ".$order->getUser()->getFirstname()."<br/>Merci pour votre commande.<br><br/>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam expedita fugiat ipsa magnam mollitia optio voluptas! Alias, aliquid dicta ducimus exercitationem facilis, incidunt magni, minus natus nihil odio quos sunt?";
-         $mail->send($order->getUser()->getEmail(), $order->getUser()->getFirstname(), 'Votre commande '.$order->getReference().' auprès de Peinture Auto Expert est en cours de livraison.', $content);
+         $content = '<br/>Merci pour votre commande. <br>Votre commande '.$order->getReference().' auprès de Peinture Auto Expert est en cours de livraison.';
+         $mail->shipping($order->getUser()->getEmail(), $order->getUser()->getFirstname(), 'Votre commande '.$order->getReference().' auprès de Peinture Auto Expert est en cours de livraison.', $content);
 
         return $this->redirect($url);
     }
