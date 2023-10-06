@@ -114,6 +114,12 @@ class Product
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $tailleEquipementProtection = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $technique = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $LienExterne = null;
+
     public function __toString()
     {
         return $this->getSubtitle();
@@ -516,6 +522,30 @@ class Product
     public function setTailleEquipementProtection(?string $tailleEquipementProtection): static
     {
         $this->tailleEquipementProtection = $tailleEquipementProtection;
+
+        return $this;
+    }
+
+    public function getTechnique(): ?string
+    {
+        return $this->technique;
+    }
+
+    public function setTechnique(?string $technique): static
+    {
+        $this->technique = $technique;
+
+        return $this;
+    }
+
+    public function getLienExterne(): ?string
+    {
+        return $this->LienExterne;
+    }
+
+    public function setLienExterne(?string $LienExterne): static
+    {
+        $this->LienExterne = $LienExterne;
 
         return $this;
     }
