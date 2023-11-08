@@ -40,7 +40,7 @@ class ProductCrudController extends AbstractCrudController
             NumberField::new('weight'),
             TextareaField::new('description'),
             ImageField::new('technique')
-            ->setBasePath('uploads/technique') 
+            ->setBasePath('uploads/technique/') 
             ->setUploadDir('public/uploads/technique'),
             BooleanField::new('isBest'),
             MoneyField::new('price')->setCurrency('EUR'),

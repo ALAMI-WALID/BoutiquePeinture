@@ -27,7 +27,7 @@ class OrderCancelController extends AbstractController
     {  $order = $this->entityManager->getRepository(Order::class)->findOneByStripeSessionId($stripeSessionId);
 
         if (!$order || $order->getUser() != $this->getUser()) {
-            return $this->redirectToRoute('home');
+            return $this->redirectToRoute('app_home');
         }
 
         $categories = $this->megaMenu->mega();
