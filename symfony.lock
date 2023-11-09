@@ -47,6 +47,9 @@
             "ref": "b131e6cbfe1b898a508987851963fff485986285"
         }
     },
+    "knplabs/knp-menu-bundle": {
+        "version": "v3.2.0"
+    },
     "knplabs/knp-paginator-bundle": {
         "version": "v5.9.0"
     },
@@ -61,6 +64,9 @@
         "files": [
             "./config/packages/knpu_oauth2_client.yaml"
         ]
+    },
+    "mhujer/breadcrumbs-bundle": {
+        "version": "1.5.8"
     },
     "phpunit/phpunit": {
         "version": "9.6",

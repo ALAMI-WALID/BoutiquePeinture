@@ -14,16 +14,21 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use WhiteOctober\BreadcrumbsBundle\Model\Breadcrumbs;
 
 class ProductController extends AbstractController
 {   
     private $entityManager;
 
     private $megaMenu;
+
+    private $breadcrumbs;
+
     public function __construct(EntityManagerInterface $entityManager, MegaMenu $megaMenu)
     {
         $this->entityManager = $entityManager;
         $this->megaMenu = $megaMenu;
+
 
     }
 
@@ -63,7 +68,7 @@ class ProductController extends AbstractController
     }
 
     #[Route('/nos_produits/{id}', name: 'productsInCategory')]
-    public function ShowCategory(Request $request,$id): Response
+    public function ShowCategory(Request $request,$id,Breadcrumbs $breadcrumbs): Response
     {   
         $showBusFilter = false;
         $showContenanceFilter = false;
@@ -224,6 +229,24 @@ class ProductController extends AbstractController
             //search with Sous S category
             $products = $this->entityManager->getRepository(Product::class)->findWithAllSSc($search, $id);
         }
+
+
+        //fil d'ariane 
+        $scategory= $SScategory[0]->getIdSousCategory();
+        $Scategory = $this->entityManager->getRepository(SousCategory::class)->findByid($scategory);
+        $titre_category =  $Scategory[0]->getCategoryID()->getName();
+
+
+
+        $breadcrumbs->addItem("Accueil", $this->generateUrl("app_home"));
+        $breadcrumbs->addItem($titre_category, $this->generateUrl("productsInSCategory",['id' => $scategory->getId()]));
+        $breadcrumbs->addItem( $Scategory[0]->getName(), $this->generateUrl("productsInSCategory",['id' => $scategory->getId()]));
+        $breadcrumbs->addItem( $SScategory[0]->getName(), $this->generateUrl("productsInCategory",['id' => $id]));
+
+
+
+
+
         
         $categories = $this->megaMenu->mega();
         $Scategories = $this->megaMenu->megaS();
@@ -234,20 +257,20 @@ class ProductController extends AbstractController
         
             'products' => $products,
             'form' => $form->createView(),
+            "breadcrumbs" => $breadcrumbs,
+            'titre_category'=>$titre_category,
             'min'=>$min,
             'max'=>$max,
             'categories' =>$categories,
             'Scategories' =>$Scategories,
             'SScategories'=>$SScategories
 
-
-
         ]);
     }
 
 
     #[Route('/nos_categorais/{id}', name: 'productsInSCategory')]
-    public function ShowSCategory(Request $request,$id): Response
+    public function ShowSCategory(Request $request,$id,Breadcrumbs $breadcrumbs): Response
     {   
         $showBusFilter = false;
         $showContenanceFilter = false;
@@ -274,13 +297,12 @@ class ProductController extends AbstractController
         $search = new Search();
         $search->page = $request->get('page', 1);
 
-        //recherche par le nom pour affiche le filtre dans le Scategory Vernis
+        //recherche par le nom pour affiche le filtre dans le Scategory Vernis.
         $Scategory = $this->entityManager->getRepository(SousCategory::class)->findByid($id);
-       
 
         foreach($Scategory as $scategory){
-           
-            //Condition de filtre selon les Sous category
+        
+        //Condition de filtre selon les Sous category.
         if(in_array($scategory->getId(), [1])){
             $showFiltrepeinture = true;
             $showContenanceFilter=true;
@@ -380,14 +402,27 @@ class ProductController extends AbstractController
         $Scategories = $this->megaMenu->megaS();
         $SScategories = $this->megaMenu->megaSS();
 
+        
+        //fil d'ariane
+        $titre_category =  $Scategory[0]->getCategoryID()->getName();
+        $breadcrumbs->addItem("Accueil", $this->generateUrl("app_home"));
+        $breadcrumbs->addItem(  $titre_category, $this->generateUrl("productsInSCategory",['id' => $id]));
+        $breadcrumbs->addItem( $Scategory[0]->getName(), $this->generateUrl("productsInSCategory",['id' => $id]));
+
+
+
+
+
         return $this->render('product/index.html.twig', [
         
             'products' => $products,
             'form' => $form->createView(),
             'min'=>$min,
             'max'=>$max,
+            'titre_category'=> $titre_category,
             'categories' =>$categories,
             'Scategories' =>$Scategories,
+            "breadcrumbs" => $breadcrumbs,
             'SScategories'=>$SScategories
 
 
@@ -428,7 +463,7 @@ class ProductController extends AbstractController
     }
 
     #[Route('/nos_marques/{brand}', name: 'productsInBrand')]
-    public function ShowBrands(Request $request,$brand): Response
+    public function ShowBrands(Request $request,$brand,Breadcrumbs $breadcrumbs): Response
     {   
 
         $search = new Search();
@@ -442,7 +477,12 @@ class ProductController extends AbstractController
         } else {
             $products = $this->entityManager->getRepository(Product::class)->findWithBrand($search, $brand);
         }
+
+        //fil d'ariane 
+        $breadcrumbs->addItem("Accueil", $this->generateUrl("app_home"));
+        $breadcrumbs->addItem( $brand, $this->generateUrl("productsInBrand",['brand' => $brand]));
         
+
         $categories = $this->megaMenu->mega();
         $Scategories = $this->megaMenu->megaS();
         $SScategories = $this->megaMenu->megaSS();
@@ -453,6 +493,8 @@ class ProductController extends AbstractController
             'form' => $form->createView(),
             'min'=>$min,
             'max'=>$max,
+            "breadcrumbs" => $breadcrumbs,
+            'titre_category'=>$brand,
             'categories' =>$categories,
             'Scategories' =>$Scategories,
             'SScategories'=>$SScategories
