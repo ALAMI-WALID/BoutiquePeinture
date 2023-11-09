@@ -11,7 +11,11 @@
         </div>
         <div class="col-md-9">
 
-    <h1>Nos produits</h1>
+    {# Affichage de fil d'ariane  #}
+    <h1>{{titre_category}}</h1>
+        {{ wo_render_breadcrumbs({ 'template': 'breadcrumbs/bootstrap_4.html.twig' }) }}
+
+    
     <div class="d-flex justify-content-end mb-2">
             {{ knp_pagination_sortable(products, 'Prix', 'p.price', {'class': 'btn btn-primary'}) }}
             <div style="margin-right: 10px"></div> <!-- Espacement entre les boutons -->
