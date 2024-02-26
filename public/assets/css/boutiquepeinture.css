@@ -519,3 +519,23 @@ font-weight: bold;
     border: none;
     color: #000000;
 }
+
+
+
+/* style de image page show  */
+
+
+/* CSS */
+/* Cibler les flèches précédentes et suivantes */
+.slick-prev,
+.slick-next {
+    color: #867d7d; /* Couleur de la flèche (blanc dans cet exemple) */
+    background-color: #6c6a6a; /* Couleur de fond de la flèche (noir dans cet exemple) */
+}
+
+/* Lorsque survolé */
+.slick-prev:hover,
+.slick-next:hover {
+    color: #000000; /* Couleur de la flèche lorsqu'elle est survolée (noir dans cet exemple) */
+    background-color: #2f2d2d; /* Couleur de fond de la flèche lorsqu'elle est survolée (blanc dans cet exemple) */
+}
