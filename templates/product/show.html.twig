@@ -10,7 +10,12 @@
 
     <div class="row product-container">
             <div class="col-md-5">
-                <img src="/uploads/{{ product.illustration }}" alt="{{product.name}}" class="img-fluid">
+            <!-- Product Image --> 
+                <div class="photo-gallery">
+                {% for photo in photos %}
+                    <img src="/uploads/{{ photo.illustration }}" alt="{{product.name}}" class="img-fluid">
+                {% endfor %}
+                </div>
             </div>
 
             <div class="col-md-7">
@@ -49,10 +54,23 @@
             </div>
         {% endfor %}
     </div><!-- /.row -->
+<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+<script src="https://code.jquery.com/jquery-migrate-3.4.1.js"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 
 
 
+{% endblock %}
 
 
-
+{% block script %}
+<script>
+$('.photo-gallery').slick({
+  dots: true,
+  infinite: true,
+  speed: 500,
+  fade: true,
+  cssEase: 'linear'
+});
+</script>
 {% endblock %}

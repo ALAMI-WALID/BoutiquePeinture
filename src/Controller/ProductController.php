@@ -436,7 +436,10 @@ class ProductController extends AbstractController
     {   
 
         $product = $this->entityManager->getRepository(Product::class)->findOneBySlug($slug);
+        $photo= $product->getImages();
         $products = $this->entityManager->getRepository(Product::class)->findByIsBest(1);
+
+        
 
 
 
@@ -454,6 +457,7 @@ class ProductController extends AbstractController
         return $this->render('product/show.html.twig', [
         
             'product' => $product,
+            'photos'=>$photo,
             'products' => $products,
             'categories' =>$categories,
             'Scategories' =>$Scategories,

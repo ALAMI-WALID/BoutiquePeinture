@@ -22,6 +22,12 @@
     <script src={{ asset('assets/js/bootstrap.bundle.js') }}></script>
 
 
+    <!-- Add the slick-theme.css if you want default styling -->
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <!-- Add the slick-theme.css if you want default styling -->
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+
+
     <link href={{asset('assets/css/bootstrap.min.css')}} rel="stylesheet">
     <link href={{asset('assets/css/boutiquepeinture.css')}} rel="stylesheet">
     <link rel="icon" type="image/png" href="{{ asset('assets/img/logoblack.png') }}">
@@ -342,7 +348,7 @@ if (slider) {
 }
 </script>
 
-</body>
 {% block script %}
 {% endblock %}
+</body>
 </html>
