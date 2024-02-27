@@ -12,12 +12,22 @@
             <div class="col-md-5">
             <!-- Product Image --> 
                 <div class="photo-gallery">
+                {% if photos %}
+                {% set has_illustration = false %}
                 {% for photo in photos %}
-                    <img src="/uploads/{{ photo.illustration }}" alt="{{product.name}}" class="img-fluid">
+                    {% if not has_illustration and photo.illustration %}
+                        {# {% set has_illustration = true %} #}
+                        <img src="/uploads/{{ photo.illustration }}" alt="{{ product.name }}" class="img-fluid">
+                    {% endif %}
                 {% endfor %}
+                {% if not has_illustration %}
+                    <img src="/uploads/{{ product.illustration }}" alt="{{ product.name }}" class="img-fluid">
+                {% endif %}
+            {% else %}
+                <img src="/uploads/{{ product.illustration }}" alt="{{ product.name }}" class="img-fluid">
+            {% endif %}
                 </div>
             </div>
-
             <div class="col-md-7">
                     <h3>{{product.name}}</h3>
                     <p> {{product.subtitle}} | {{product.articleCode}}</p>
