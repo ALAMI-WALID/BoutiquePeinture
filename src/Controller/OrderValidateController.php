@@ -33,13 +33,21 @@ class OrderValidateController extends AbstractController
             return $this->redirectToRoute('app_home');
         }
 
+        
         if ($order->getState() == 0) {
+
+            $order_detail = $this->entityManager->getRepository(OrderDetails::class)->findOneByMyorder($order->getId());
+
+            //gestion de stock 
+            foreach($cart->getFull() as $product) {    
+                $product['product']->setStock($product['product']->getStock()-$order_detail->getQuantity());
+                $this->entityManager->persist($product['product']);
+            }
+
             // Vider la session "cart"
             $cart->remove();
-            $order_detail = $this->entityManager->getRepository(OrderDetails::class)->findOneByMyorder($order->getId());
-            
 
-
+    
             // Modifier le statut isPaid de notre commande en mettant 1
             $order->setState(1);
             $this->entityManager->flush();

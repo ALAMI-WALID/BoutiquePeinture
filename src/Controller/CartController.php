@@ -45,7 +45,21 @@ class CartController extends AbstractController
     #[Route('/cart/add/{id}', name: 'add_to_cart')]
     public function add(Cart $cart, $id)
     { 
+
+        //gestion de stock
+        foreach($cart->getFull() as $product) {  
+            
+            if(($product['quantity'] >= ($product['product']->getStock()))){
+                $cart->decrease($id);
+                return $this->redirectToRoute('cart');
+            }
+           
+        }
+
+            
         $cart->add($id);
+           
+       
 
         return $this->redirectToRoute('cart');
 

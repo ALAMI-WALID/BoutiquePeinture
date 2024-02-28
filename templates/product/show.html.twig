@@ -36,7 +36,17 @@
                     <p>
                     {{product.description}}
                     </p>
-                    <a href={{ path('add_to_cart', { 'id' : product.id }) }} class="btn btn-primary" > Ajouter au panier</a>
+
+                    {% if product.stock > 0 %}
+                        <a href={{ path('add_to_cart', { 'id' : product.id }) }} class="btn btn-primary" > Ajouter au panier</a>
+                    {% else %}
+                    <p class="text-danger">Temporairement en rupture de stock</p>
+                    {% endif %} 
+
+
+
+
+ 
                     {% if product.technique is not null %}
                     <a class="btn btn-primary"   href="{{ asset('uploads/technique/' ~ product.technique) }}" target="_blank" id="colortechnique">Voir la notice</a>
                     {% elseif product.lienExterne is not null %}
