@@ -91,7 +91,7 @@ class ProductRepository extends ServiceEntityRepository
          ->select('p')
          ->andWhere('p.SScategory = :id')
          ->setParameter('id', $id);
-         return $this->paginator->paginate($query,$search->page,9);
+         return $this->paginator->paginate($query,$search->page,18);
      }
      //search form with SScategory
     /**
@@ -251,7 +251,7 @@ class ProductRepository extends ServiceEntityRepository
             $query = $query
                 ->andWhere('p.promo = 1');
         }
-         return $this->paginator->paginate($query,$search->page,9);
+         return $this->paginator->paginate($query,$search->page,18);
      }
 
 
@@ -412,7 +412,7 @@ class ProductRepository extends ServiceEntityRepository
             $query = $query
                 ->andWhere('p.promo = 1');
         }
-         return $this->paginator->paginate($query,$search->page,9);
+         return $this->paginator->paginate($query,$search->page,18);
      }
 
      //search with Sous Category
@@ -425,7 +425,7 @@ class ProductRepository extends ServiceEntityRepository
          ->select('p')
          ->andWhere('p.Scategory = :id')
          ->setParameter('id', $id);
-         return $this->paginator->paginate($query,$search->page,9);
+         return $this->paginator->paginate($query,$search->page,18);
      }
 
     //search with brands
@@ -438,7 +438,7 @@ class ProductRepository extends ServiceEntityRepository
          ->select('p')
          ->andWhere('p.subtitle = :brand')
          ->setParameter('brand', $brand);
-         return $this->paginator->paginate($query,$search->page,9);
+         return $this->paginator->paginate($query,$search->page,18);
      }
 
 

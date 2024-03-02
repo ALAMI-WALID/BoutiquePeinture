@@ -31,6 +31,47 @@
             <div class="col-md-7">
                     <h3>{{product.name}}</h3>
                     <p> {{product.subtitle}} | {{product.articleCode}}</p>
+
+                     {# Afficher le formulaire pour les options du produit
+                        {% if form is defined %}
+                            <h2>Sélectionnez les Grains :</h2>
+                            {{ form_start(form) }}
+                            {% for field in form %}
+                                <div class="form-group">
+                                    {{ form_label(field) }}
+                                    {{ form_widget(field, {'attr': {'class': 'form-control'}}) }}
+                                </div>
+                            {% endfor %}
+                            {{ form_end(form) }}
+                        {% endif %} #}
+                        <hr>
+                        {% if verfie %}
+                        {{form(form)}}
+                        {% endif %}
+
+                        {% if notification %}
+                            <script>
+                                document.addEventListener("DOMContentLoaded", function() {
+                                    var notificationMessage = "{{ notification }}"; // Récupérez le message de notification depuis le contrôleur
+                                    
+                                    // Affichez la notification en JavaScript
+                                    alert(notificationMessage);
+                                });
+                            </script>
+                        {% endif %}
+
+
+
+
+
+
+
+
+
+
+
+
+
                     <span class="product-price-page">{{ (product.price / 100)|number_format(2, ',','.')}}€</span>
                     <hr>
                     <p>

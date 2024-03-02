@@ -51,6 +51,7 @@ class ProductCrudController extends AbstractCrudController
             // AssociationField::new('buses'),
             BooleanField::new('promo'),
             BooleanField::new('livrableHorsIleDeFrance','livrable-Hors-IleDeFrance'),
+            BooleanField::new('hiddenProduit','Hidden_Produit'),
         ];
     }
     

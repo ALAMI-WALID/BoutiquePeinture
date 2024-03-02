@@ -6,6 +6,7 @@ use App\Classe\MegaMenu;
 use App\Classe\Search;
 use App\Entity\Product;
 use App\Entity\SousCategory;
+use App\Form\OptionProductType;
 use App\Form\SearchType;
 use App\Repository\ProductRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -432,33 +433,114 @@ class ProductController extends AbstractController
 
 
     #[Route('/produit/{slug}', name: 'product')]
-    public function show($slug): Response
-    {   
+    public function show($slug, Request $request): Response
+    {   //les variables de form 
+        $GrainMousseForm = false;
+        $GrainMirkaForm =false;
+        $GrainDisqueBleu = false;
+        $GrainDisqueAbrasif = false;
+        $GrainDisqueAlamelle=false;
+        $TailleRuban=false;
+        $notification = null;
 
         $product = $this->entityManager->getRepository(Product::class)->findOneBySlug($slug);
         $photo= $product->getImages();
         $products = $this->entityManager->getRepository(Product::class)->findByIsBest(1);
 
-        
-
-
-
         if(!$product){
             return $this->redirectToRoute('products');
         }
+        
+        //les graines
+        $verfie = false ;
+            if(strpos($product->getArticleCode(), '59482') === 0 ){
+                $verfie = true;
+                $GrainMousseForm = true;
+            }
+            elseif ( strpos($product->getArticleCode(), '22611')=== 0) {
 
+                $verfie =true;
+                $GrainMirkaForm = true;
+            }
+            elseif ( strpos($product->getArticleCode(), '06FLK')=== 0) {
+
+                $verfie =true;
+                $GrainDisqueBleu = true;
+            }
+            elseif ( strpos($product->getArticleCode(), '06MK')=== 0) {
+                $GrainDisqueAbrasif = true;
+                $verfie = true;
+            }
+            elseif ( strpos($product->getArticleCode(), '06XLM')=== 0) {
+                $GrainDisqueAlamelle = true;
+                $verfie = true;
+            }
+            elseif ( strpos($product->getArticleCode(), '408')=== 0) {
+                $TailleRuban = true;
+                $verfie = true;
+            }
+
+            
+
+            //creation de la form 
+            $form = $this->createForm(OptionProductType::class,$product,[
+                'GrainMousseForm' => $GrainMousseForm,
+                'GrainMirkaForm' =>$GrainMirkaForm,
+                'GrainDisqueBleu'=>$GrainDisqueBleu,
+                'GrainDisqueAbrasif'=>$GrainDisqueAbrasif,
+                'GrainDisqueAlamelle'=>$GrainDisqueAlamelle,
+                'TailleRuban'=>$TailleRuban,
+            ]);
+
+
+            $form->handleRequest($request);
+
+            if($form->isSubmitted() && $form->isValid()){
+                //Récuperation des données
+                $data= $form->getData();
+
+
+                //on recupere la sous sous category poyr affiche le traitemet de grain que sur les produit de la famille grain.
+                $SScategory = $data->getSScategory();        
+
+                //recherche par Grain dans la table produit
+               if(in_array($SScategory->getId(), [34,35]) || strpos($product->getArticleCode(), '06FLK')=== 0 || strpos($product->getArticleCode(), '06XLM')=== 0){
+                $product = $this->entityManager->getRepository(Product::class)->findOneByGrain($data->getGrain());
+                }
+
+                //Recherche par Taille de Ruban(sans Double Face transparent)
+                if(strpos($product->getArticleCode(), '408')=== 0){
+                    $product = $this->entityManager->getRepository(Product::class)->findOneByEpaisseurRuban($data->getEpaisseurRuban());
+                    }
+                
+
+    
+
+
+
+                //produit non touver dans la form 
+                if(!$product){
+                    $notification = "Poduit Indisponible";
+                    return $this->redirectToRoute('product', ['slug'=> $data->getSlug()]);
+                }
+                //fin de traitemet 
+
+                
+                //redireger vers la page Show product
+                return $this->redirectToRoute('product', ['slug'=> $product->getSlug()]);
+                
+            }
         $categories = $this->megaMenu->mega();
         $Scategories = $this->megaMenu->megaS();
         $SScategories = $this->megaMenu->megaSS();
-
-   
-
-
         return $this->render('product/show.html.twig', [
         
             'product' => $product,
+            'verfie'=> $verfie,
             'photos'=>$photo,
             'products' => $products,
+            'form'=>$form->createView(),
+            'notification'=> $notification,
             'categories' =>$categories,
             'Scategories' =>$Scategories,
             'SScategories'=>$SScategories

@@ -128,6 +128,9 @@ class Product
     #[ORM\Column]
     private ?int $stock = null;
 
+    #[ORM\Column]
+    private ?bool $hiddenProduit = null;
+
     public function __construct()
     {
         $this->images = new ArrayCollection();
@@ -601,6 +604,18 @@ class Product
     public function setStock(int $stock): static
     {
         $this->stock = $stock;
+
+        return $this;
+    }
+
+    public function isHiddenProduit(): ?bool
+    {
+        return $this->hiddenProduit;
+    }
+
+    public function setHiddenProduit(bool $hiddenProduit): static
+    {
+        $this->hiddenProduit = $hiddenProduit;
 
         return $this;
     }
