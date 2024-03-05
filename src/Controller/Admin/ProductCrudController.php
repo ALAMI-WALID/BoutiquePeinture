@@ -32,6 +32,7 @@ class ProductCrudController extends AbstractCrudController
             TextField::new('name'),
             SlugField::new('slug')->setTargetFieldName('name'),
             NumberField::new('stock'),
+            TextField::new('lienYoutube'),
             ImageField::new('illustration')
             ->setBasePath('uploads/') // qui renvoye les photo pour affichier sur Dashboard
             ->setUploadDir('public/uploads') // pour stocké les photos 

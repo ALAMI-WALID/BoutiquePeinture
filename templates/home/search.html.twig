@@ -5,15 +5,19 @@
 {% block content %}
 
     {% if products is not empty %}
-
+    {% set count = 0 %} {# Initialiser le compteur à zéro #}
         <div class="row">
             <div class="col-md-10">
-                <h1>Votre recherche</h1>
+            
+                <h1>Votre recherche({{ products|length }})</h1>
                 <div class="row product-container">
-                    {% for product in products %}        
+                    {% for product in products %} 
+                    {% if product.hiddenProduit == 1 %}
+                        {% set count = count + 1 %} {# Incrémenter le compteur à chaque produit visible #}
                         <div class="col-md-3">
                             {% include 'product/single_product.html.twig' %}
-                        </div>  
+                        </div> 
+                    {% endif %}
                     {% endfor %}
                 </div>
             </div>

@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Classe\MegaMenu;
 use App\Classe\Search;
+use App\Classe\SearchData;
 use App\Entity\Product;
 use App\Entity\SousCategory;
 use App\Form\OptionProductType;

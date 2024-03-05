@@ -59,23 +59,46 @@ class ProductRepository extends ServiceEntityRepository
 
     }
 
+    // /**
+    //  * @return PaginationInterface
+    //  */
+
+    //  //chercher par code et par nom et la marque
+    // public function findWithSearchGlobal(Search $search) : PaginationInterface
+    // {
+    //     $query = $this->createQueryBuilder('p')
+    //     ->select('p')
+    //     ->andWhere('p.name LIKE :string OR p.subtitle LIKE :string OR p.articleCode LIKE :string')
+    //     ->setParameter('string', '%' . $search->string . '%');
+
+    //     return $this->paginator->paginate(
+    //         $query,
+    //         $search->page,
+    //         60
+    //     );
+
+    // }
+
+
     /**
-     * @return PaginationInterface
+     * Get products thanks to Search Data Value
+     * 
+     * @param PaginationInterface 
      */
 
-     //chercher par code et par nom et la marque
-    public function findWithSearchGlobal(Search $search) : PaginationInterface
+    public function findBySearchData($string):PaginationInterface
     {
-        $query = $this->createQueryBuilder('p')
+        $data = $this->createQueryBuilder('p')
         ->select('p')
-        ->andWhere('p.name LIKE :string OR p.subtitle LIKE :string OR p.articleCode LIKE :string')
-        ->setParameter('string', '%' . $search->string . '%');
+        ->andwhere('p.name LIKE :string OR p.subtitle LIKE :string OR p.articleCode LIKE :string')
+        ->setParameter('string','%' . $string . '%');
+        $data =$data
+        ->getQuery()
+        ->getResult();
 
-        return $this->paginator->paginate(
-            $query,
-            $search->page,
-            18
-        );
+        return $this->paginator->paginate($data,1,18);
+
+
 
     }
 

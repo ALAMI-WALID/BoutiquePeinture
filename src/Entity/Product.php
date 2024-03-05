@@ -131,6 +131,9 @@ class Product
     #[ORM\Column]
     private ?bool $hiddenProduit = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $lienYoutube = null;
+
     public function __construct()
     {
         $this->images = new ArrayCollection();
@@ -616,6 +619,18 @@ class Product
     public function setHiddenProduit(bool $hiddenProduit): static
     {
         $this->hiddenProduit = $hiddenProduit;
+
+        return $this;
+    }
+
+    public function getLienYoutube(): ?string
+    {
+        return $this->lienYoutube;
+    }
+
+    public function setLienYoutube(?string $lienYoutube): static
+    {
+        $this->lienYoutube = $lienYoutube;
 
         return $this;
     }

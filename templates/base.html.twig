@@ -126,6 +126,8 @@
 </head>
 <body>
 <header>
+
+
     <nav class="navbar navbar-expand-md navbar-dark bg-dark" >
 
         <a href={{ path('app_home')}} class="navbar-brand">
@@ -135,30 +137,23 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href={{path('products')}}><span class="sr-only">(current)</span></a>
-                </li>
-            </ul>
+             <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <!-- Barre de recherche -->
+                <form class="form-inline mt-2 mt-md-0" action={{ path('app_search_data') }} method="GET">
+                    <input class="form-control mr-sm-2 " type="text" placeholder="Rechercher" aria-label="Search" name="q">
+                    <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Rechercher</button>
+                </form>
+            </li>
+        </ul>
 
-            {% if block('search') is defined %}
-            <div class="ma-form">
-              {{ form_start(form) }}
-              {{ form_widget(form.string) }}
-              {{ form_errors(form.string) }} {# Display validation errors for the 'string' field #}
 
-              <div class="input-group">
-                  <div class="input-group-append">
-                      <button type="submit" class="btn btn-outline-secondary" id="ma-search">
-                          <img src="{{ asset('assets/img/chercher.png') }}" class="cart-icon" id="chercher" alt="Search Button">
-                      </button>
-                  </div>
-              </div>
+        
 
-              {{ form_end(form) }}
-                </div>
-            {% endif %}
-            
+                  
+
+
+   
 
             <div class="navbar-items">
             {% if app.user %}
@@ -182,9 +177,6 @@
 {# Header end #}
 <main role="main">
 
-    {% block search_content %}
-
-    {% endblock %}
 
     {% if block('carousel') is defined %}
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
@@ -215,6 +207,7 @@
             <span class="sr-only">Next</span>
         </a>
     </div>
+
     {% endif %}
 
     <!-- Marketing messaging and featurettes
@@ -242,8 +235,7 @@
       <div class="col-6 col-md-2 mb-3">
         <h5>Peinture Auto Expert</h5>
         <ul class="nav flex-column">
-          <li class="nav-item mb-2"><a href={{ path('app_home')}} class="nav-link p-0 text-body-secondary" >A propos de nous ! </a></li>
-          <li class="nav-item mb-2"><a href={{ path('register')}} class="nav-link p-0 text-body-secondary">Devenons partenaires</a></li>
+          <li class="nav-item mb-2"><a href={{ path('DP')}} class="nav-link p-0 text-body-secondary">Devenons partenaires</a></li>
           <li class="nav-item mb-2"><a href={{path('MLS')}} class="nav-link p-0 text-body-secondary">Mentions légales </a></li>
           <li class="nav-item mb-2"><a href={{path('CGV')}} class="nav-link p-0 text-body-secondary">CGV</a></li>
           <li class="nav-item mb-2"><a href={{path('RGPD')}} class="nav-link p-0 text-body-secondary">Protection des données</a></li>
@@ -257,7 +249,6 @@
           <li class="nav-item mb-2"><a href={{ path('contact')}} class="nav-link p-0 text-body-secondary" >Service client </a></li>
           <li class="nav-item mb-2"><a href={{ path('labo')}} class="nav-link p-0 text-body-secondary">Installation labo de peinture</a></li>
           <li class="nav-item mb-2"><a href={{ path('CodeP')}} class="nav-link p-0 text-body-secondary">Recherche de code couleur</a></li>
-          <li class="nav-item mb-2"><a href={{ path('pro')}} class="nav-link p-0 text-body-secondary">Compte Professionnel</a></li>
           <li class="nav-item mb-2"><a href={{path('contact')}} class="nav-link p-0 text-body-secondary">Simulateur de quantité</a></li>
         </ul>
       </div>

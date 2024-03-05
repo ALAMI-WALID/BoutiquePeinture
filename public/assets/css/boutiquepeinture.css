@@ -2,7 +2,7 @@ body{
     position: relative;
 }
 header {
-    margin-top: -50px; /* Ajustez la valeur selon vos besoins */
+    margin-top: -20px; /* Ajustez la valeur selon vos besoins */
   }
 .navbar-items, .navbar-items a {
    color: #fff;
@@ -108,7 +108,7 @@ font-weight: bold;
 }
    
 
-.ma-input {
+/* .ma-input {
 
   border-radius: .25rem;
   margin-top: 1.5em;
@@ -119,8 +119,8 @@ font-weight: bold;
 
    
 
- }
- #chercher {
+ } */
+ /* #chercher {
 
     margin-top: -1em;
     margin-left: 0em;
@@ -130,15 +130,15 @@ font-weight: bold;
     margin-bottom: -0.5em;
 
 
- }
- #ma-search{
+ } */
+ /* #ma-search{
     margin-left: 1px;
     padding: 6px;
     margin-top: 2px;
     border: none;
     position: absolute;
     border-radius: 2px; 
-}
+} */
 
 
  .cart-icon {
@@ -508,6 +508,84 @@ font-weight: bold;
     padding-left: 9em;
   }
 
+
+
+  /* les photos marques  */
+
+
+ body{
+
+    background-color: #f2f2f2;
+ }
+
+ * {
+    margin : 0;
+    padding: 0;
+    box-sizing:  border-box;
+ }
+ 
+ @keyframes slide {
+
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-100%);
+    }
+ }
+ .logos {
+
+    overflow: hidden;
+    padding: 60px 0;
+    background-color: white;
+    white-space: nowrap;
+    position: relative;
+    margin-right: -155px;
+    margin-left: -161px;
+
+ }
+
+ .logos:hover .logos-slide {
+    animation-play-state: paused;
+ }
+ 
+ .logos-slide {
+    display: inline-block;
+    animation: 20s slide infinite linear;
+ }
+.logos::before,
+.logos::after{
+    position: absolute;
+    top:0;
+    width: 250px;
+    height: 100%;
+    content: "";
+    z-index: 2;
+
+
+}
+ .logos::before{
+    left: 0;
+
+    background: linear-gradient(to left,rgba(255,255,255,0), white);
+ }
+ .logos::after{
+    right: 0;
+
+    background: linear-gradient(to right,rgba(255,255,255,0), white);
+ }
+
+ .logos-slide img {
+
+    height: 70px;
+    margin: 0 20px;
+
+}
+
+ /* Fin de style */
+
+
 .custom-google-button{
     background-color: #f4f4f6; /* Couleur de fond du bouton */
     color: #000000; /* Couleur du texte */
@@ -539,3 +617,42 @@ font-weight: bold;
     color: #000000; /* Couleur de la flèche lorsqu'elle est survolée (noir dans cet exemple) */
     background-color: #2f2d2d; /* Couleur de fond de la flèche lorsqu'elle est survolée (blanc dans cet exemple) */
 }
+
+
+
+
+/* style.css | http://127.0.0.1:8000/assets/css/style.css */
+
+/* #tranding .tranding-slider {
+    background-color: white;
+    margin-left: -175px;
+    margin-right: -166px;
+  } */
+
+
+  
+  /* Élément | http://127.0.0.1:8000/ */
+  
+  button.navbar-toggler:nth-child(1) {
+    background-color: #343a40;
+  }
+  
+
+
+/* bootstrap.min.css | http://127.0.0.1:8000/assets/css/bootstrap.min.css */
+
+@media (min-width: 576px) {
+    .form-inline .form-control {
+      /* width: 350px; */
+      width: 352px;
+    }
+  }
+  
+  /* boutiquepeinture.css | http://127.0.0.1:8000/assets/css/boutiquepeinture.css */
+  
+  .form-inline {
+    /* margin-left: 202px; */
+    /* position: inherit; */
+    margin-left: 203px;
+  }
+  
