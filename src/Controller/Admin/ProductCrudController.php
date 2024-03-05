@@ -32,6 +32,7 @@ class ProductCrudController extends AbstractCrudController
             TextField::new('name'),
             SlugField::new('slug')->setTargetFieldName('name'),
             NumberField::new('stock'),
+            TextField::new('lienYoutube'),
             ImageField::new('illustration')
             ->setBasePath('uploads/') // qui renvoye les photo pour affichier sur Dashboard
             ->setUploadDir('public/uploads') // pour stocké les photos 
@@ -51,6 +52,7 @@ class ProductCrudController extends AbstractCrudController
             // AssociationField::new('buses'),
             BooleanField::new('promo'),
             BooleanField::new('livrableHorsIleDeFrance','livrable-Hors-IleDeFrance'),
+            BooleanField::new('hiddenProduit','Hidden_Produit'),
         ];
     }
     

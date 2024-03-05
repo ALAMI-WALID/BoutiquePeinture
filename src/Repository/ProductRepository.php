@@ -59,23 +59,46 @@ class ProductRepository extends ServiceEntityRepository
 
     }
 
+    // /**
+    //  * @return PaginationInterface
+    //  */
+
+    //  //chercher par code et par nom et la marque
+    // public function findWithSearchGlobal(Search $search) : PaginationInterface
+    // {
+    //     $query = $this->createQueryBuilder('p')
+    //     ->select('p')
+    //     ->andWhere('p.name LIKE :string OR p.subtitle LIKE :string OR p.articleCode LIKE :string')
+    //     ->setParameter('string', '%' . $search->string . '%');
+
+    //     return $this->paginator->paginate(
+    //         $query,
+    //         $search->page,
+    //         60
+    //     );
+
+    // }
+
+
     /**
-     * @return PaginationInterface
+     * Get products thanks to Search Data Value
+     * 
+     * @param PaginationInterface 
      */
 
-     //chercher par code et par nom et la marque
-    public function findWithSearchGlobal(Search $search) : PaginationInterface
+    public function findBySearchData($string):PaginationInterface
     {
-        $query = $this->createQueryBuilder('p')
+        $data = $this->createQueryBuilder('p')
         ->select('p')
-        ->andWhere('p.name LIKE :string OR p.subtitle LIKE :string OR p.articleCode LIKE :string')
-        ->setParameter('string', '%' . $search->string . '%');
+        ->andwhere('p.name LIKE :string OR p.subtitle LIKE :string OR p.articleCode LIKE :string')
+        ->setParameter('string','%' . $string . '%');
+        $data =$data
+        ->getQuery()
+        ->getResult();
 
-        return $this->paginator->paginate(
-            $query,
-            $search->page,
-            18
-        );
+        return $this->paginator->paginate($data,1,18);
+
+
 
     }
 
@@ -91,7 +114,7 @@ class ProductRepository extends ServiceEntityRepository
          ->select('p')
          ->andWhere('p.SScategory = :id')
          ->setParameter('id', $id);
-         return $this->paginator->paginate($query,$search->page,9);
+         return $this->paginator->paginate($query,$search->page,18);
      }
      //search form with SScategory
     /**
@@ -251,7 +274,7 @@ class ProductRepository extends ServiceEntityRepository
             $query = $query
                 ->andWhere('p.promo = 1');
         }
-         return $this->paginator->paginate($query,$search->page,9);
+         return $this->paginator->paginate($query,$search->page,18);
      }
 
 
@@ -412,7 +435,7 @@ class ProductRepository extends ServiceEntityRepository
             $query = $query
                 ->andWhere('p.promo = 1');
         }
-         return $this->paginator->paginate($query,$search->page,9);
+         return $this->paginator->paginate($query,$search->page,18);
      }
 
      //search with Sous Category
@@ -425,7 +448,7 @@ class ProductRepository extends ServiceEntityRepository
          ->select('p')
          ->andWhere('p.Scategory = :id')
          ->setParameter('id', $id);
-         return $this->paginator->paginate($query,$search->page,9);
+         return $this->paginator->paginate($query,$search->page,18);
      }
 
     //search with brands
@@ -438,7 +461,7 @@ class ProductRepository extends ServiceEntityRepository
          ->select('p')
          ->andWhere('p.subtitle = :brand')
          ->setParameter('brand', $brand);
-         return $this->paginator->paginate($query,$search->page,9);
+         return $this->paginator->paginate($query,$search->page,18);
      }
 
 

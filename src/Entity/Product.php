@@ -128,6 +128,12 @@ class Product
     #[ORM\Column]
     private ?int $stock = null;
 
+    #[ORM\Column]
+    private ?bool $hiddenProduit = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $lienYoutube = null;
+
     public function __construct()
     {
         $this->images = new ArrayCollection();
@@ -601,6 +607,30 @@ class Product
     public function setStock(int $stock): static
     {
         $this->stock = $stock;
+
+        return $this;
+    }
+
+    public function isHiddenProduit(): ?bool
+    {
+        return $this->hiddenProduit;
+    }
+
+    public function setHiddenProduit(bool $hiddenProduit): static
+    {
+        $this->hiddenProduit = $hiddenProduit;
+
+        return $this;
+    }
+
+    public function getLienYoutube(): ?string
+    {
+        return $this->lienYoutube;
+    }
+
+    public function setLienYoutube(?string $lienYoutube): static
+    {
+        $this->lienYoutube = $lienYoutube;
 
         return $this;
     }

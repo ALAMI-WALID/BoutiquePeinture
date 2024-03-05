@@ -11,12 +11,17 @@
 
 {% endblock %}
 
-{% block search %}{% endblock %}
-
-{% block carousel %}{% endblock %}
+{# {% block search %}{% endblock %} #}
+{% block carousel %}
+{% endblock %}
 
 
 {% block content %}
+
+{# {% include "components/_search_data.html.twig" with {
+        search: search
+      } only %}     #}
+
  {# <div class="custom-paint-section">
     <h3 id="texteFaites" class="section-subheading">Peinture Personnalisée pour Votre Voiture</h3>
     <p class="section-description">Faites votre choix parmi notre large gamme d'options de couleurs et de finitions pour donner une nouvelle vie à votre véhicule. Avec notre service de personnalisation de peinture automobile, réalisez la voiture de vos rêves.</p>
@@ -24,7 +29,7 @@
    #}
 
 {# la barre des brands  #}
-<div class="brandscolors">
+{# <div class="brandscolors">
       <div class="brand-section" id="brandscontent">
           <h3 class="brand-section-heading">Découvrez nos marques</h3>
           <p class="brand-section-description">Explorez notre sélection de peintures, d'outillage et de produits de carrosserie de qualité, soigneusement choisis parmi les marques les plus renommées de l'industrie.</p>
@@ -44,7 +49,40 @@
               <a href={{ path('productsInBrand', {'brand': 'Torton'})}}><img src={{asset('assets/img/torton.png')}} alt="torton"></a>
           </div>
       </div>
+  </div> #}
+
+     <div class="brand-section" id="brandscontent">
+          <h3 class="brand-section-heading">Découvrez nos marques</h3>
+          <p class="brand-section-description">Explorez notre sélection de peintures, d'outillage et de produits de carrosserie de qualité, soigneusement choisis parmi les marques les plus renommées de l'industrie.</p>
+      </div>
+  <div class="logos">
+    <div class="logos-slide">
+
+              <a href={{ path('productsInBrand', {'brand': 'Cristal'})}}> <img src={{asset('assets/img/crystal.png')}} alt="cristal"></a>
+              <a href={{ path('productsInBrand', {'brand': 'Finixa'})}}><img src={{asset('assets/img/finixa.jpg')}} alt="finixa"></a>
+              <a href={{ path('productsInBrand', {'brand': 'Gys'})}}><img src={{asset('assets/img/GYS.png')}} alt="gys"></a>
+              <a href={{ path('productsInBrand', {'brand': 'INFRADIS'})}}><img src={{asset('assets/img/INFRADIS.jpg')}} alt="infradis"></a>
+              <a href={{ path('productsInBrand', {'brand': 'Iwata'})}}><img src={{asset('assets/img/iwata.png')}} alt="iwata"></a>
+              <a href={{ path('productsInBrand', {'brand': 'App'})}}><img src="{{ asset('assets/img/app.png') }}" alt="app"></a>
+              <a href={{ path('productsInBrand', {'brand': 'Mipa'})}}><img src={{asset('assets/img/mipa.png')}} alt="mipa"></a>
+              <a href={{ path('productsInBrand', {'brand': 'Mirka'})}}><img src={{asset('assets/img/mirka.png')}} alt="mirka"></a>
+              <a href={{ path('productsInBrand', {'brand': 'Provist'})}}><img src={{asset('assets/img/provist.png')}} alt="provist"></a>
+              <a href={{ path('productsInBrand', {'brand': 'Tlescado'})}}><img src={{asset('assets/img/tlescado.jpg')}} alt="tlescado"></a>
+              <a href={{ path('productsInBrand', {'brand': 'Torton'})}}><img src={{asset('assets/img/torton.png')}} alt="torton"></a>
+
+
+
+
+    </div>
+
   </div>
+
+  <script>
+  var copy = document.querySelector( ".logos-slide" ).cloneNode( true );
+  document.querySelector('.logos').appendChild(copy);
+  </script>
+
+
 
     {# <h3>Nos meilleures ventes</h3>
     <p>Découvrez les articles les plus vendus.</p>
@@ -55,10 +93,11 @@
             </div>
         {% endfor %}
     </div> #}
+    
 <div class="swipersize">
     <section id="tranding">
     <div class="container">
-      <div class="blog-section">
+      <div class="blog-section ">
       <h3 class="text-center blog-subheading">Découvrez nos articles les plus populaires</h3>
       <p class="text-center blog-description">Restez à jour avec nos dernières publications et découvrez des informations essentielles sur la peinture, la carrosserie et l'outillage. Notre blog est votre source de conseils d'experts, d'astuces pratiques et d'inspiration pour vos projets.</p>
       </div>
@@ -81,14 +120,14 @@
                   </a>
                   </h2>
                   <h3 class="food-rating">
-                    <span  id="random-rating">4.5</span>
+                    {# <span  id="random-rating">4.5</span>
                     <div class="rating">
                       <ion-icon name="star"></ion-icon>
                       <ion-icon name="star"></ion-icon>
                       <ion-icon name="star"></ion-icon>
                       <ion-icon name="star"></ion-icon>
                       <ion-icon name="star"></ion-icon>
-                    </div>
+                    </div> #}
                   </h3>
                 </div>
               </div>
@@ -114,12 +153,10 @@
   
 
 
+ <div class="logos">
+    <div class="logos-slide id">
 
-
-
-         <div class="containerbarre container_div">
-        <div class="image-bar" id="bar-width">
-            <a > <img src={{asset('assets/img/a.png')}} alt="crystal"></a>
+            <a ><img src={{asset('assets/img/a.png')}} alt="crystal"></a>
             <a ><img src={{asset('assets/img/audi.png')}} alt="finixa"></a>
             <a><img src={{asset('assets/img/c.png')}} alt="gys"></a>
             <a ><img src={{asset('assets/img/fiat.png')}} alt="infradis"></a>
@@ -135,8 +172,20 @@
             <a ><img src={{asset('assets/img/MM.png')}} alt="torton"></a>
             <a ><img src={{asset('assets/img/rover.png')}} alt="torton"></a>
 
-        </div>
+
+
+
     </div>
+
+  </div>
+
+  <script>
+  var copy = document.querySelector( ".logos-slide" ).cloneNode( true );
+  document.querySelector('.logos').appendChild(copy);
+  </script>
+
+
+      
 {% endblock %}
 
 {% block script %}

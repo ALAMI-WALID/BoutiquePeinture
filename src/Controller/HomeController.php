@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Classe\MegaMenu;
 use App\Classe\Search;
+use App\Classe\SearchData;
 use App\Entity\CodePeinture;
 use App\Form\CodePeintureType;
 use App\Form\SearchGlobalType;
@@ -37,39 +38,45 @@ class HomeController extends AbstractController
 
 
         
-        $search = new Search();
-        $form = $this->createForm(SearchGlobalType::class, $search);
+        $searchData = new SearchData();
+        $form = $this->createForm(SearchGlobalType::class, $searchData);
 
         $form->handleRequest($request);
 
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $products = $this->entityManager->getRepository(Product::class)->findWithSearchGlobal($search);
+
+            dd($searchData->q);
 
 
-            $categories = $this->megaMenu->mega();
-            $Scategories = $this->megaMenu->megaS();
-            $SScategories = $this->megaMenu->megaSS();
-            if (empty($products)) {
+
+
+            // $products = $this->entityManager->getRepository(Product::class)->findWithSearchGlobal($search);
+
+
+            // $categories = $this->megaMenu->mega();
+            // $Scategories = $this->megaMenu->megaS();
+            // $SScategories = $this->megaMenu->megaSS();
+            // if (empty($products)) {
                 
                 
-                return $this->render('home/search.html.twig', [
-                    'products' => [],
-                    'form' => $form->createView(),
-                    'categories' =>$categories,
-                    'Scategories' => $Scategories,
-                    'SScategories'=>$SScategories
-                ]);
-            }
-            return $this->render('home/search.html.twig',[
+            //     return $this->render('home/search.html.twig', [
+            //         'products' => [],
+            //         'search' => $form->createView(),
+            //         'categories' =>$categories,
+            //         'Scategories' => $Scategories,
+            //         'SScategories'=>$SScategories
+            //     ]);
+            // }
+            // return $this->render('home/search.html.twig',[
                
-                'products' => $products,
-                'form' => $form->createView(),
-                'categories' =>$categories,
-                'Scategories' => $Scategories,
-                'SScategories'=>$SScategories
+            //     'products' => $products,
+            //     'search' => $form->createView(),
+            //     'categories' =>$categories,
+            //     'Scategories' => $Scategories,
+            //     'SScategories'=>$SScategories
     
-            ]);
+            // ]);
         } 
        else{
 
@@ -86,7 +93,7 @@ class HomeController extends AbstractController
         return $this->render('home/index.html.twig',[
             'products' => $products,
             'headers' => $headers,
-            'form' => $form->createView(),
+            'search' => $form->createView(),
             'categories' =>$categories,
             'Scategories' =>$Scategories,
             'SScategories'=>$SScategories
@@ -160,13 +167,13 @@ class HomeController extends AbstractController
         ]);
     }
 
-    #[Route('Compte_professionnel', name: 'pro')]
+    #[Route('Devenir_partenaire', name: 'DP')]
     public function pro(): Response
     {
         $categories = $this->megaMenu->mega();
         $Scategories = $this->megaMenu->megaS();
         $SScategories = $this->megaMenu->megaSS();
-        return $this->render('home/pro.html.twig',[
+        return $this->render('home/DP.html.twig',[
             'categories' =>$categories,
             'Scategories' =>$Scategories,
             'SScategories'=>$SScategories

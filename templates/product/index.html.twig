@@ -23,11 +23,14 @@
     </div>
 
     <div class="row product-container">
+    
 
         {% for product in products %}
+        {% if product.hiddenProduit == 1 %}
             <div class="col-md-4">
                {% include 'product/single_product.html.twig' %}
-            </div>  
+            </div>
+        {% endif %}
         {% endfor %}
             </div class="mt-4"> {{ knp_pagination_render(products, 'product/pagination.html.twig') }}</div>
          </div>
