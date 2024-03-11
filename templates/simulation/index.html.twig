@@ -1,0 +1,181 @@
+{# templates/simulation/form.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Simulateur de peinture{% endblock %}
+
+{% block content %}
+    <div class="title-car">
+         <h1 class="title-colors-cars">CALCULEZ FACILEMENT LA QUANTITE DE PEINTURE DONT VOUS AVEZ BESOIN !</h1>
+    </div>
+    <div style="color: #666; font-size: 12px" class="text-cars">
+            Désormais, calculez facilement la quantité de peinture "pure" (non diluée) dont vous avez besoin pour repeindre la carrosserie de votre véhicule.
+            Sélectionnez les différents éléments de carrosserie (aile, capot, coffre, pare-chocs etc.) que vous souhaitez repeindre afin d'afficher la quantité de peinture dont vous avez besoin.
+    </div>
+    <hr>
+{# récupere less type de cars  #}
+     <div class="step">
+     <span class="step-numbre">1</span>
+     <span class="step-text">Choisissez votre véhicule :</span>
+
+     </div>
+    <div class="car-images">
+        {% for carType in carTypes %}
+            <div class="car-image " data-car-type="{{carType.id}}">
+                <img src="/uploads/{{ carType.illustration }}" alt="{{ carType.name }}" class="car-img">
+                <p class="text-image-car">{{ carType.name }}</p>
+            </div>
+        {% endfor %}
+    </div>
+    <hr>
+    {# récupere les options a repeindre  #}
+    <div class="step" id="stepDeux">
+            <span class="step-numbre">2</span>
+            <span class="step-text">Choisissez vos éléments à repeindre</span>
+            <span>(Max 4 ÉLÉMENTS) :</span>
+    </div>
+
+<div class="container-options">
+   <div class="row">
+                <div class="options-container col-lg-6">
+                    {% for option in options %}
+                    <div class="option" data-option-id="{{ option.id }}">
+                        <span>{{ option.name }}</span>
+                    </div>
+                    {% endfor %}
+                </div>
+
+                     {# Rendu les résultas de recherche  #}
+                <div class=" data-result col-lg-6">
+                    <h5>Résultas :</h5>
+                    <p style="text-align:center">Quantité théorique de peinture "pure" (non diluée) conseiller pour repeindre dans des conditions normales*.</p>
+                        <p>Quantité en pot : 
+                                <b>
+                                    <span id="estimationPot">{{ estimationPot }}</span> à <span id="estimationPotMax">{{ estimationPotMax }}</span> 
+                                </b>
+                        </p>
+                    <p>Quantité en bombe : 
+                                   
+                                <b> 
+                                    <span id="estimationBombe">
+                                    {{ estimationBombe }}
+                                    </span> 
+                                    à 
+                                    <span id="estimationBombeMax">
+                                    {% if estimationBombeMax != 0 %}
+                                        {{ estimationBombeMax }}
+                                    {% endif %}
+                                    </span>
+                                </b>
+                    </p>
+                    {% if estimationPot is defined%}
+
+                  <a style="text-decoration:none" href={{path('simulation')}}>  <h6 id="recommencer">Recommencer<h6></a>
+                    {% endif %}
+                </div>
+         </div>
+    </div>
+                
+        <hr>
+
+
+        <div class="calculate-container">
+
+        <button id="calculate-button" class="btn-calculate" disabled>                   
+                   (3)  CALCULER !
+        </div>
+{% endblock %}
+
+{% block script %}
+<script>
+
+var selectedCarType = null;
+var selectedOptions = [];
+
+
+$(document).ready(function() {
+    $('.car-image').click(function() {
+        $('.car-image').removeClass('selected'); // Retire la classe 'selected' de toutes les images
+        $(this).addClass('selected'); // Ajoute la classe 'selected' à l'image cliquée
+
+        selectedCarType = $(this).data('car-type'); // Récupère le numéro du modèle de voiture associé à l'image
+        console.log(selectedCarType);
+    });
+
+$(document).ready(function() {
+
+    // Gestionnaire d'événement pour le survol des options
+    $('.option').hover(
+        function() {
+            $(this).css('background-color', '#6fb93a;');
+        },
+        function() {
+            if (!$(this).hasClass('selected')) {
+                $(this).css('background-color', '');
+            }
+        }
+    );
+
+    // Gestionnaire d'événement pour la sélection des options
+    $('.option').click(function() {
+        var optionId = $(this).data('option-id');
+
+        // Vérifier si l'option est déjà sélectionnée
+        if ($(this).hasClass('selected')) {
+            // Désélectionner l'option
+            $(this).removeClass('selected');
+            selectedOptions.splice(selectedOptions.indexOf(optionId), 1);
+        } else {
+            // Vérifier si le nombre maximal d'options est déjà sélectionné
+            if (selectedOptions.length >= 4) {
+                alert('Vous ne pouvez sélectionner que 4 options au maximum.');
+                return;
+            }
+            // Sélectionner l'option
+            $(this).addClass('selected');
+            selectedOptions.push(optionId);
+        }
+
+        // Activer ou désactiver le bouton de calcul en fonction du nombre d'options sélectionnées
+        if (selectedOptions.length >= 1) {
+            $('.btn-calculate').prop('disabled', false);
+        } else {
+            $('.btn-calculate').prop('disabled', true);
+        }
+
+        console.log(selectedOptions);
+    });
+});
+
+
+
+    $('#calculate-button').click(function() {
+        if (selectedCarType !== null && selectedOptions.length > 0) {
+            // Envoi de la valeur sélectionnée au contrôleur Symfony via AJAX
+            $.ajax({
+                url: "{{ path('simulation')}}", // L'URL du contrôleur Symfony
+                type: "POST",
+                data: { 
+                        carType: selectedCarType,
+                        selectedOptions: selectedOptions 
+                        }, // Les données à envoyer au contrôleur
+                success: function(response) {
+                    // Traitez la réponse du contrôleur Symfony ici si nécessaire
+                    $('#estimationPot').text(response.estimationPot);
+                    $('#estimationBombe').text(response.estimationBombe);
+                    $('#estimationPotMax').text(response.estimationPotMax);
+                    $('#estimationBombeMax').text(response.estimationBombeMax);
+                    console.log(response);
+                },
+                error: function() {
+                    console.error("est marche pas ");
+                }
+            });
+        } else {
+            console.log('Aucun type de voiture sélectionné.');
+        }
+    });
+
+});
+</script>
+{% endblock %}

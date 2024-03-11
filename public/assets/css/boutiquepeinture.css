@@ -2,7 +2,7 @@ body{
     position: relative;
 }
 header {
-    margin-top: -20px; /* Ajustez la valeur selon vos besoins */
+    margin-top: -15px; /* Ajustez la valeur selon vos besoins */
   }
 .navbar-items, .navbar-items a {
    color: #fff;
@@ -656,3 +656,366 @@ font-weight: bold;
     margin-left: 203px;
   }
   
+
+  /* Style de page simulateur painture  */
+
+  
+  .title-car {
+    background-color: #f0f0f0; /* Couleur de fond */
+    border: 2px solid #333; /* Bordure */
+    padding: 20px; /* Espacement interne */
+    margin-bottom: 20px; /* Marge inférieure */
+    text-align: center; /* Centrer le contenu */
+    border-radius: 10px; /* Coins arrondis */
+}
+
+.title-colors-cars {
+    font-family: 'Arial', sans-serif; /* Police */
+    font-size: 24px; /* Taille de police */
+    color: #333; /* Couleur du texte */
+    font-weight: bold; /* Gras */
+    text-transform: uppercase; /* Convertir en majuscules */
+}
+
+.text-cars{
+    text-align: center;
+    background-color: white;
+  
+
+}
+
+/* style de les étapes de simulateur painture  */
+
+.step {
+    text-align: center;
+}
+#stepDeux{
+    text-align: start;
+}
+.step-numbre {
+    color: #fff; /* Couleur du texte pour le chiffre */
+    font-size: 19px;
+    font-weight: bold;
+    border-radius: 50%; /* Bord arrondi pour le chiffre */
+    margin-right: 10px;
+    background-color: #ff6d25;
+    padding: 13px;
+    padding-left: 22px;
+}
+
+.step-text {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+/* les images cars  */
+.car-images {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 76px;
+}
+
+.car-image {
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    cursor: pointer;
+    padding: 15px;
+    padding-left: 64px;
+    padding-right: 64px;
+    background-color: white;
+    margin-top: 25px;
+    cursor: default;
+    opacity: 0.5;
+    transition: opacity 0.3s ease;
+}
+
+.car-image:hover {
+    border-color:#62d006;
+    opacity: 1;
+    cursor: pointer;
+}
+
+.selected{
+    border-color: #62d006 ;
+    opacity: 1;
+}
+.car-image.selected {
+    border-color: #62d006; /* Couleur de la bordure pour l'image sélectionnée */
+}
+
+.car-image p{
+    text-align: center;
+    font-size: large;
+}
+
+
+/* Élément | http://127.0.0.1:8000/simulation */
+
+/* div.step:nth-child(6) {
+    margin-top: 67px;
+    text-align: start;
+  }
+   */
+
+
+
+   .container_options {
+    display: flex;
+    justify-content: space-between;
+}
+
+.options-container {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 21px;
+    width: 62%;
+}
+
+.data-result{
+    margin-top: 21px;
+
+}
+
+.data-result h5{
+    background-color: #000000;
+    color: white;
+    border: none;
+    text-align: center;
+    padding-bottom: 1px;
+    border-radius: 5px;
+}
+
+#recommencer{
+    background-color: #eb662a;
+    color: white;
+    border: none;
+    text-align: center;
+    padding-bottom: 1px;
+    font-size: 19px;
+    border-radius: 5px;
+
+
+
+}
+
+.option {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* border: 1px solid black; */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    width: 168px;
+    height: 43px;
+    margin: 2px 3px;
+    border-radius: 65px;
+    background-color: #C8C8C8;
+    padding: 0;
+}
+
+.option:hover {
+    background-color: #6fb93a;
+}
+
+.option span {
+    color: #000000;
+
+}
+
+.btn-calculate {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-calculate:hover {
+    background-color: #0056b3;
+}
+
+.btn-calculate:disabled {
+    background-color: gray;
+    cursor: not-allowed;
+}
+
+
+
+
+
+/* Élément | http://127.0.0.1:8000/simulation */
+
+div.step:nth-child(6) {
+    text-align: start;
+    margin-top: 30px;
+  }
+
+
+
+/* boutiquepeinture.css | http://127.0.0.1:8000/assets/css/boutiquepeinture.css */
+
+  .option span {
+    color: #000000;
+  }
+  
+  .calculate-container{
+    display:flex;
+    align-items:center;
+  }
+
+
+
+
+/* boutiquepeinture.css | http://127.0.0.1:8000/assets/css/boutiquepeinture.css */
+
+.calculate-container {
+ 
+    justify-content: right;
+  }
+  
+  .btn-calculate {
+  
+    padding: 20px 142px;
+    font-size: 31px;
+  }
+
+
+
+/* boutiquepeinture.css | http://127.0.0.1:8000/assets/css/boutiquepeinture.css */
+
+.btn-calculate:hover {
+    /* background-color: #0056b3; */
+    background-color: #6fb93a;
+  }
+  
+  .btn-calculate {
+    /* background-color: #007bff; */
+    background-color: #6fb93a;
+  }
+  
+
+
+/* boutiquepeinture.css | http://127.0.0.1:8000/assets/css/boutiquepeinture.css */
+
+.text-cars {
+    /* background-color: white; */
+    background-color: #b7cab170;
+  }
+  
+
+.logo_simulateur a{
+    text-decoration: none !important;
+}
+
+/* boutiquepeinture.css | http://127.0.0.1:8000/assets/css/boutiquepeinture.css */
+
+.logo_simulateur {
+    /* left: 10%; */
+    /* border-radius: 2px; */
+    /* position: absolute !important; */
+    transform: translate(-50%, -50%) !important;
+    /* left: 78% !important; */
+    border-radius: 6px !important;
+    /* margin: 8px !important; */
+    background-color: white !important;
+    border-color: none !important;
+    /* top: 0.3% !important; */
+    height: 27px !important;
+    width: 168px !important;
+
+  }
+  
+ 
+  
+  .logo_simulateur span {
+    /* font-size: 10px; */
+ 
+    font-family: bold !important;
+    font-style: initial !important;
+    font-size: 12px !important;
+    color: black !important;
+
+  }
+
+  .logo_simulateur img {
+    display: inline-block !important;
+    text-rendering: auto !important;
+    height: 23px !important;
+  }
+  
+
+
+/* boutiquepeinture.css | http://127.0.0.1:8000/assets/css/boutiquepeinture.css */
+
+.logo_simulateur {
+    /* margin: 8px !important; */
+    margin-left: 75% !important;
+    margin-top: -32px !important;
+    margin-bottom: 5px  !important;
+  }
+  
+
+/* boutiquepeinture.css | http://127.0.0.1:8000/assets/css/boutiquepeinture.css */
+
+.logo_simulateur {
+    /* border: 2px solid #fff0 !important; */
+    border: 1px solid #0100001c !important;
+  }
+  
+/* la barre de contact et les social Media  */
+.social-bar{
+    display:  flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 46px;
+    margin-top: -53px;
+    margin-bottom: 8px;
+}  
+.social-icon{
+    list-style-type: none;
+    margin: 3px;
+    padding: 0px;
+
+}
+
+
+.social-icon li{
+    display: inline-block;
+    margin-left: 10px;
+
+}
+
+.social-icon li:first-child{
+    margin-left: 0%;
+}
+
+.social-icon a{
+    text-decoration: none;
+    color:#000000
+}
+
+.contact-info p{
+    color: #000000;
+    font-family: roboto;
+    font-size: 12px;
+    margin-bottom: 1px;
+}
+.contact-info span{
+    color : #ff0000;
+    transform: translate(-50%, -50%) !important;
+
+}
+.contact-info {
+    border: 1px solid #0100001c !important;
+    background-color: white;
+    border-radius: 6px;
+    margin-left: 145px;
+    padding: 4px;
+    margin-top: -4px;
+}
+
+#experts-icon{
+    height: 20px;
+}
