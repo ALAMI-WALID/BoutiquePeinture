@@ -470,12 +470,14 @@ font-weight: bold;
 
 
 #fontScategory{
-    background-color: #f77b87;
+    background-color: #e52e26;
     margin-left: 1em;
     margin-top: 1em;
-    font-style: bold;
-    font-size: bols;
-    font-weight: bold;
+    font-size: 17px;
+    font-family: sans-serif;
+    letter-spacing: 1px;
+    color: #fff;
+    line-height: 22px;
 }
 
 
@@ -484,10 +486,13 @@ font-weight: bold;
     /* margin-right: 1em; */
     margin-left: 1em;
     margin-top: 1em;
-    font-style: bold;
-    font-size: bols;
-    font-weight: bold;
-    background-color: #ff6366;
+ 
+    background-color: #e52e26;
+    font-size: 17px;
+    font-family: sans-serif;
+    letter-spacing: 1px;
+    color: #fff;
+    line-height: 22px;
 
   }
   
@@ -653,7 +658,7 @@ font-weight: bold;
   .form-inline {
     /* margin-left: 202px; */
     /* position: inherit; */
-    margin-left: 203px;
+    margin-left: 242px;
   }
   
 
@@ -698,7 +703,7 @@ font-weight: bold;
     font-weight: bold;
     border-radius: 50%; /* Bord arrondi pour le chiffre */
     margin-right: 10px;
-    background-color: #ff6d25;
+    background-color: #fe0000;
     padding: 13px;
     padding-left: 22px;
 }
@@ -773,6 +778,7 @@ font-weight: bold;
 
 .data-result{
     margin-top: 21px;
+   
 
 }
 
@@ -786,7 +792,7 @@ font-weight: bold;
 }
 
 #recommencer{
-    background-color: #eb662a;
+    background-color: #fe0000;
     color: white;
     border: none;
     text-align: center;
@@ -887,7 +893,7 @@ div.step:nth-child(6) {
 
 .btn-calculate:hover {
     /* background-color: #0056b3; */
-    background-color: #6fb93a;
+    background-color: #5e5e5e;
   }
   
   .btn-calculate {
@@ -911,28 +917,29 @@ div.step:nth-child(6) {
 
 /* boutiquepeinture.css | http://127.0.0.1:8000/assets/css/boutiquepeinture.css */
 
-.logo_simulateur {
+ .logo_simulateur {
     /* left: 10%; */
     /* border-radius: 2px; */
     /* position: absolute !important; */
-    transform: translate(-50%, -50%) !important;
-    /* left: 78% !important; */
-    border-radius: 6px !important;
+    /* transform: translate(-50%, -50%) !important; */
+    left: 78% !important;
+    /* border-radius: 6px !important; */
     /* margin: 8px !important; */
-    background-color: white !important;
-    border-color: none !important;
+    /* background-color: white !important; */
+    /* border-color: none !important; */
     /* top: 0.3% !important; */
-    height: 27px !important;
-    width: 168px !important;
+    /* height: 30px !important;
+    width: 191px !important; */
+    margin-left: 60% !important;
+    margin-top: -42px !important;
+    margin-bottom: -62px !important;
+    /* border: 1px solid #0100001c !important; */
 
   }
-  
- 
   
   .logo_simulateur span {
     /* font-size: 10px; */
  
-    font-family: bold !important;
     font-style: initial !important;
     font-size: 12px !important;
     color: black !important;
@@ -944,26 +951,7 @@ div.step:nth-child(6) {
     text-rendering: auto !important;
     height: 23px !important;
   }
-  
 
-
-/* boutiquepeinture.css | http://127.0.0.1:8000/assets/css/boutiquepeinture.css */
-
-.logo_simulateur {
-    /* margin: 8px !important; */
-    margin-left: 75% !important;
-    margin-top: -32px !important;
-    margin-bottom: 5px  !important;
-  }
-  
-
-/* boutiquepeinture.css | http://127.0.0.1:8000/assets/css/boutiquepeinture.css */
-
-.logo_simulateur {
-    /* border: 2px solid #fff0 !important; */
-    border: 1px solid #0100001c !important;
-  }
-  
 /* la barre de contact et les social Media  */
 .social-bar{
     display:  flex;
@@ -998,7 +986,6 @@ div.step:nth-child(6) {
 
 .contact-info p{
     color: #000000;
-    font-family: roboto;
     font-size: 12px;
     margin-bottom: 1px;
 }
@@ -1019,3 +1006,405 @@ div.step:nth-child(6) {
 #experts-icon{
     height: 20px;
 }
+.img-data {
+    /* display: contents; */
+    background-color: #212121;
+    border: 1px, solid,  black;
+    border-radius: 12px;
+    height: 140px;
+    justify-content: center;
+    display: inline-table;
+    padding: 7px;
+    margin-left: 67px;
+  }
+  
+  .img-bombe {
+    height: 76px;
+  }
+  
+  .img-data p {
+    color: white;
+  }
+  #margin-bombe{
+   padding-bottom: 31px;
+  }
+.img-charger {
+    height: 17px;
+    margin-right: 5px;
+    margin-bottom: 2px;
+  }
+
+/* boutton de repeat page simulateur */
+  .buttonn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 6px 12px;
+    gap: 8px;
+    height: 34px;
+    width: 180px;
+    border: none;
+    background: #ff362b34;
+    border-radius: 20px;
+    cursor: pointer;
+  }
+  
+  .lablee {
+    line-height: 20px;
+    font-size: 17px;
+    color: #FF342B;
+    font-family: sans-serif;
+    letter-spacing: 1px;
+  }
+  
+  .buttonn:hover {
+    background: #ff362b52;
+  }
+  
+  .buttonn:hover .svg-icon {
+    animation: spin 2s linear infinite;
+  }
+  
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+  
+    100% {
+      transform: rotate(-360deg);
+    }
+  }
+
+/* start social media  */
+  ul {
+    list-style: none;
+  }
+  
+  li::after {
+    content: "";
+    display: block;
+    height: 0px;
+    transition: height 0.3s ease-in-out;
+    pointer-events: none;
+  }
+  
+  li:hover::after {
+    height: 10px;
+  }
+  
+  .example-2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .example-2 .icon-content {
+    margin: 0 10px;
+    position: relative;
+  }
+  .example-2 .icon-content .tooltip {
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #fff;
+    padding: 6px 10px;
+    border-radius: 5px;
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
+    font-size: 14px;
+    transition: all 0.3s ease;
+  }
+  .example-2 .icon-content:hover .tooltip {
+    opacity: 1;
+    visibility: visible;
+    bottom: -40px;
+  }
+  .example-2 .icon-content a {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    color: #4d4d4d;
+    background-color: #fff;
+    transition: all 0.3s ease-in-out;
+  }
+  .example-2 .icon-content a:hover {
+    box-shadow: 3px 2px 45px 0px rgb(0 0 0 / 12%);
+  }
+  .example-2 .icon-content a svg {
+    position: relative;
+    z-index: 1;
+    width: 30px;
+    height: 30px;
+  }
+  .example-2 .icon-content a:hover {
+    color: white;
+  }
+  .example-2 .icon-content a .filled {
+    position: absolute;
+    top: auto;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 0;
+    background-color: #000;
+    transition: all 0.3s ease-in-out;
+  }
+  .example-2 .icon-content a:hover .filled {
+    height: 100%;
+  }
+  .example-2 .icon-content a[data-social="facebook"] .filled,
+  .example-2 .icon-content a[data-social="facebook"] ~ .tooltip {
+    background-color: #0462df;
+  }
+  .example-2 .icon-content a[data-social="Whatsapp"] .filled,
+  .example-2 .icon-content a[data-social="Whatsapp"] ~ .tooltip {
+    background-color: #1db954;
+  }
+  .example-2 .icon-content a[data-social="twitter"] .filled,
+  .example-2 .icon-content a[data-social="twitter"] ~ .tooltip {
+    background-color: #03a9f4;
+  }
+  .example-2 .icon-content a[data-social="instagram"] .filled,
+  .example-2 .icon-content a[data-social="instagram"] ~ .tooltip {
+    background: linear-gradient(
+        45deg,
+        #f09433 0%,
+    #e6683c 25%,
+    #dc2743 50%,
+    #cc2366 75%,
+    #bc1888 100%
+
+    )
+  }
+
+/* start lien simulateur mini barre */
+
+.btnn {
+    --color: #f08080;
+    --color2: rgb(10, 25, 30);
+    padding: 0.8em 1.75em;
+    background-color: transparent;
+    border-radius: 6px;
+    border: .3px solid var(--color);
+    transition: .5s;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    z-index: 1;
+    font-weight: 300;
+    font-size: 17px;
+    font-family: 'Roboto', 'Segoe UI', sans-serif;
+    text-transform: uppercase;
+    color: var(--color);
+   }
+   
+   .btnn::after, .btnn::before {
+    content: '';
+    display: block;
+    height: 100%;
+    width: 100%;
+    transform: skew(90deg) translate(-50%, -50%);
+    position: absolute;
+    inset: 50%;
+    left: 25%;
+    z-index: -1;
+    transition: .5s ease-out;
+    background-color: var(--color);
+   }
+   
+   .btnn::before {
+    top: -50%;
+    left: -25%;
+    transform: skew(90deg) rotate(180deg) translate(-50%, -50%);
+   }
+   
+   .btnn:hover::before {
+    transform: skew(45deg) rotate(180deg) translate(-50%, -50%);
+   }
+   
+   .btnn:hover::after {
+    transform: skew(45deg) translate(-50%, -50%);
+   }
+   
+   .btnn:hover {
+    color: var(--color2);
+   }
+   
+   .btnn:active {
+    filter: brightness(.7);
+    transform: scale(.98);
+   }
+
+   /* numero de tele mini barre */
+   .scene {
+    width: 10em;
+    justify-content: center;
+    align-items: center;
+   }
+   
+   .cube {
+    color: #ccc;
+    cursor: pointer;
+    font-family: 'Roboto', sans-serif;
+    transition: all 0.85s cubic-bezier(.17,.67,.14,.93);
+    transform-style: preserve-3d;
+    transform-origin: 100% 50%;
+    width: 10em;
+    height: 4em;
+   }
+   
+   .cube:hover {
+    transform: rotateX(-90deg);
+   }
+   
+   .side {
+    box-sizing: border-box;
+    position: absolute;
+    display: inline-block;
+    height: 4em;
+    text-align: center;
+    text-transform: uppercase;
+    padding-top: 1.5em;
+    font-weight: bold;
+   }
+   
+   .top {
+    background: wheat;
+    color: #222229;
+    transform: rotateX(90deg) translate3d(0, 0, 2em);
+    box-shadow: inset 0 0 0 5px #fff;
+   }
+   
+   .front {
+    background: #222229;
+    color: #fff;
+    box-shadow: inset 0 0 0 5px #fff;
+    transform: translate3d(0, 0, 2em);
+
+   }
+
+
+/* boutiquepeinture.css | http://127.0.0.1:8000/assets/css/boutiquepeinture.css */
+
+.side {
+    /* width: 10em; */
+    width: 27em;
+    margin-left: 87px;
+    margin-top: -8px;
+  }
+  
+
+.social-bar {
+    /* height: 46px; */
+    /* margin-top: -53px; */
+    /* margin-bottom: 8px; */
+    height: 81px !important;
+    margin-top: -46px !important;
+    margin-bottom: -16px !important;
+  }
+  
+
+  /* loader page */
+
+  .loader {
+    width: 120px;
+    height: 150px;
+    background-color: #fff;
+    background-repeat: no-repeat;
+    background-image: linear-gradient(#ddd 50%, #bbb 51%),
+      linear-gradient(#ddd, #ddd), linear-gradient(#ddd, #ddd),
+      radial-gradient(ellipse at center, #aaa 25%, #eee 26%, #eee 50%, #0000 55%),
+      radial-gradient(ellipse at center, #aaa 25%, #eee 26%, #eee 50%, #0000 55%),
+      radial-gradient(ellipse at center, #aaa 25%, #eee 26%, #eee 50%, #0000 55%);
+    background-position: 0 20px, 45px 0, 8px 6px, 55px 3px, 75px 3px, 95px 3px;
+    background-size: 100% 4px, 1px 23px, 30px 8px, 15px 15px, 15px 15px, 15px 15px;
+    position: relative;
+    border-radius: 6%;
+    animation: shake 3s ease-in-out infinite;
+    transform-origin: 60px 180px;
+  }
+  
+  .loader:before {
+    content: "";
+    position: absolute;
+    left: 5px;
+    top: 100%;
+    width: 7px;
+    height: 5px;
+    background: #aaa;
+    border-radius: 0 0 4px 4px;
+    box-shadow: 102px 0 #aaa;
+  }
+  
+  .loader:after {
+    content: "";
+    position: absolute;
+    width: 95px;
+    height: 95px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    bottom: 20px;
+    background-color: #bbdefb;
+    background-image: linear-gradient( to right, #0004 0%, #0004 49%, #0000 50%, #0000 100% ),
+      linear-gradient(135deg, #64b5f6 50%, #607d8b 51%);
+    background-size: 30px 100%, 90px 80px;
+    border-radius: 50%;
+    background-repeat: repeat, no-repeat;
+    background-position: 0 0;
+    box-sizing: border-box;
+    border: 10px solid #DDD;
+    box-shadow: 0 0 0 4px #999 inset, 0 0 6px 6px #0004 inset;
+    animation: spin 3s ease-in-out infinite;
+  }
+  
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg)
+    }
+  
+    50% {
+      transform: rotate(360deg)
+    }
+  
+    75% {
+      transform: rotate(750deg)
+    }
+  
+    100% {
+      transform: rotate(1800deg)
+    }
+  }
+  
+  @keyframes shake {
+    65%, 80%, 88%, 96% {
+      transform: rotate(0.5deg)
+    }
+  
+    50%, 75%, 84%, 92% {
+      transform: rotate(-0.5deg)
+    }
+  
+    0%, 50%, 100% {
+      transform: rotate(0)
+    }
+  }
+
+  .loader_Page{
+    justify-content: center;
+    display: grid;
+    margin-bottom: 3%;
+  }
+#loader_pagee {
+    /* font-size: 15px; */
+    font-size: 32px;
+    margin: 14px;
+    margin-left: -15px;
+  }
+  

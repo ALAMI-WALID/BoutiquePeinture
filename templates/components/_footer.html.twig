@@ -1,0 +1,66 @@
+ <footer class="py-5">
+ 
+    <img src={{asset('assets/img/badbar1.png')}} id="badbar" style="width: 100px; " alt="logo">
+    <div class="row">
+      <div class="col-6 col-md-2 mb-3">
+        <h5>Peinture Auto Expert</h5>
+        <ul class="nav flex-column">
+          <li class="nav-item mb-2"><a href={{ path('DP')}} class="nav-link p-0 text-body-secondary">Devenons partenaires</a></li>
+          <li class="nav-item mb-2"><a href={{path('MLS')}} class="nav-link p-0 text-body-secondary">Mentions légales </a></li>
+          <li class="nav-item mb-2"><a href={{path('CGV')}} class="nav-link p-0 text-body-secondary">CGV</a></li>
+          <li class="nav-item mb-2"><a href={{path('RGPD')}} class="nav-link p-0 text-body-secondary">Protection des données</a></li>
+          <li class="nav-item mb-2"><a href={{path('PS')}} class="nav-link p-0 text-body-secondary">Paiement sécurisé</a></li>
+        </ul>
+      </div>
+
+      <div class="col-6 col-md-2 mb-3">
+        <h5>Besoins d’aide ?</h5>
+        <ul class="nav flex-column">
+          <li class="nav-item mb-2"><a href={{ path('contact')}} class="nav-link p-0 text-body-secondary" >Service client </a></li>
+          <li class="nav-item mb-2"><a href={{ path('labo')}} class="nav-link p-0 text-body-secondary">Installation labo de peinture</a></li>
+          <li class="nav-item mb-2"><a href={{ path('CodeP')}} class="nav-link p-0 text-body-secondary">Recherche de code couleur</a></li>
+          <li class="nav-item mb-2"><a href={{path('contact')}} class="nav-link p-0 text-body-secondary">Simulateur de quantité</a></li>
+        </ul>
+      </div>
+
+      <div class="col-6 col-md-2 mb-3">
+        <h5>Raccourcis</h5>
+        <ul class="nav flex-column">
+          <li class="nav-item mb-2"><a href={{ path('app_home')}} class="nav-link p-0 text-body-secondary">Accueil</a></li>
+          <li class="nav-item mb-2"><a href={{ path('register')}} class="nav-link p-0 text-body-secondary">Inscription</a></li>
+          <li class="nav-item mb-2"><a href={{path('app_login')}} class="nav-link p-0 text-body-secondary">Connexion</a></li>
+          <li class="nav-item mb-2"><a href={{path('products')}} class="nav-link p-0 text-body-secondary">Nos produits</a></li>
+          <li class="nav-item mb-2"><a href={{path('contact')}} class="nav-link p-0 text-body-secondary">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="col-md-5 offset-md-1 mb-3">
+        <form>
+          <h5>Abonnez-vous à notre newsletter</h5>
+          <p>Ne manquez plus aucune nouveauté, recevez les par mail</p>
+          <div class="d-flex flex-column flex-sm-row w-100 gap-2">
+            <span><input id="newsletter1" type="text" class="form-control" placeholder="Votre adresse email"></span>
+            <button class="btn btn-primary" type="button" id="espace">Abonnez-vous</button>
+
+          </div>
+        </form>
+
+      <div class="espaseicon">
+      <ul class="list-unstyled  espaseicon d-flex">
+          <li class="ms-3"><a class="link-body-emphasis" href="#"><img src={{asset('assets/img/facebook.png')}}  alt="logo"</a></li>
+          <li class="ms-3"><a class="link-body-emphasis" href="#"> <img src={{asset('assets/img/snapchat.png')}}  alt="logo"></a></li>
+          <li class="ms-3"><a class="link-body-emphasis" href="#">  <img src={{asset('assets/img/twitter.png')}}  alt="logo"></a></li>
+          <li class="ms-3"><a class="link-body-emphasis" href="#">  <img src={{asset('assets/img/instagram.png')}}  alt="logo"></a></li>
+      </ul>
+      <div>
+    </div>
+
+      <ul class="list-unstyled  d-flex" id="payment" >
+          <li class="ms-4">  <img  src={{asset('assets/img/pay-pal.png')}} > <p>Paypal</p></li>
+          <li class="ms-4"> <img   src={{asset('assets/img/american-express.png')}}><p>American Express</p></li>
+          <li class="ms-4"> <img   src={{asset('assets/img/carte.png')}}><p>MasterCard</p></li>
+          <li class="ms-4"> <img  src={{asset('assets/img/visa.png')}} ><p>Visa</p></li>
+          <li class="ms-4">  <img  src={{asset('assets/img/carte-de-credit.png')}}><p>Carte bancaire</p></li>
+          <li class="ms-4">  <img   src={{asset('assets/img/paiement-securise.png')}} ><p>Paiement Sécurisé</p></li>
+      </ul>
+  </footer>

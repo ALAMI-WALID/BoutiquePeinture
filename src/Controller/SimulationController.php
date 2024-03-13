@@ -55,14 +55,20 @@ class SimulationController extends AbstractController
 
                     if ($estimationPaint->getPaintOption()->getId() == $option && $estimationPaint->getCarType()->getId() ==  $carType) {
                         //Min
-                        $estimationBombe =  $estimationBombe + $estimationPaint->getBombeMin();
+                        $estimationBombe =  $estimationBombe + $estimationPaint->getBombeMin();                        
                         $estimationPot = $estimationPot + $estimationPaint->getPaintMin();
                         //MAX
                         $estimationBombeMax = $estimationBombeMax + $estimationPaint->getBombeMax();
                         $estimationPotMax = $estimationPotMax + $estimationPaint->getPaintMax();
+
                     }
                 }
             }
+            //pour éliminer les elements egale 0 
+            if ($estimationBombe == 0 ){
+                $estimationBombe = "Non conseillé";
+            }
+            
         }
         return new JsonResponse([
             'estimationPot'=>$estimationPot,
