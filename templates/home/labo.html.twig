@@ -73,7 +73,30 @@
          <div class="row">
             <div class="col-md-6">
                 <!-- Cadre 1 -->
-                    <div class="cardlabo"><img class="img-mipa" src={{asset("assets/img/mip.jpg")}}></div>
+                    <div class="cardQutreLabo">
+                    <div class="container-labo3">
+
+                                <div class="card-labo3">
+                                <img class="img-labo" src={{asset("assets/img/mipa-machine-2.jpg")}}>
+                                    </div>
+
+                                <div class="card-labo3">
+                                  <img class="img-labo" src={{asset("assets/img/pcmipaa.png")}}>
+                                  {# <p>Découvrez Moi!</p> #}
+                                  </div>
+
+                                <div class="card-labo3">
+                                     <img class="img-labo" src={{asset("assets/img/lech.png")}}>
+
+                                    </div>
+
+                                <div class="card-labo3">
+                                    <img class="img-labo" src={{asset("assets/img/spectro.jpg")}}>
+                                    {# <br>Picture 3 #}
+                                    </div>
+                                </div>
+                    
+                    </div>
             </div>
             <div class="colMargin col-md-6">
                 <!-- Cadre 2 -->
@@ -101,7 +124,7 @@
                             <img src={{asset("assets/img/outil.png")}} class="cart-icon">
                             <span id="allemagne">Ile-de-France, France</span>
                     </div>
-                    <a href="https://www.mipa-paints.com/fr/" target="_blank"><button class="button-labo">Demander un devis</button></a>
+                    <button class="button-labo" onclick="pointerVersBloc()" >Demander un devis</button>
             </div>
         </div>
 
@@ -133,7 +156,7 @@
             </div>
             <div class="col-md-6">
                 <!-- Cadre 1 -->
-                    <div class="cardlabo"><img class="img-labo" src={{asset("assets/img/logiciel.png")}}></div>
+                    <div class="cardlabo"><img class="img-labo" src={{asset("assets/img/logiciel.PNG")}}></div>
             </div>
         </div>
 </div>
@@ -141,20 +164,55 @@
 
 <hr>
 
-<div class="form-container">
-      <form class="form">
-        <div class="form-group">
-          <label for="email">Company Email</label>
-          <input required="" name="email" id="email" type="text">
-        </div>
-        <div class="form-group">
-          <label for="textarea">How Can We Help You?</label>
-          <textarea required="" cols="50" rows="10" id="textarea" name="textarea">          </textarea>
-        </div>
-        <button type="submit" class="form-submit-btn">Submit</button>
-      </form>
-    </div>
+
+<h3 style="text-align:center; margin-block:42px" id="monBloc">Demander un Devis</h3>
+<form class="form-labo" >
+    
+    <div class="flex">
+        <label>
+            <input class="input" type="text" placeholder="" required="">
+            <span>Nom et prénom</span>
+        </label>
+
+        <label>
+            <input class="input" type="text" placeholder="" required="">
+            <span>Nom de société</span>
+        </label>
+    </div>  
+            
+    <label>
+        <input class="input" type="email" placeholder="" required="">
+        <span>email</span>
+    </label> 
+        
+    <label>
+        <input class="input" placeholder="" type="tel" required="">
+        <span>contact</span>
+    </label>
+    <label>
+        <textarea class="input01" placeholder="" rows="3" required=""></textarea>
+        <span>message</span>
+    </label>
+    
+    <button class="fancy">
+      <span class="top-key"></span>
+      <span class="text">Envoyez la demande</span>
+      <span class="bottom-key-1"></span>
+      <span class="bottom-key-2"></span>
+    </button>
+</form>
 
 
+{% endblock %}
 
+{% block script %}
+<script>
+ function pointerVersBloc() {
+            // Récupérer le bloc
+            var bloc = document.getElementById("monBloc");
+            
+            // Faire défiler jusqu'au bloc
+            bloc.scrollIntoView({ behavior: 'smooth' });
+        }
+</script>
 {% endblock %}
