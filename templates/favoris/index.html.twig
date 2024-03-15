@@ -3,9 +3,27 @@
 {% block title %}Mes Favoris{% endblock %}
 
 {% block content %}
-<div class="loader_Page">
-<div class="loader"> </div>
-<p id="loader_pagee">Loading ...</p>
+<div class="container-load">
+  <div class="dot dot-1"></div>
+  <div class="dot dot-2"></div>
+  <div class="dot dot-3"></div>
 </div>
+
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="goo">
+      <feGaussianBlur
+        result="blur"
+        stdDeviation="10"
+        in="SourceGraphic"
+      ></feGaussianBlur>
+      <feColorMatrix
+        values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 21 -7"
+        mode="matrix"
+        in="blur"
+      ></feColorMatrix>
+    </filter>
+  </defs>
+</svg>
 
 {% endblock %}
