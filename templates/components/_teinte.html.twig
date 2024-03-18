@@ -1,0 +1,55 @@
+ <div class="container-teinte">
+ <div class="teinte">
+        <h1>OÙ TROUVER MA TEINTE ?</h1>
+        <select id="mySelect" class="custom-select">
+            {% for item in data_marques %}
+                <option value="{{ item.id }}">{{ item.name }}</option>
+            {% endfor %}
+        </select>
+        <button id="submitBtn" class="btn btn-primary" >Valider</button>
+                 <p>Ci dessous les différents éléménts pour trouver votre code de couleur peinture .
+                Si vous avez des difficultés, n'hésitez pas à contacter notre service client<b> 01 75 342 549</b>.
+           </p>
+        <div id="resultContainer">
+            {% if result is not null %}
+              {% for imageName in result %}
+                    <img src="/uploads/cars/{{ imageName }}" alt="Résultat de la recherche">
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+</div>
+    <script>
+    $(document).ready(function() {
+        $('#submitBtn').click(function() {
+            var selectedValue = $('#mySelect').val();
+            if (selectedValue !== null) {
+                $.ajax({
+                    url: "{{ path('teinte')}}", // L'URL du contrôleur Symfony
+                    type: "POST",
+                    data: {
+                        Marque: selectedValue // Utilisez le même nom de paramètre que dans votre contrôleur Symfony
+                    },
+                    success: function(response) {
+                        // Afficher l'image si la réponse contient un résultat non nul
+                       if (response.result !== null) {
+                            $('#resultContainer').empty(); // Clear previous results
+                            var resultArray = JSON.parse(response.result);
+                            for (var i = 0; i < resultArray.length; i++) {
+                                $('#resultContainer').append('<img src="/uploads/cars/' + resultArray[i] + '" alt="Résultat de la recherche">');
+                            }
+                        } else {
+                            $('#resultContainer').html('<p>Aucun résultat trouvé</p>');
+                        }
+                        console.log(response);
+                    },
+                    error: function() {
+                        console.error("La requête AJAX a échoué.");
+                    }
+                });
+            } else {
+                console.log("Aucune marque de voiture sélectionnée.");
+            }
+        });
+    });
+</script>

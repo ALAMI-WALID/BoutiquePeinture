@@ -8,3 +8,11 @@ simulation:
       defaults: 
           path: /simulation
           permanent: true
+
+
+teinte:
+      path: /teinte
+      controller: App\Controller\TeinteController::index
+      defaults: 
+          path: /teinte
+          permanent: true

@@ -179,13 +179,14 @@
 
   </div>
 
+
   <script>
   var copy = document.querySelector( ".logos-slide" ).cloneNode( true );
   document.querySelector('.logos').appendChild(copy);
   </script>
 
+  {% include 'components/_teinte.html.twig'%}
 
-      
 {% endblock %}
 
 {% block script %}

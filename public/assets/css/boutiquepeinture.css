@@ -2132,7 +2132,123 @@ li.nav-item:nth-child(7) > a:nth-child(1) {
 }
 
 
+/*select*/
+.custom-select {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 15px;
+}
 
+.custom-select select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px 0 0 5px;
+  background-color: #fff;
+  width: 200px;
+  cursor: pointer;
+}
+
+.custom-select button {
+  padding: 10px 20px;
+  border: 1px solid #ccc;
+  border-radius: 0 5px 5px 0;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+}
+
+.custom-select::after {
+  content: '\25BC';
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.custom-select select:hover {
+  border-color: #999;
+}
+
+.custom-select button:hover {
+  background-color: #0056b3;
+}
+
+.custom-select select:focus {
+  outline: none;
+  border-color: #555;
+}
+
+.custom-select button:focus {
+  outline: none;
+  border-color: #555;
+}
+
+.custom-select select option {
+  padding: 10px;
+}
+
+/*teint*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* Assure que les dimensions incluent les bordures et le padding */
+}
+
+.container-teinte{
+  background: #121212; /* Fallback for browsers that don't support gradients */
+  background: linear-gradient(
+    135deg,
+    #121212 25%,
+    #1a1a1a 25%,
+    #1a1a1a 50%,
+    #121212 50%,
+    #121212 75%,
+    #1a1a1a 75%,
+    #1a1a1a
+  );
+  background-size: 40px 40px;
   
-  
-  
+  /* Animation */
+  animation: move 4s linear infinite;
+  width: 173%;
+  right: 25rem;
+  position: relative;
+  margin-block: 60px;
+
+
+}
+.teinte{
+justify-content: center;
+display: grid;
+text-align: center;
+padding-inline: 83px;
+padding-block: 15px;
+}
+
+@keyframes move {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 40px 40px;
+  }
+}
+
+.teinte > h1:nth-child(1) {
+  color: whitesmoke;
+}
+
+.teinte img{
+  margin: 5px;
+}
+#submitBtn {
+  background: #BF0426;
+  border: none;
+}
+.teinte > p:nth-child(4) {
+  color: whitesmoke;
+}
