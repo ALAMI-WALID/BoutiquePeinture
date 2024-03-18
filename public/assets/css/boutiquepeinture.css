@@ -2214,10 +2214,13 @@ li.nav-item:nth-child(7) > a:nth-child(1) {
   
   /* Animation */
   animation: move 4s linear infinite;
-  width: 173%;
-  right: 25rem;
   position: relative;
   margin-block: 60px;
+  /* width: 173%; */
+  /* right: 25rem; */
+  width: 159%;
+  right: 22rem;
+
 
 
 }
