@@ -15,6 +15,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Header;
+use App\Entity\MarqueTeinte;
+use App\Entity\SearchTeinte;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class HomeController extends AbstractController
 {
@@ -32,8 +35,8 @@ class HomeController extends AbstractController
 
   
 
-    #[Route('/', name: 'app_home')]
-    public function index(Request $request): Response
+    #[Route('/', name: 'app_home' , methods: ['GET', 'POST'])]
+    public function index(Request $request ): Response
     {
 
 
@@ -44,44 +47,71 @@ class HomeController extends AbstractController
         $form->handleRequest($request);
 
 
-        if ($form->isSubmitted() && $form->isValid()) {
+    //     if ($form->isSubmitted() && $form->isValid()) {
 
-            dd($searchData->q);
-
-
+    //         dd($searchData->q);
 
 
-            // $products = $this->entityManager->getRepository(Product::class)->findWithSearchGlobal($search);
 
 
-            // $categories = $this->megaMenu->mega();
-            // $Scategories = $this->megaMenu->megaS();
-            // $SScategories = $this->megaMenu->megaSS();
-            // if (empty($products)) {
+    //         // $products = $this->entityManager->getRepository(Product::class)->findWithSearchGlobal($search);
+
+
+    //         // $categories = $this->megaMenu->mega();
+    //         // $Scategories = $this->megaMenu->megaS();
+    //         // $SScategories = $this->megaMenu->megaSS();
+    //         // if (empty($products)) {
                 
                 
-            //     return $this->render('home/search.html.twig', [
-            //         'products' => [],
-            //         'search' => $form->createView(),
-            //         'categories' =>$categories,
-            //         'Scategories' => $Scategories,
-            //         'SScategories'=>$SScategories
-            //     ]);
-            // }
-            // return $this->render('home/search.html.twig',[
+    //         //     return $this->render('home/search.html.twig', [
+    //         //         'products' => [],
+    //         //         'search' => $form->createView(),
+    //         //         'categories' =>$categories,
+    //         //         'Scategories' => $Scategories,
+    //         //         'SScategories'=>$SScategories
+    //         //     ]);
+    //         // }
+    //         // return $this->render('home/search.html.twig',[
                
-            //     'products' => $products,
-            //     'search' => $form->createView(),
-            //     'categories' =>$categories,
-            //     'Scategories' => $Scategories,
-            //     'SScategories'=>$SScategories
+    //         //     'products' => $products,
+    //         //     'search' => $form->createView(),
+    //         //     'categories' =>$categories,
+    //         //     'Scategories' => $Scategories,
+    //         //     'SScategories'=>$SScategories
     
-            // ]);
-        } 
-       else{
+    //         // ]);
+    //     } 
+    //    else{
 
         $products = $this->entityManager->getRepository(Product::class)->findByIsBest(1);
         $headers = $this->entityManager->getRepository(Header::class)->findAll();
+
+
+        //traaitemet de trouve code teinte : 
+        // Récupérer la liste des marques avec leurs logos
+            $data_marques = $this->entityManager->getRepository(MarqueTeinte::class)->findAll();
+            $searchTeintes = $this->entityManager->getRepository(SearchTeinte::class)->findAll();
+
+            // Initialiser la variable de résultat
+            $result = null;
+
+            // Traiter la requête POST si elle est envoyée
+            if ($request->isMethod('POST')) {
+                $marque_return = $request->request->get('Marque');
+                if ($marque_return !== null) {
+                    foreach ($searchTeintes as $searchTeinte) {
+                        if ($marque_return == $searchTeinte->getMarque()->getId()) {
+                            $result[] = $searchTeinte->getIllustration()->getIllustration();
+                        }
+                    }
+                }
+                // Retourner la réponse JSON avec le résultat returne Tableau 
+                return new JsonResponse(['result' => json_encode($result)]);
+
+    }
+
+
+
 
         $categories = $this->megaMenu->mega();
         $Scategories = $this->megaMenu->megaS();
@@ -93,14 +123,17 @@ class HomeController extends AbstractController
         return $this->render('home/index.html.twig',[
             'products' => $products,
             'headers' => $headers,
-            'search' => $form->createView(),
             'categories' =>$categories,
             'Scategories' =>$Scategories,
-            'SScategories'=>$SScategories
+            'SScategories'=>$SScategories,
+            'data_marques' => $data_marques, // Correction du nom de variable
+            'result'=>$result,
+
+
 
 
         ]);
-    }
+    
     }
 
     #[Route('Condition_generals', name: 'CGV')]
