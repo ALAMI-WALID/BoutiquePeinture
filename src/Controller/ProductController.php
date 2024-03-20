@@ -442,6 +442,7 @@ class ProductController extends AbstractController
         $GrainDisqueAbrasif = false;
         $GrainDisqueAlamelle=false;
         $TailleRuban=false;
+        $TailleGobelet=false;
         $notification = null;
 
         $product = $this->entityManager->getRepository(Product::class)->findOneBySlug($slug);
@@ -480,6 +481,12 @@ class ProductController extends AbstractController
                 $TailleRuban = true;
                 $verfie = true;
             }
+            elseif ( strpos($product->getArticleCode(), '9958105')=== 0) {
+                $TailleGobelet = true;
+                $verfie = true;
+            }
+            
+
 
             
 
@@ -491,6 +498,7 @@ class ProductController extends AbstractController
                 'GrainDisqueAbrasif'=>$GrainDisqueAbrasif,
                 'GrainDisqueAlamelle'=>$GrainDisqueAlamelle,
                 'TailleRuban'=>$TailleRuban,
+                'TailleGobelet'=>$TailleGobelet,
             ]);
 
 
@@ -513,6 +521,15 @@ class ProductController extends AbstractController
                 if(strpos($product->getArticleCode(), '408')=== 0){
                     $product = $this->entityManager->getRepository(Product::class)->findOneByEpaisseurRuban($data->getEpaisseurRuban());
                     }
+
+                //taille de gobelet
+
+                if(strpos($product->getArticleCode(), '9958105')=== 0){
+                    $product = $this->entityManager->getRepository(Product::class)->findOneByTailleGobelet($data->getTailleGobelet());
+                    }
+
+                
+                
                 
 
     

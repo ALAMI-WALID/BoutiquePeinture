@@ -134,6 +134,9 @@ class Product
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $lienYoutube = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $tailleGobelet = null;
+
     public function __construct()
     {
         $this->images = new ArrayCollection();
@@ -631,6 +634,18 @@ class Product
     public function setLienYoutube(?string $lienYoutube): static
     {
         $this->lienYoutube = $lienYoutube;
+
+        return $this;
+    }
+
+    public function getTailleGobelet(): ?string
+    {
+        return $this->tailleGobelet;
+    }
+
+    public function setTailleGobelet(?string $tailleGobelet): static
+    {
+        $this->tailleGobelet = $tailleGobelet;
 
         return $this;
     }

@@ -127,6 +127,32 @@ class OptionProductType extends AbstractType
                 ]);
             }
 
+            
+            if ($options['TailleGobelet']) {
+                $builder
+                ->add('tailleGobelet', ChoiceType::class, [
+                    'choices' => [
+                        '385 ml'=>'385 ml',
+                        '750 ml'=>'750 ml',
+                        '1400 ml'=>'1400 ml',
+                        '2300 ml'=> '2300 ml',
+                        
+
+
+                        
+                    ],
+                    'label'=>'Taille Gobelet',
+                    'placeholder' => false,
+                    'required'=>false
+                ]);
+    
+            }
+
+
+
+
+
+
             if ($options['TailleRuban']) {
                 $builder
                 ->add('epaisseurRuban', ChoiceType::class, [
@@ -193,6 +219,7 @@ class OptionProductType extends AbstractType
             'GrainDisqueAbrasif'=>false,
             'GrainDisqueAlamelle'=>false,
             'TailleRuban'=>false,
+            'TailleGobelet'=>false,
         ]);
     }
 }
