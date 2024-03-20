@@ -1597,6 +1597,8 @@ li.nav-item:nth-child(7) > a:nth-child(1) {
   padding: 7px;
   padding-inline: 30px;
   color: black;
+  border-radius: 10px;
+  
 }
 
 /*form  devis */
@@ -2228,7 +2230,7 @@ li.nav-item:nth-child(7) > a:nth-child(1) {
 justify-content: center;
 display: grid;
 text-align: center;
-padding-inline: 83px;
+padding-inline: 450px;
 padding-block: 15px;
 }
 
