@@ -514,12 +514,6 @@ font-weight: bold;
     padding: 1em;
   }
 
-  #brandscontent{
-    padding-left: 9em;
-  }
-
-
-
   /* les photos marques  */
 
 
@@ -2442,7 +2436,3 @@ card product */
 #wo-breadcrumbs > li:nth-child(3) > a:nth-child(1) > span:nth-child(1) {
   color: #606060;
 }
-
-
-/*arreier plan*/
-
