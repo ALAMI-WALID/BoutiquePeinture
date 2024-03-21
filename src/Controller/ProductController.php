@@ -447,9 +447,8 @@ class ProductController extends AbstractController
 
         $product = $this->entityManager->getRepository(Product::class)->findOneBySlug($slug);
         $photo= $product->getImages();
-        $products = $this->entityManager->getRepository(Product::class)->findByIsBest(1);
-
-        if(!$product){
+        $products = $this->entityManager->getRepository(Product::class)->findBySsCategory($product->getSScategory()->getId(),$product->getId());
+               if(!$product){
             return $this->redirectToRoute('products');
         }
         

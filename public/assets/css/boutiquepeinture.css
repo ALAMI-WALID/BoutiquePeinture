@@ -602,38 +602,6 @@ font-weight: bold;
     color: #000000;
 }
 
-
-
-/* style de image page show  */
-
-
-/* CSS */
-/* Cibler les flèches précédentes et suivantes */
-.slick-prev,
-.slick-next {
-    color: #867d7d; /* Couleur de la flèche (blanc dans cet exemple) */
-    background-color: #6c6a6a; /* Couleur de fond de la flèche (noir dans cet exemple) */
-}
-
-/* Lorsque survolé */
-.slick-prev:hover,
-.slick-next:hover {
-    color: #000000; /* Couleur de la flèche lorsqu'elle est survolée (noir dans cet exemple) */
-    background-color: #2f2d2d; /* Couleur de fond de la flèche lorsqu'elle est survolée (blanc dans cet exemple) */
-}
-
-
-
-
-/* style.css | http://127.0.0.1:8000/assets/css/style.css */
-
-/* #tranding .tranding-slider {
-    background-color: white;
-    margin-left: -175px;
-    margin-right: -166px;
-  } */
-
-
   
   /* Élément | http://127.0.0.1:8000/ */
   
@@ -725,7 +693,7 @@ font-weight: bold;
     cursor: pointer;
     padding: 15px;
     padding-left: 64px;
-    padding-right: 64px;
+    padding-right: 52px;
     background-color: white;
     margin-top: 25px;
     cursor: default;
@@ -2297,6 +2265,7 @@ card product */
   margin: auto;
   margin-bottom: 10px;
   box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  margin-inline: -8px;
  }
  
  .card-img-product {
@@ -2420,6 +2389,7 @@ card product */
 
 
 /* Élément | http://127.0.0.1:8000/nos_produits/1 */
+/* filed'ariane */
 
 #wo-breadcrumbs > li:nth-child(1) > a:nth-child(1) > span:nth-child(1) {
   color: #606060;
@@ -2435,4 +2405,16 @@ card product */
 
 #wo-breadcrumbs > li:nth-child(3) > a:nth-child(1) > span:nth-child(1) {
   color: #606060;
+}
+
+/* style de la gamme */
+
+
+
+.slick-prev, .slick-next {
+  color: black;
+  background: #252933;
+  border-radius: 20px;
+  width: 19px;
+  height: 17px;
 }

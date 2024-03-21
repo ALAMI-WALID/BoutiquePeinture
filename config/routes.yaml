@@ -16,3 +16,8 @@ teinte:
       defaults: 
           path: /teinte
           permanent: true
+
+account_order:
+    path: '/compte/mes-commandes'
+    controller: 'App\Controller\AccountOrderController::index'
+    methods: ['GET', 'POST']
