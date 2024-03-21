@@ -528,14 +528,17 @@ class ProductRepository extends ServiceEntityRepository
 //            ->getResult()
 //        ;
 //    }
-
-//    public function findOneBySomeField($value): ?Product
-//    {
-//        return $this->createQueryBuilder('p')
-//            ->andWhere('p.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+/**recherche par sous sous categoty */
+   public function findBySsCategory($value,$id): array
+   {
+       return $this->createQueryBuilder('p')
+           ->andWhere('p.SScategory = :val')
+           ->andWhere('p.id != :id')
+           ->andWhere('p.hiddenProduit = 1')
+           ->setParameter('val', $value)
+           ->setParameter( 'id' ,$id)
+           ->getQuery()
+           ->getResult()
+       ;
+   }
 }

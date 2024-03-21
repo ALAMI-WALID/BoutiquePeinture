@@ -48,6 +48,9 @@ class Order
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $delivery_billing = null;
 
+    #[ORM\Column]
+    private ?bool $provided = null;
+
     public function __construct()
     {
         $this->orderDetails = new ArrayCollection();
@@ -205,6 +208,18 @@ class Order
     public function setDeliveryBilling(?string $delivery_billing): static
     {
         $this->delivery_billing = $delivery_billing;
+
+        return $this;
+    }
+
+    public function isProvided(): ?bool
+    {
+        return $this->provided;
+    }
+
+    public function setProvided(bool $provided): static
+    {
+        $this->provided = $provided;
 
         return $this;
     }

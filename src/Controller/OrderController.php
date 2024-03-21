@@ -161,6 +161,7 @@ class OrderController extends AbstractController
             $order->setDelivery($delivery_content);
             $order->setDeliveryBilling($delivery_content_b);
             $order->setState(0);
+            $order->setProvided(0);
 
 
             
