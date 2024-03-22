@@ -283,7 +283,7 @@ font-weight: bold;
     color: #5a5a5a;
   }
 #navbarDropdown{
-    margin-left: 1.5em;
+    margin-inline: 1.5rem;
 }
 #navbarDropdownMenuLink{
     margin-left: 2em;
@@ -1169,6 +1169,7 @@ div.step:nth-child(6) {
     font-family: 'Roboto', 'Segoe UI', sans-serif;
     text-transform: uppercase;
     color: var(--color);
+    left:138px;
    }
    
    .btnn::after, .btnn::before {
@@ -1242,7 +1243,7 @@ div.step:nth-child(6) {
    }
    
    .top {
-    background: wheat;
+  background: #F08080;
     color: #222229;
     transform: rotateX(90deg) translate3d(0, 0, 2em);
     box-shadow: inset 0 0 0 5px #fff;
@@ -1555,18 +1556,6 @@ div.step:nth-child(6) {
   .labo4{
     margin-bottom: 84px;
   }
-
-
-/* Élément | http://127.0.0.1:8000/nous-contact */
-
-li.nav-item:nth-child(7) > a:nth-child(1) {
-  background-color: #f08080;
-  padding: 7px;
-  padding-inline: 30px;
-  color: black;
-  border-radius: 10px;
-  
-}
 
 /*form  devis */
 
@@ -2270,11 +2259,11 @@ card product */
  
  .card-img-product {
   /* background-color: #ffcaa6; */
-  background-image: linear-gradient(135deg, #feb692 0%, #bf0426 100%);
   height: 40%;
   width: 100%;
   border-radius: .5rem;
   transition: .3s ease;
+  /* border: 1px solid; */
  }
  
  .card-info-product {
@@ -2417,4 +2406,21 @@ card product */
   border-radius: 20px;
   width: 19px;
   height: 17px;
+}
+
+
+
+/* Élément | http://127.0.0.1:8000/Installation_de_labo */
+
+li.nav-item:nth-child(7) > a:nth-child(2) {
+  color: black;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 1.25rem;
+  text-decoration: none;
+  background-color: #f0a1a1;
+  border-radius: 10px;
+  padding: 7px;
+  top: 15px;
+  position:relative;
+  top: 5px;
 }

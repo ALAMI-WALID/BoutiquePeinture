@@ -52,6 +52,27 @@ class AccountOrderController extends AbstractController
 
         ]);
     }
+
+
+    #[Route('/compte/comment-mes-commandes', name: 'account_comments')]
+    public function comments(Request $request): Response
+    {
+        $orders = $this->entityManager->getRepository(Order::class)->findCommentOrders($this->getUser());
+        $categories = $this->megaMenu->mega();
+        $Scategories = $this->megaMenu->megaS();
+        $SScategories = $this->megaMenu->megaSS();
+
+        return $this->render('account/comment.html.twig', [
+            'orders' => $orders,
+            'categories' =>$categories,
+            'Scategories' =>$Scategories,
+            'SScategories'=>$SScategories
+
+        ]);
+    }
+
+
+
     
 
     #[Route('/compte/mes-commandes/{reference}', name: 'account_order_show')]
@@ -69,6 +90,29 @@ class AccountOrderController extends AbstractController
 
 
         return $this->render('account/order_show.html.twig', [
+            'order' => $order,
+            'categories' =>$categories,
+            'Scategories' =>$Scategories,
+            'SScategories'=>$SScategories
+        ]);
+    }
+
+
+    #[Route('/compte/comment-mes-commandes/{reference}', name: 'account_comments_show')]
+    public function showComments($reference)
+    {
+        $order = $this->entityManager->getRepository(Order::class)->findOneByReference($reference);
+
+        if (!$order || $order->getUser() != $this->getUser()) {
+            return $this->redirectToRoute('account_order');
+        }
+
+        $categories = $this->megaMenu->mega();
+        $Scategories = $this->megaMenu->megaS();
+        $SScategories = $this->megaMenu->megaSS();
+
+
+        return $this->render('account/comment_show.html.twig', [
             'order' => $order,
             'categories' =>$categories,
             'Scategories' =>$Scategories,

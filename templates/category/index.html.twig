@@ -9,7 +9,12 @@
            {% for menu in categories %}
     <li class="nav-item dropdown position-static">
         <a class="navbar-brand" href="#" id="navbarDropdown" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
-            {{ menu.name }}
+        {% if menu.name == 'Installation Labo'%}
+           <a  href={{path('labo')}}> {{ menu.name }}</a>
+        {% else %}
+        {{menu.name}}
+        {% endif %}
+
         </a>
         <!-- Dropdown menu -->
         <div class="dropdown-menu w-100 mt-0" aria-labelledby="navbarDropdown" style="

@@ -1,0 +1,86 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ma commandes - Peinture Auto Expert{% endblock %}
+
+{% block content %}
+    <h1>Ma commande {{ order.reference }}</h1>
+    <p style="margin-block:2rem; text-align:center;"><b>Politique de Confidentialité</b> :
+        Vos informations personnelles seront utilisées uniquement dans le cadre de cette évaluation et ne seront en aucun cas partagées avec des tiers sans votre consentement. Consultez notre politique de confidentialité pour plus de détails.</p>
+    <hr><strong></strong>
+    <strong>Statut de la commande : </strong>
+    {% if order.state == 1 %}
+     Paiement accepté
+    {% elseif order.state == 2 %}
+    Préparation en cours
+    {% elseif order.state == 3 %}
+    Livraison en cours
+    {% endif %}                                
+    <br/>
+    <strong>Référence de ma commande :</strong> <small>{{ order.reference }}</small><br/>
+    <strong>Transporteur choisi :</strong> {{ order.carriername }}
+    <hr>
+    <strong style="justify-content:center;display:grid; font-size:36px;">FeedBack :</strong>
+
+    <table class="table mt-4">
+        <thead>
+        <tr>
+            <th scope="col">Produit</th>
+            
+        </tr>
+        </thead>
+        <tbody>
+        {% for product in order.orderDetails %}
+        <tr>
+            <td>{{ product.product }}</td>
+            <td>
+            
+                <div class="card-feedback">
+                            <div class="header-feedback">
+                                <span class="icon-feedback">
+                                <svg fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <path clip-rule="evenodd" d="M18 3a1 1 0 00-1.447-.894L8.763 6H5a3 3 0 000 6h.28l1.771 5.316A1 1 0 008 18h1a1 1 0 001-1v-4.382l6.553 3.276A1 1 0 0018 15V3z" fill-rule="evenodd"></path>
+                                </svg>
+                                </span>
+                                <p class="alert">Commentaire !</p>
+                            </div>
+
+                            <p class="message-feedback" style="width:18rem">
+                            <textarea placeholder="Votre feedback..." ></textarea>
+                            </p>
+                            
+                            <div class="rating">
+                                <input value="5" name="rate" id="star5" type="radio" checked="">
+                                <label title="text" for="star5"></label>
+                                <input value="4" name="rate" id="star4" type="radio">
+                                <label title="text" for="star4"></label>
+                                <input value="3" name="rate" id="star3" type="radio">
+                                <label title="text" for="star3"></label>
+                                <input value="2" name="rate" id="star2" type="radio">
+                                <label title="text" for="star2"></label>
+                                <input value="1" name="rate" id="star1" type="radio">
+                                <label title="text" for="star1"></label>
+                            </div>
+
+                            <div class="actions-feedback">
+                                <a class="read-feedback" href="">
+                               Valider
+                                </a>
+                            </div>
+          </div>
+
+            
+            
+            </td>
+            {# <td>{{ (product.price / 100)|number_format(2, ',', '.') }} €</td>
+            <td>{{ (product.total / 100)|number_format(2, ',', '.') }} €</td> #}
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="text-right">
+        <strong>Sous-total :</strong> {{ (order.getTotal / 100)|number_format(2, ',', '.') }} €<br/>
+        <strong>Livraison :</strong> {{ (order.carrierprice / 100)|number_format(2, ',', '.') }} €<br/>
+        <strong>Total : </strong> {{ ((order.carrierPrice + order.getTotal) / 100)|number_format(2, ',', '.') }} €
+    </div>
+{% endblock %}
