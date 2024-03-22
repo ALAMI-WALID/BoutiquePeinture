@@ -304,3 +304,7 @@
   top: auto;
   right: 28px;
 }
+
+.bg-dark {
+  background-color:#000 !important;
+}
