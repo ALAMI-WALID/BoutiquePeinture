@@ -50,6 +50,17 @@ class OrderRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    public function findCommentOrders($user)
+    {
+        return $this->createQueryBuilder('o')
+            ->andWhere('o.provided = 1')
+            ->andWhere('o.user = :user')
+            ->setParameter('user', $user)
+            ->orderBy('o.id', 'DESC')
+            ->getQuery()
+            ->getResult();
+    }
+
 
 //    /**
 //     * @return Order[] Returns an array of Order objects
