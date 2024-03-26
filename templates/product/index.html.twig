@@ -39,5 +39,32 @@
 {% endblock %}
 
 {% block script %}
+<script>
+$(document).ready(function(){
+    $('.favorite-checkbox').change(function(){
+        var productId = $(this).data('product-id');
+        if ($(this).is(':checked')) {
+            // Send AJAX request to add the product to favorites
+            $.ajax({
+                url:  "#",
+                type: 'POST',
+                data: { productId: productId },
+                success: function(response){
+                console.log("est marche  ");
+                console.log(response);
 
+
+                },
+                error: function(xhr, status, error){
+                console.log("est marche pas ");
+
+                }
+            });
+        } else {
+            // Handle case if the user unchecks the favorite
+        }
+    });
+});
+
+</script>
 {% endblock %}

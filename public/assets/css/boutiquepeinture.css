@@ -1962,25 +1962,6 @@ div.step:nth-child(6) {
   animation: moveUpDown 3s infinite ease-in-out;
 }
 
-/* load 2*/
-
-.container-load {
-  width: 200px;
-  height: 200px;
-  position: relative;
- 
-  transform: translate(-50%, -50%);
-  filter: url("#goo");
-  animation: rotate-move 2s ease-in-out infinite;
-}
-
-/* boutiquepeinture.css | http://127.0.0.1:8000/assets/css/boutiquepeinture.css */
-
-.container-load {
-  margin-inline: 602px;
-  margin-top: 19em;
-}
-
 
 .dot {
   width: 70px;
@@ -2631,3 +2612,8 @@ li.nav-item:nth-child(7) > a:nth-child(2) {
   }
 }
  
+.btn-secondary {
+  color:#fff;
+  background-color:#000;
+  border-color:#6c757d
+}
