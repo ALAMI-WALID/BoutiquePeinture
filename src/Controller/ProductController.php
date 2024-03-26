@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Classe\Favoris;
 use App\Classe\MegaMenu;
 use App\Classe\Search;
 use App\Classe\SearchData;
@@ -70,7 +71,7 @@ class ProductController extends AbstractController
     }
 
     #[Route('/nos_produits/{id}', name: 'productsInCategory')]
-    public function ShowCategory(Request $request,$id,Breadcrumbs $breadcrumbs): Response
+    public function ShowCategory(Request $request,$id,Breadcrumbs $breadcrumbs, Favoris $favoris): Response
     {   
         $showBusFilter = false;
         $showContenanceFilter = false;
@@ -245,7 +246,18 @@ class ProductController extends AbstractController
         $breadcrumbs->addItem( $Scategory[0]->getName(), $this->generateUrl("productsInSCategory",['id' => $scategory->getId()]));
         $breadcrumbs->addItem( $SScategory[0]->getName(), $this->generateUrl("productsInCategory",['id' => $id]));
 
+        // traitement favoris
 
+        if($request->isMethod("POST")){
+
+            //les variable de Ajax, recupere les valeur de cartype et optionPaint
+        $productId = $request->request->get('productId');
+         if($productId !== null ){
+           $favoris->add($productId); 
+         }
+         return new Response($productId);
+            
+        }
 
 
 
@@ -272,7 +284,7 @@ class ProductController extends AbstractController
 
 
     #[Route('/nos_categorais/{id}', name: 'productsInSCategory')]
-    public function ShowSCategory(Request $request,$id,Breadcrumbs $breadcrumbs): Response
+    public function ShowSCategory(Request $request,$id,Breadcrumbs $breadcrumbs,Favoris $favoris): Response
     {   
         $showBusFilter = false;
         $showContenanceFilter = false;
@@ -411,6 +423,18 @@ class ProductController extends AbstractController
         $breadcrumbs->addItem(  $titre_category, $this->generateUrl("productsInSCategory",['id' => $id]));
         $breadcrumbs->addItem( $Scategory[0]->getName(), $this->generateUrl("productsInSCategory",['id' => $id]));
 
+         // traitement favoris
+
+         if($request->isMethod("POST")){
+
+            //les variable de Ajax, recupere les valeur de cartype et optionPaint
+        $productId = $request->request->get('productId');
+         if($productId !== null ){
+           $favoris->add($productId); 
+         }
+         return new Response($productId);
+            
+        }
 
 
 
