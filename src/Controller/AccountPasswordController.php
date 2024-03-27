@@ -24,7 +24,7 @@ class AccountPasswordController extends AbstractController
         $this->megaMenu = $megaMenu;
 
     }
-    #[Route('/compte/modifier-mon-mot-de-passe', name: 'account_password')]
+    #[Route('/compte/modifier-mon-mot-de-passe', name: 'account_password', options: ['sitemap'=> ['section' =>'set_password']])]
     public function index(Request $request, UserPasswordEncoderInterface $encoder): Response
     {
         $notification = null;

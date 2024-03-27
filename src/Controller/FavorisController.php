@@ -29,7 +29,7 @@ class FavorisController extends AbstractController
 
     }
   
-    #[Route('/favoris', name: 'favoris')]
+    #[Route('/favoris', name: 'favoris', options: ['sitemap'=> ['section' =>'Mes _favoris']])]
     public function index(Request $request, Favoris $favoris): Response
     {
 

@@ -21,7 +21,7 @@ class CartController extends AbstractController
         $this->megaMenu = $megaMenu;
 
     }
-    #[Route('/mon_panier', name: 'cart')]
+    #[Route('/mon_panier', name: 'cart', options: ['sitemap'=> ['section' =>'Mon_panier']])]
     public function index(Cart $cart): Response
     {    
 

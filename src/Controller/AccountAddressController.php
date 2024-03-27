@@ -24,7 +24,7 @@ class AccountAddressController extends AbstractController
         $this->megaMenu = $megaMenu;
 
     }
-    #[Route('/compte/adresses', name: 'account_address')]
+    #[Route('/compte/adresses', name: 'account_address', options: ['sitemap'=> ['section' =>'set_address']])]
     public function index(): Response
     {
 
@@ -40,7 +40,7 @@ class AccountAddressController extends AbstractController
         ]);
     }
 
-    #[Route('/compte/ajouter-une-adresse', name: 'account_address_add')]
+    #[Route('/compte/ajouter-une-adresse', name: 'account_address_add', options: ['sitemap'=> ['section' =>'add_address']])]
     public function add(Request $request, SessionInterface $session, Cart $cart): Response
     { 
         $address = new Address;

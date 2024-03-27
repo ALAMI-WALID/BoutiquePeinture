@@ -27,7 +27,7 @@ class OrderController extends AbstractController
         $this->megaMenu = $megaMenu;
 
     }
-    #[Route('/commande', name: 'order')]
+    #[Route('/commande', name: 'order', options: ['sitemap'=> ['section' =>'My_order']])]
     public function index( Cart $cart, Request $request ): Response
     {
 
@@ -59,7 +59,7 @@ class OrderController extends AbstractController
         ]);
     }
 
-    #[Route('/commande/recapitulatif', name: 'order_recap', methods:"POST")]
+    #[Route('/commande/recapitulatif', name: 'order_recap', methods:"POST", options: ['sitemap'=> ['section' =>'My_order_recap']])]
     public function add( Cart $cart, Request $request ): Response
     {
 

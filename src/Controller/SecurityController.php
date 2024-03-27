@@ -18,7 +18,7 @@ class SecurityController extends AbstractController
         $this->megaMenu = $megaMenu;
 
     }
-    #[Route(path: '/connexion', name: 'app_login')]
+    #[Route(path: '/connexion', name: 'app_login', options: ['sitemap'=> ['section' =>'login']])]
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
         if ($this->getUser()) {

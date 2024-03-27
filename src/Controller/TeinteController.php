@@ -27,7 +27,7 @@ class TeinteController extends AbstractController
 
 
     
-#[Route('/teinte', name: 'teinte', methods: ['GET', 'POST'])]
+#[Route('/teinte', name: 'teinte', methods: ['GET', 'POST'], options: ['sitemap'=> ['section' =>'search_teint']])]
 public function index(Request $request): Response
 {
     // Récupérer la liste des marques avec leurs logos
