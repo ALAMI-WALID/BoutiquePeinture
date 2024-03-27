@@ -17,7 +17,7 @@ class AccountController extends AbstractController
         $this->megaMenu = $megaMenu;
 
     }
-    #[Route('/compte', name: 'account')]
+    #[Route('/compte', name: 'account', options: ['sitemap'=> ['section' =>'account']])]
     public function index(): Response
     {
 

@@ -24,7 +24,7 @@ class RegisterController extends AbstractController
         $this->megaMenu = $megaMenu;
 
     }
-    #[Route('/inscription', name: 'register')]
+    #[Route('/inscription', name: 'register', options: ['sitemap'=> ['section' =>'register']])]
     public function index(Request $request, UserPasswordEncoderInterface $encoder): Response
     {   
         $notification = null;

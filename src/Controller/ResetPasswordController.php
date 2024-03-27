@@ -27,7 +27,7 @@ class ResetPasswordController extends AbstractController
 
     }
 
-    #[Route('/mot-de-passe-oublie', name: 'reset_password')]
+    #[Route('/mot-de-passe-oublie', name: 'reset_password', options: ['sitemap'=> ['section' =>'forget_password']])]
     public function index(Request $request): Response
     {
         $createdAt = new DateTimeImmutable(); 

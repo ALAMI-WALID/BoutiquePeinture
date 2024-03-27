@@ -136,7 +136,7 @@ class HomeController extends AbstractController
     
     }
 
-    #[Route('Condition_generals', name: 'CGV', options: ['sitemap'=> true])]
+    #[Route('Condition_generals', name: 'CGV', options: ['sitemap'=> ['section' =>'CGV']])]
     public function condition(): Response
     {
         $categories = $this->megaMenu->mega();
@@ -149,7 +149,7 @@ class HomeController extends AbstractController
         ]);
     }
 
-    #[Route('Mention_legales', name: 'MLS')]
+    #[Route('Mention_legales', name: 'MLS', options: ['sitemap'=> ['section' =>'mention_legal']])]
     public function legal(): Response
     {
         $categories = $this->megaMenu->mega();
@@ -162,7 +162,7 @@ class HomeController extends AbstractController
         ]);
     }
 
-    #[Route('paiement_securisé', name: 'PS')]
+    #[Route('paiement_securisé', name: 'PS', options: ['sitemap'=> ['section' =>'payment_secure']])]
     public function paiement(): Response
     {
         $categories = $this->megaMenu->mega();
@@ -175,7 +175,7 @@ class HomeController extends AbstractController
         ]);
     }
 
-    #[Route('RGPD', name: 'RGPD')]
+    #[Route('RGPD', name: 'RGPD',options: ['sitemap'=> ['section' =>'RGPD']])]
     public function RGPD(): Response
     {
         $categories = $this->megaMenu->mega();
