@@ -19,7 +19,7 @@ class ContactController extends AbstractController
         $this->megaMenu = $megaMenu;
 
     }
-    #[Route('/nous-contact', name: 'contact')]
+    #[Route('/nous-contact', name: 'contact', options: ['sitemap'=> ['section' =>'contact']])]
     public function index(Request $request): Response
     {
 

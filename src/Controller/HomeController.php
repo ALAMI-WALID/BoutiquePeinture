@@ -35,7 +35,7 @@ class HomeController extends AbstractController
 
   
 
-    #[Route('/', name: 'app_home' , methods: ['GET', 'POST'])]
+    #[Route('/', name: 'app_home' , methods: ['GET', 'POST'], options: ['sitemap'=> ['section' =>'home', 'priority'=> 0.5]])]
     public function index(Request $request ): Response
     {
 
@@ -136,7 +136,7 @@ class HomeController extends AbstractController
     
     }
 
-    #[Route('Condition_generals', name: 'CGV')]
+    #[Route('Condition_generals', name: 'CGV', options: ['sitemap'=> true])]
     public function condition(): Response
     {
         $categories = $this->megaMenu->mega();
@@ -187,7 +187,7 @@ class HomeController extends AbstractController
             'SScategories'=>$SScategories
         ]);
     }
-    #[Route('Installation_de_labo', name: 'labo')]
+    #[Route('Installation_de_labo', name: 'labo', options: ['sitemap'=> ['section' =>'labo']])]
     public function labo(): Response
     {
         $categories = $this->megaMenu->mega();
@@ -200,7 +200,7 @@ class HomeController extends AbstractController
         ]);
     }
 
-    #[Route('Devenir_partenaire', name: 'DP')]
+    #[Route('Devenir_partenaire', name: 'DP', options: ['sitemap'=> ['section' =>'new_partenir']])]
     public function pro(): Response
     {
         $categories = $this->megaMenu->mega();
@@ -212,7 +212,7 @@ class HomeController extends AbstractController
             'SScategories'=>$SScategories
         ]);
     }
-    #[Route('code_peinture', name: 'CodeP')]
+    #[Route('code_peinture', name: 'CodeP', options: ['sitemap'=> ['section' =>'search_code_peinture']])]
     public function CodeP(Request $request): Response
     {
         //récupere les données sans doublon
